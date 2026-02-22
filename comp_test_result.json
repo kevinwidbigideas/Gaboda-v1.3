@@ -1,0 +1,14 @@
+{
+    "survey_id": "test_persona_comp",
+    "travti_label": "경로 대장",
+    "base_mbti": "ESTJ",
+    "scores": {
+        "ei": 1.0,
+        "sn": 1.0,
+        "tf": 1.0,
+        "jp": 1.0,
+        "stamina": 1.0,
+        "alcohol": 0.9
+    },
+    "timestamp": 1234567890
+}

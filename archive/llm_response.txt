@@ -1,0 +1,8 @@
+
+{
+  "day": 1,
+  "current_activity": "아사쿠사 신사 방문",
+  "modification_type": "addition",
+  "suggestion": "시부야 스크램블 교차로",
+  "reason": "김영웅님이 외향적이고 유연한 성향을 선호하므로 활기찬 시부야 스크램블 교차로 방문이 적합합니다"
+}

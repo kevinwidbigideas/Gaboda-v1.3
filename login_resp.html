@@ -1,0 +1,604 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>body { font-family: 'Pretendard', sans-serif; }</style>
+
+    <title>濡쒓렇??/ ?뚯썝媛??- TraVTI</title>
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .animate-up {
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .tab-active {
+            color: #2563eb;
+            border-bottom: 2px solid #2563eb;
+        }
+
+        .tab-inactive {
+            color: #64748b;
+            border-bottom: 2px solid transparent;
+        }
+
+        .tab-inactive:hover {
+            color: #334155;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 min-h-screen flex flex-col">
+    
+    <header id="site-header" class="sticky top-0 z-[80] border-b border-slate-200 bg-white">
+        <div class="flex items-center justify-between w-full px-6 md:px-10 py-4">
+            <div class="max-w-3xl mx-auto w-full flex items-center justify-between">
+                <a href="/" class="text-blue-500 cursor-pointer hover:opacity-80 transition-opacity">
+                    <h2 class="text-slate-900 text-xl font-extrabold">Travis</h2>
+                </a>
+                <div class="flex items-center gap-4">
+                    <!-- Logged Out State -->
+                    <a id="desktop-login-btn" href="/login" class="hidden md:block px-5 py-2.5 bg-slate-900 text-white rounded-full hover:bg-slate-800 transition-colors text-sm font-bold shadow-md shadow-slate-900/10">濡쒓렇??/ ?뚯썝媛??/a>
+                    
+                    <!-- Logged In State -->
+                    <div id="desktop-user-area" class="hidden items-center gap-4">
+                        <div class="flex flex-col items-end text-right mr-2">
+                            <span id="desktop-user-welcome" class="text-xs text-slate-500 font-medium"></span>
+                            <div id="desktop-user-persona" class="text-sm font-bold text-slate-800"></div>
+                        </div>
+                        <div class="h-8 w-px bg-slate-200 mx-1"></div>
+                        <a id="desktop-mypage-btn" href="/my-travti" class="text-blue-600 hover:text-blue-700 font-bold transition-colors text-sm">留덉씠?섏씠吏</a>
+                        <button id="desktop-logout-btn" class="text-slate-400 hover:text-red-500 font-medium transition-colors text-sm">濡쒓렇?꾩썐</button>
+                    </div>
+
+
+                    <button id="menu-toggle-header" class="md:hidden p-2 rounded-md hover:bg-slate-100">
+                        <span class="flex flex-col gap-1 items-center">
+                            <span class="block w-6 h-0.5 bg-slate-800 rounded"></span>
+                            <span class="block w-6 h-0.5 bg-slate-800 rounded"></span>
+                            <span class="block w-6 h-0.5 bg-slate-800 rounded"></span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <div id="sidebar-backdrop-common" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[90] hidden opacity-0 transition-opacity duration-300"></div>
+
+    <aside id="sidebar-common" class="md:hidden fixed top-0 right-0 h-full w-full sm:w-[360px] bg-white z-[100] translate-x-full transition-transform duration-300 ease-in-out shadow-2xl overflow-y-auto">
+        <div class="p-6">
+                <div class="flex justify-end mb-6">
+                <button id="close-menu-common" class="p-1 text-gray-500 hover:text-black text-2xl font-bold">X</button>
+            </div>
+            <div class="px-2">
+                <a id="header-login-btn" href="/login" class="block text-lg font-medium mb-6 text-gray-800 cursor-pointer hover:text-blue-500 transition-colors">濡쒓렇??/ ?뚯썝媛??/a>
+                <div id="user-id-display" class="hidden mb-6">
+                    <div class="flex items-center justify-between">
+                        <span id="user-id-text" class="text-lg font-medium text-gray-800">濡쒓렇??/span>
+                        <a id="my-travti-link" href="/my-travti" class="text-sm font-semibold text-blue-500 hover:text-blue-600">??TraVTI ?뺤씤</a>
+                    </div>
+                </div>
+                <div class="space-y-1">
+                    <a class="block py-4 text-lg font-medium border-b border-gray-100 hover:text-blue-500 transition-colors" href="/test">TraVTI 寃??/a>
+                    <a class="menu-protected block py-4 text-lg font-medium border-b border-gray-100 hover:text-blue-500 transition-colors" href="#" data-page="?ы뻾怨꾪쉷 ?묒꽦">?ы뻾怨꾪쉷 ?묒꽦</a>
+                    <a class="menu-protected block py-4 text-lg font-medium border-b border-gray-100 hover:text-blue-500 transition-colors" href="#" data-page="?낃뎅 ?쒕쪟">?섏쓽 ?낃뎅?쒕쪟?뺣낫</a>
+                    <a class="menu-protected block py-4 text-lg font-medium border-b border-gray-100 hover:text-blue-500 transition-colors" href="#" data-page="?섏쓽 ?ы뻾怨꾪쉷">?섏쓽 ?ы뻾怨꾪쉷</a>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-0 w-full p-6 border-t border-gray-100 bg-gray-50 space-y-4">
+            <button id="logout-btn" class="hidden w-full bg-red-500 text-white py-2 px-4 rounded-lg font-medium hover:bg-red-600 transition-colors">濡쒓렇?꾩썐</button>
+            <div>
+                <p class="text-xs text-gray-400 mb-1">怨좉컼?쇳꽣 1588-XXXX</p>
+                <p class="text-xs text-gray-400">짤 Travis Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </aside>
+
+     <script>
+        (function(){
+            // Supabase Config
+            const SUPABASE_URL = 'https://utsairuqlvobwzzofetk.supabase.co';
+            const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV0c2FpcnVxbHZvYnd6em9mZXRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEzOTQwMDYsImV4cCI6MjA4Njk3MDAwNn0.6K3ceF0obC3TTJCZBg6I_qY3EDrw-VNlI4w4CzdqZfw';
+            let supabase = null;
+            
+            try {
+                if (window.supabase && SUPABASE_URL && SUPABASE_KEY) {
+                    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+                } else if (!SUPABASE_URL) {
+                    console.warn('Supabase URL is missing. Auth features may not work.');
+                }
+            } catch(e) {
+                console.error('Supabase Init Failed:', e);
+            }
+
+            // 濡쒓렇???곹깭 愿由?            function initLoginState(){
+                // Sidebar Elements
+                const loginBtn = document.getElementById('header-login-btn');
+                const userIdDisplay = document.getElementById('user-id-display');
+                const userIdText = document.getElementById('user-id-text');
+                const logoutBtn = document.getElementById('logout-btn');
+                
+                // Desktop Elements
+                const desktopLoginBtn = document.getElementById('desktop-login-btn');
+                const desktopUserArea = document.getElementById('desktop-user-area');
+                const desktopWelcome = document.getElementById('desktop-user-welcome');
+                const desktopPersona = document.getElementById('desktop-user-persona');
+                
+                fetch('/api/session_user')
+                    .then(res => res.json())
+                    .then(data => {
+                        if(data && data.logged_in){
+                            const name = data.name ? data.name : (data.email || 'User');
+                            const label = data.travti_label;
+
+                            // --- Logged In State ---
+                            
+                            // Sidebar
+                            if(loginBtn) loginBtn.classList.add('hidden');
+                            if(userIdDisplay) userIdDisplay.classList.remove('hidden');
+                            if (userIdText) userIdText.textContent = `${name} ??;
+                            if(logoutBtn) logoutBtn.classList.remove('hidden');
+
+                            // Desktop
+                            if(desktopLoginBtn) {
+                                desktopLoginBtn.classList.remove('md:block');
+                                desktopLoginBtn.classList.add('hidden');
+                            }
+                            
+                            if(desktopUserArea) {
+                                desktopUserArea.classList.remove('hidden');
+                                desktopUserArea.classList.add('md:flex');
+                                
+                                // Update Name
+                                if(desktopWelcome) desktopWelcome.innerHTML = `<span class="font-bold text-slate-800">?섏쁺?⑸땲??</span> <span class="text-blue-600 font-bold">${name}??</span>`;
+                                
+                                // Update Persona
+                                if(desktopPersona) {
+                                    if(label && label !== 'None') {
+                                        desktopPersona.innerHTML = `<span class="text-blue-600">Traveler ${label}</span>`;
+                                    } else {
+                                        desktopPersona.innerHTML = `<a href="/test" class="inline-block text-[10px] font-bold bg-blue-50 text-blue-600 border border-blue-200 px-2 py-0.5 rounded-full hover:bg-blue-100 transition-colors mt-0.5">TraVTI ?뚯븘蹂닿린 ??/a>`;
+                                    }
+                                }
+                            }
+
+                        } else {
+                            // --- Logged Out State ---
+                            
+                            // Sidebar
+                            if(loginBtn) loginBtn.classList.remove('hidden');
+                            if(userIdDisplay) userIdDisplay.classList.add('hidden');
+                            if(logoutBtn) logoutBtn.classList.add('hidden');
+                            
+                            // Desktop
+                            if(desktopLoginBtn) {
+                                desktopLoginBtn.classList.remove('hidden');
+                                desktopLoginBtn.classList.add('md:block');
+                            }
+                            
+                            if(desktopUserArea) {
+                                desktopUserArea.classList.add('hidden');
+                                desktopUserArea.classList.remove('md:flex');
+                            }
+                        }
+                    })
+                    .catch(err => {
+                        console.error('Session Check Failed:', err);
+                        // Fallback: show login buttons (Sidebar)
+                        if(loginBtn) loginBtn.classList.remove('hidden');
+                        if(userIdDisplay) userIdDisplay.classList.add('hidden');
+                        if(logoutBtn) logoutBtn.classList.add('hidden');
+                        // Desktop fallback
+                        if(desktopLoginBtn) {
+                            desktopLoginBtn.classList.remove('hidden');
+                            desktopLoginBtn.classList.add('md:block');
+                        }
+                        if(desktopUserArea) {
+                            desktopUserArea.classList.add('hidden');
+                            desktopUserArea.classList.remove('md:flex');
+                        }
+                    });
+            }
+
+            // 濡쒓렇???뚯썝媛??紐⑤떖 ?泥?(?⑥씪 ?쇱슦???대룞)
+            function openLoginModal(){
+                window.location.href = '/login';
+            }
+            function closeLoginModal(){
+                // No-op
+            }
+
+            async function signInWithProvider(provider) {
+                if (!supabase) return alert('Supabase ?ㅼ젙 ?ㅻ쪟: URL/Key媛 ?놁뒿?덈떎.');
+                const { data, error } = await supabase.auth.signInWithOAuth({
+                    provider: provider,
+                    options: {
+                        redirectTo: window.location.origin
+                    }
+                });
+                if (error) alert('Login Error: ' + error.message);
+            }
+
+            async function performLogout(){
+                if(supabase) await supabase.auth.signOut();
+                fetch('/api/logout', { method: 'POST' })
+                    .then(() => {
+                        window.location.reload(); // Reload to refresh state
+                    });
+            }
+            
+            // Auth State Change Listener
+            if (supabase) {
+                supabase.auth.onAuthStateChange(async (event, session) => {
+                    if (event === 'SIGNED_IN' && session) {
+                        try {
+                            const resp = await fetch('/api/login', {
+                                method: 'POST',
+                                headers: {'Content-Type': 'application/json'},
+                                body: JSON.stringify({ 
+                                    access_token: session.access_token,
+                                    refresh_token: session.refresh_token,
+                                    user: session.user
+                                })
+                            });
+                            if (resp.ok) {
+                                closeLoginModal();
+                                initLoginState(); // Update UI
+                            } else {
+                                console.error('Login sync failed');
+                            }
+                        } catch(e) {
+                            console.error('Login sync failed', e);
+                        }
+                    }
+                });
+            }
+
+            // 硫붾돱 蹂댄샇 泥섎━
+            const protectedMenus = document.querySelectorAll('.menu-protected');
+            protectedMenus.forEach(menu => {
+                menu.addEventListener('click', function(e){
+                    e.preventDefault();
+                    const page = menu.dataset.page || '';
+                    fetch('/api/session_user')
+                        .then(res => res.json())
+                        .then(data => {
+                            if(!data || !data.logged_in){
+                                alert('濡쒓렇?몄씠 ?꾩슂?⑸땲??');
+                                openLoginModal();
+                                return;
+                            }
+
+                            const userId = data.user_id;
+                            if(page === '?ы뻾怨꾪쉷 ?묒꽦'){
+                                fetch('/api/check_actual_label?user_id=' + encodeURIComponent(userId))
+                                    .then(res => res.json())
+                                    .then(data => {
+                                        if(data && data.has_travti_label){
+                                            window.location.href = '/result';
+                                        } else {
+                                            alert('TraVTI 寃?щ? 癒쇱? 吏꾪뻾?댁＜?몄슂. 寃???섏씠吏濡??대룞?⑸땲??');
+                                            window.location.href = '/test';
+                                        }
+                                    })
+                                    .catch(err => {
+                                        console.error('寃???곹깭 ?뺤씤 ?ㅻ쪟', err);
+                                        alert('?쒕쾭? ?듭떊?????놁뒿?덈떎. ?좎떆 ???ㅼ떆 ?쒕룄?댁＜?몄슂.');
+                                    });
+                                return;
+                            }
+
+                            if(page === '?섏쓽 ?ы뻾怨꾪쉷'){
+                                window.location.href = '/my-plans';
+                                return;
+                            }
+
+                            if(page === '?낃뎅 ?쒕쪟' || page === '?섏쓽 ?낃뎅?쒕쪟?뺣낫'){
+                                window.location.href = '/entry-form';
+                                return;
+                            }
+
+                            alert('?대떦 硫붾돱??以鍮꾩쨷?낅땲??');
+                        })
+                        .catch(() => {
+                            alert('?쒕쾭? ?듭떊?????놁뒿?덈떎. ?좎떆 ???ㅼ떆 ?쒕룄?댁＜?몄슂.');
+                        });
+                });
+            });
+
+            const openBtns = document.querySelectorAll('#menu-toggle-header');
+            const sidebar = document.getElementById('sidebar-common');
+            const backdrop = document.getElementById('sidebar-backdrop-common');
+            const closeBtn = document.getElementById('close-menu-common');
+
+            function openSidebar(){
+                if(sidebar) sidebar.classList.remove('translate-x-full');
+                if(backdrop) {
+                    backdrop.classList.remove('hidden');
+                    setTimeout(() => backdrop.classList.add('opacity-100'), 10);
+                }
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeSidebar(){
+                if(sidebar) sidebar.classList.add('translate-x-full');
+                if(backdrop) {
+                    backdrop.classList.remove('opacity-100');
+                    setTimeout(() => backdrop.classList.add('hidden'), 300);
+                }
+                document.body.style.overflow = 'auto';
+            }
+
+            // ?대깽??由ъ뒪???ㅼ젙
+            if(desktopLoginBtn) desktopLoginBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openLoginModal();
+            });
+            if(desktopLogoutBtn) desktopLogoutBtn.addEventListener('click', performLogout);
+            if(loginBtn) loginBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openLoginModal();
+            });
+
+            const logoutBtn = document.getElementById('logout-btn');
+
+            if(logoutBtn) logoutBtn.addEventListener('click', performLogout);
+
+            openBtns.forEach(b => b.addEventListener('click', openSidebar));
+            if(closeBtn) closeBtn.addEventListener('click', closeSidebar);
+            if(backdrop) backdrop.addEventListener('click', closeSidebar);
+
+            // 珥덇린 ?곹깭 ?ㅼ젙
+            initLoginState();
+        })();
+    </script>
+    
+    
+
+    <div class="flex-grow flex items-center justify-center p-4 relative overflow-hidden">
+        <!-- Background Decor -->
+        <div
+            class="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-blue-200/30 rounded-full blur-[100px] animate-pulse">
+        </div>
+        <div class="absolute bottom-[-20%] left-[-10%] w-[600px] h-[600px] bg-purple-200/30 rounded-full blur-[100px] animate-pulse"
+            style="animation-delay: 2s;"></div>
+
+        <div
+            class="w-full max-w-md bg-white rounded-3xl shadow-xl overflow-hidden glass-panel relative z-10 animate-up">
+            <!-- Header Section -->
+            <div class="p-8 text-center pb-0">
+                <h1 class="text-3xl font-extrabold text-slate-900 mb-2">Welcome!</h1>
+                <p class="text-slate-500 text-sm">TraVTI? ?④퍡 ?ы뻾???쒖옉?섏꽭??</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="flex border-b border-slate-100 mt-6 px-8">
+                <button id="tab-login"
+                    class="flex-1 py-4 text-center font-semibold transition-all tab-active">濡쒓렇??/button>
+                <button id="tab-signup"
+                    class="flex-1 py-4 text-center font-semibold transition-all tab-inactive">?뚯썝媛??/button>
+            </div>
+
+            <div class="p-8 pt-6">
+                <!-- Social Login -->
+                <div class="space-y-3 mb-6">
+                    <button onclick="signInWithProvider('google')"
+                        class="w-full bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-medium py-3 px-4 rounded-xl flex items-center justify-center gap-3 transition-colors shadow-sm">
+                        <img src="https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png" class="w-5 h-5"
+                            alt="Google">
+                        Google濡?怨꾩냽?섍린
+                    </button>
+                    <button onclick="signInWithProvider('kakao')"
+                        class="w-full bg-[#FEE500] hover:bg-[#FDD835] text-[#3C1E1E] font-medium py-3 px-4 rounded-xl flex items-center justify-center gap-3 transition-colors shadow-sm">
+                        <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current">
+                            <path
+                                d="M12 3C5.9 3 1 6.6 1 11c0 2.6 1.7 4.9 4.3 6.4-.3 1.1-1.1 4-1.2 4.6 0 .2.2.3.4.2 0 0 4.1-2.9 4.7-3.3.9.1 1.8.2 2.8.2 6.1 0 11-3.6 11-8s-4.9-8-11-8z" />
+                        </svg>
+                        Kakao濡?怨꾩냽?섍린
+                    </button>
+                </div>
+
+                <div class="relative flex py-2 items-center">
+                    <div class="flex-grow border-t border-slate-200"></div>
+                    <span class="flex-shrink-0 mx-4 text-slate-400 text-xs font-medium">OR EMAIL</span>
+                    <div class="flex-grow border-t border-slate-200"></div>
+                </div>
+
+                <!-- Email Form -->
+                <form id="auth-form" class="mt-6 space-y-4" onsubmit="handleEmailAuth(event)">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">?대찓??/label>
+                        <input type="email" id="email" required
+                            class="w-full px-4 py-3 rounded-lg border-slate-200 focus:border-blue-500 focus:ring-blue-500 transition-colors bg-slate-50 focus:bg-white"
+                            placeholder="name@example.com">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">鍮꾨?踰덊샇</label>
+                        <input type="password" id="password" required
+                            class="w-full px-4 py-3 rounded-lg border-slate-200 focus:border-blue-500 focus:ring-blue-500 transition-colors bg-slate-50 focus:bg-white"
+                            placeholder="?™™™™™™™?>
+                    </div>
+
+                    <div id="login-extra" class="flex items-center justify-between text-sm">
+                        <label class="flex items-center text-slate-600">
+                            <input type="checkbox"
+                                class="rounded border-slate-300 text-blue-600 focus:ring-blue-500 mr-2">
+                            濡쒓렇???좎?
+                        </label>
+                        <a href="#" class="text-blue-600 hover:text-blue-700 font-medium">鍮꾨?踰덊샇 李얘린</a>
+                    </div>
+
+                    <button type="submit" id="submit-btn"
+                        class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 rounded-xl shadow-lg shadow-slate-900/20 transition-all transform active:scale-95 mt-2">
+                        濡쒓렇??                    </button>
+                </form>
+
+                <p id="auth-footer-text" class="mt-6 text-center text-sm text-slate-500">
+                    怨꾩젙???놁쑝?좉??? <a href="#" onclick="toggleTab('signup')"
+                        class="text-blue-600 hover:underline font-medium">?뚯썝媛??/a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const SUPABASE_URL = "https://utsairuqlvobwzzofetk.supabase.co";
+        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV0c2FpcnVxbHZvYnd6em9mZXRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEzOTQwMDYsImV4cCI6MjA4Njk3MDAwNn0.6K3ceF0obC3TTJCZBg6I_qY3EDrw-VNlI4w4CzdqZfw";
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        let currentMode = 'login'; // login | signup
+
+        const tabLogin = document.getElementById('tab-login');
+        const tabSignup = document.getElementById('tab-signup');
+        const submitBtn = document.getElementById('submit-btn');
+        const loginExtra = document.getElementById('login-extra');
+        const headerTitle = document.querySelector('h1');
+        const authFooterText = document.getElementById('auth-footer-text');
+
+        window.toggleTab = function (mode) {
+            currentMode = mode;
+            if (mode === 'login') {
+                tabLogin.className = 'flex-1 py-4 text-center font-semibold transition-all tab-active';
+                tabSignup.className = 'flex-1 py-4 text-center font-semibold transition-all tab-inactive';
+                submitBtn.textContent = '濡쒓렇??;
+                loginExtra.classList.remove('hidden');
+                headerTitle.textContent = 'Welcome!';
+
+                // Update footer link
+                if (authFooterText) {
+                    authFooterText.innerHTML = `怨꾩젙???놁쑝?좉??? <a href="#" onclick="toggleTab('signup')" class="text-blue-600 hover:underline font-medium">?뚯썝媛??/a>`;
+                }
+            } else {
+                tabLogin.className = 'flex-1 py-4 text-center font-semibold transition-all tab-inactive';
+                tabSignup.className = 'flex-1 py-4 text-center font-semibold transition-all tab-active';
+                submitBtn.textContent = '?뚯썝媛??;
+                loginExtra.classList.add('hidden');
+                headerTitle.textContent = 'Create Account';
+
+                // Update footer link
+                if (authFooterText) {
+                    authFooterText.innerHTML = `?대? 怨꾩젙???덉쑝?좉??? <a href="#" onclick="toggleTab('login')" class="text-blue-600 hover:underline font-medium">濡쒓렇??/a>`;
+                }
+            }
+        }
+
+        tabLogin.addEventListener('click', () => toggleTab('login'));
+        tabSignup.addEventListener('click', () => toggleTab('signup'));
+
+        // Handle URL Hash (e.g. #signup)
+        if (window.location.hash === '#signup') toggleTab('signup');
+
+        // Allow clicking the footer link to toggle
+        // (Handled inline onclick for simplicity in replaced HTML)
+
+        window.signInWithProvider = async function (provider) {
+            const { data, error } = await supabase.auth.signInWithOAuth({
+                provider: provider,
+                options: {
+                    redirectTo: window.location.origin
+                }
+            });
+            if (error) alert('Login Error: ' + error.message);
+        };
+
+        window.handleEmailAuth = async function (e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = '泥섎━以?..';
+
+            if (currentMode === 'signup') {
+                const { data, error } = await supabase.auth.signUp({
+                    email: email,
+                    password: password
+                });
+                if (error) {
+                    alert('?뚯썝媛???ㅽ뙣: ' + error.message);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = '?뚯썝媛??;
+                } else {
+                    alert('媛???뺤씤 ?대찓?쇱쓣 諛쒖넚?덉뒿?덈떎. ?대찓?쇱쓣 ?뺤씤?댁＜?몄슂!');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = '?뚯썝媛??;
+                }
+            } else {
+                const { data, error } = await supabase.auth.signInWithPassword({
+                    email: email,
+                    password: password
+                });
+                if (error) {
+                    alert('濡쒓렇???ㅽ뙣: ' + error.message);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = '濡쒓렇??;
+                } else {
+                    // Login successful, sync with backend
+                    syncLogin(data.session);
+                }
+            }
+        }
+
+        async function syncLogin(session) {
+            try {
+                const resp = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        access_token: session.access_token,
+                        refresh_token: session.refresh_token,
+                        user: session.user
+                    })
+                });
+                if (resp.ok) {
+                    window.location.href = '/'; // Go to home
+                } else {
+                    const errData = await resp.json();
+                    alert('Login Sync Failed: ' + (errData.error || resp.status));
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = '濡쒓렇??;
+                }
+            } catch (e) {
+                console.error('Login sync failed', e);
+                alert('?쒕쾭 ?듭떊 ?ㅻ쪟');
+                submitBtn.disabled = false;
+                submitBtn.textContent = '濡쒓렇??;
+            }
+        }
+
+        // Handle OAuth Redirect & Auto-redirect if already logged in
+        supabase.auth.onAuthStateChange(async (event, session) => {
+            if (event === 'SIGNED_IN' && session) {
+                await syncLogin(session);
+            }
+        });
+    </script>
+</body>
+
+</html>

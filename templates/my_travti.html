@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    {{ common_head|safe }}
+    <title>마이페이지 - TraVTI</title>
+</head>
+
+<body class="bg-slate-50 min-h-screen flex flex-col">
+    {{ header|safe }}
+
+    <main class="flex-grow max-w-5xl mx-auto w-full px-6 py-12">
+        <!-- Header Section -->
+        <div class="mb-10 flex items-end justify-between">
+            <div>
+                <h1 class="text-3xl font-bold text-slate-900 mb-2">마이페이지</h1>
+                <p class="text-slate-500">나의 여행 스타일과 저장된 일정을 확인하세요.</p>
+            </div>
+            <div class="hidden md:block">
+                <span class="inline-block bg-white border border-slate-200 rounded-lg px-4 py-2 text-sm text-slate-600">
+                    <span class="material-symbols-outlined align-middle text-lg mr-1">person</span>
+                    {{ user_name }}님
+                </span>
+            </div>
+        </div>
+
+        <!-- Top Section: Passport (Full Width) -->
+        <div class="mb-12">
+            <!-- Passport Style Card (Horizontal Layout on Desktop) -->
+            <div
+                class="rounded-2xl shadow-xl overflow-hidden relative min-h-[360px] max-w-4xl mx-auto flex flex-col md:flex-row font-sans bg-[#1a365d]">
+
+                <!-- Left: Passport Cover -->
+                <!-- Left: Passport Cover -->
+                <div
+                    class="w-full md:w-[35%] bg-[#1a365d] relative flex flex-col p-8 z-0 border-r border-white/10 overflow-hidden text-yellow-500">
+                    <!-- Pattern Overlay -->
+                    <div class="absolute inset-0 opacity-10 pointer-events-none"
+                        style="background-image: radial-gradient(circle at 10% 90%, rgba(255,255,255,0.2) 0, transparent 50%), radial-gradient(circle at 50% 50%, #ffffff 1px, transparent 1px); background-size: 100% 100%, 20px 20px;">
+                    </div>
+
+                    <div class="relative z-10 flex flex-col items-end w-full h-full">
+                        <!-- Emblem -->
+                        <div class="mb-4 mt-6 mr-2">
+                            <div
+                                class="w-20 h-20 border-[3px] border-current rounded-full flex items-center justify-center shadow-lg bg-[#1a365d]">
+                                <!-- Simple Emblem -->
+                                <div
+                                    class="w-12 h-12 border border-current rounded-full flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-3xl">public</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Text -->
+                        <div class="text-right space-y-2 mb-auto mr-2">
+                            <h3 class="font-bold text-2xl tracking-widest leading-none">트래비스 여권</h3>
+                            <h2 class="font-sans text-sm font-bold tracking-[0.1em] uppercase leading-none">TRAVIS
+                                PASSPORT</h2>
+                            <p class="text-[9px] tracking-[0.1em] font-medium opacity-70 uppercase mt-1">Reported by
+                                Travis</p>
+                        </div>
+
+                        <!-- E-Passport Logo -->
+                        <div class="mt-auto flex justify-end w-full relative z-10 pt-16 mr-2">
+                            <div
+                                class="w-10 h-6 border-[1.5px] border-current rounded flex items-center justify-center opacity-80 bg-[#1a365d]/50">
+                                <div
+                                    class="w-4 h-4 rounded-full border border-current flex items-center justify-center">
+                                    <div class="w-2 h-[1px] bg-yellow-500"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Identity Page (White Paper) -->
+                <div class="w-full md:w-[65%] bg-slate-50 relative p-8 text-slate-800 flex flex-col z-10">
+                    <!-- Security Background Pattern -->
+                    <div class="absolute inset-0 opacity-5 pointer-events-none"
+                        style="background-image: repeating-linear-gradient(45deg, #000 0, #000 1px, transparent 0, transparent 50%); background-size: 10px 10px;">
+                    </div>
+
+                    {% if travti_label %}
+                    <!-- Header -->
+                    <div class="flex justify-between items-end border-b-2 border-slate-900 pb-2 mb-6 relative z-10">
+                        <div class="flex flex-col">
+                            <span class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Passport
+                                No.</span>
+                            <span class="font-mono text-lg font-bold text-red-700 leading-none">M{{ mbti_type
+                                }}0026</span>
+                        </div>
+                        <span class="font-serif font-bold uppercase text-xl tracking-widest text-slate-800">Republic of
+                            Travel</span>
+                    </div>
+
+                    <!-- Bio Info -->
+                    <div class="flex gap-6 relative z-10 flex-grow">
+                        <!-- Photo -->
+                        <div class="w-32 shrink-0">
+                            <div
+                                class="aspect-[3/4] bg-slate-200 border border-slate-300 relative overflow-hidden shadow-inner">
+                                <div class="w-full h-full flex items-center justify-center bg-slate-100">
+                                    <span class="material-symbols-outlined text-6xl text-slate-300">
+                                        {% if travti_icon %}{{ travti_icon }}{% else %}person{% endif %}
+                                    </span>
+                                </div>
+                                <div
+                                    class="absolute -right-3 -bottom-3 w-14 h-14 border-2 border-red-500/40 rounded-full flex items-center justify-center rotate-[-15deg] mix-blend-multiply pointer-events-none">
+                                    <div
+                                        class="text-[6px] font-bold text-red-500/50 uppercase text-center leading-tight pt-1">
+                                        Travis<br>Verified</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fields -->
+                        <div class="flex-grow grid grid-cols-2 gap-x-4 gap-y-2 content-start">
+                            <div class="col-span-2">
+                                <div class="text-[8px] text-slate-400 uppercase font-bold">Name / 성명</div>
+                                <div
+                                    class="font-bold text-lg border-b border-slate-200 leading-tight pb-1 uppercase font-serif">
+                                    {{ user_name }}</div>
+                            </div>
+                            <div>
+                                <div class="text-[8px] text-slate-400 uppercase font-bold">Type / 종류</div>
+                                <div class="font-bold text-sm">{{ passport_type|default('PM') }}</div>
+                            </div>
+                            <div>
+                                <div class="text-[8px] text-slate-400 uppercase font-bold">Code / 코드</div>
+                                <div class="font-bold text-sm">{{ mbti_type }}</div>
+                            </div>
+                            <div>
+                                <div class="text-[8px] text-slate-400 uppercase font-bold">Nationality / 국적</div>
+                                <div class="font-bold text-sm">KOREA</div>
+                            </div>
+                            <div>
+                                <div class="text-[8px] text-slate-400 uppercase font-bold">Sex / 성별</div>
+                                <div class="font-bold text-sm">X</div>
+                            </div>
+                            <div class="col-span-2 grid grid-cols-2 gap-4 mt-2">
+                                <div>
+                                    <div class="text-[8px] text-slate-400 uppercase font-bold">Date of issue / 발급일</div>
+                                    <div class="font-bold text-sm">{{ issue_date }}</div>
+                                </div>
+                                <div>
+                                    <div class="text-[8px] text-slate-400 uppercase font-bold">Date of expiry / 만료일
+                                    </div>
+                                    <div class="font-bold text-sm">{{ expiry_date }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MRZ -->
+                    <div class="mt-auto pt-4 relative z-10 pointer-events-none select-none">
+                        <div
+                            class="font-mono text-[13px] text-slate-800 tracking-[1px] overflow-hidden whitespace-nowrap leading-none uppercase">
+                            {% set mrz1_name = user_name|upper|replace(" ", "<") %} {% set
+                                mrz1_base=(passport_type|default('PM')) ~ "<KOR" ~ mrz1_name %} {{ (mrz1_base
+                                ~ '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<' )[:44] }} </div>
+                                <div
+                                    class="font-mono text-[13px] text-slate-800 tracking-[1px] overflow-hidden whitespace-nowrap leading-none mt-1 uppercase">
+                                    {% set mrz2_base = "M9999" ~ mbti_type ~ "<5KOR" ~ mrz_date ~ "2M" ~ "36" ~ mrz_date
+                                        ~ "2<<<<<" %} {{ (mrz2_base ~ '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
+                                        )[:44] }}<span class="font-bold pr-1">0</span>
+                                </div>
+                        </div>
+
+                        {% else %}
+                        <!-- Unissued State -->
+                        <div class="h-full flex flex-col justify-between relative z-10 w-full pt-2">
+                            <!-- Header -->
+                            <div class="flex justify-between items-end border-b-2 border-slate-900 pb-2 mb-4">
+                                <span class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">여권
+                                    PASSPORT</span>
+                                <span
+                                    class="font-serif font-bold uppercase text-lg tracking-widest text-slate-800 leading-none">Republic
+                                    of Travel</span>
+                            </div>
+
+                            <!-- Bio Info -->
+                            <div class="flex gap-6 flex-grow">
+                                <!-- Photo Placeholder -->
+                                <div class="w-32 shrink-0">
+                                    <div
+                                        class="aspect-[3/4] bg-slate-50 border border-slate-200 relative overflow-hidden flex flex-col items-center justify-center text-slate-300 shadow-inner">
+                                        <span
+                                            class="material-symbols-outlined text-5xl mb-2 opacity-50">no_photography</span>
+                                        <div
+                                            class="absolute inset-x-0 bottom-4 text-[8px] uppercase font-bold text-center tracking-widest opacity-60">
+                                            Verification<br>Required</div>
+                                    </div>
+                                </div>
+
+                                <!-- Fields -->
+                                <div class="flex-grow flex flex-col justify-between py-1">
+                                    <div class="grid grid-cols-2 gap-x-4 gap-y-2 content-start">
+                                        <div class="col-span-1">
+                                            <div class="text-[8px] text-slate-400 uppercase font-bold">Type / 종류
+                                            </div>
+                                            <div class="font-bold text-sm text-slate-800">{{
+                                                passport_type|default('PM') }}</div>
+                                        </div>
+                                        <div class="col-span-1">
+                                            <div class="text-[8px] text-slate-400 uppercase font-bold">Country
+                                                code
+                                                / 국가코드</div>
+                                            <div class="font-bold text-sm text-slate-800">TRA</div>
+                                        </div>
+                                        <div class="col-span-2">
+                                            <div class="text-[8px] text-slate-400 uppercase font-bold">Passport
+                                                No.
+                                                / 여권번호</div>
+                                            <div class="font-serif font-bold text-xl text-slate-300 tracking-wider">
+                                                UNISSUED</div>
+                                        </div>
+                                        <div class="col-span-2">
+                                            <div class="text-[8px] text-slate-400 uppercase font-bold">Name / 성명
+                                            </div>
+                                            <div
+                                                class="font-serif font-bold text-lg text-slate-800 border-b border-dashed border-slate-300 pb-1 uppercase tracking-wide">
+                                                {% if user_name and user_name != '여행자' %}{{ user_name }}{% else
+                                                %}GUEST TRAVELLER{% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="col-span-2 pt-1">
+                                            <div class="flex items-center justify-between">
+                                                <div class="text-[10px] text-red-500 font-bold leading-tight">
+                                                    Travel Identity Verified: <span class="text-red-600">NO</span><br>
+                                                    Diagnosis Required
+                                                </div>
+                                                <a href="/test"
+                                                    class="inline-block px-4 py-1.5 bg-slate-900 text-white text-[10px] font-bold tracking-wider rounded shadow hover:bg-slate-700 transition cursor-pointer">
+                                                    ISSUE PASSPORT
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- MRZ Placeholder -->
+                            <div
+                                class="mt-3 pt-2 border-t border-slate-100 select-none opacity-40 font-mono text-[11px] leading-tight tracking-[2px] text-slate-500 overflow-hidden uppercase">
+                                <div class="whitespace-nowrap">
+                                    {% set unissued_mrz = (passport_type|default('PM')) ~ "<KOR" ~
+                                        user_name|upper|replace(" ", " <") %} {{ (unissued_mrz
+                                        ~ '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<' )[:44] }} </div>
+                                        <div class="whitespace-nowrap mt-0.5">
+                                            {{ ("M0000000<0KOR" ~ mrz_date ~ "2M36" ~ mrz_date
+                                                ~ "2<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" )[:44] }}<span
+                                                class="font-bold pr-1">0</span>
+                                        </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                            <!-- Main Content: Persona Analysis (2/3) -->
+                            <div class="lg:col-span-2 h-full">
+                                <!-- Persona Analysis -->
+                                <div
+                                    class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 h-full flex flex-col">
+                                    <div
+                                        class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                                        <h3 class="font-bold text-slate-900 text-xl flex items-center gap-2">
+                                            <span class="material-symbols-outlined text-blue-500">psychology</span>
+                                            나의 여행 페르소나 분석
+                                        </h3>
+
+                                        {% if travti_label %}
+                                        <div class="flex items-center gap-2">
+                                            <a href="/chemistry"
+                                                class="px-3 py-1.5 text-xs font-bold bg-indigo-50 text-indigo-600 border border-indigo-100 rounded-lg hover:bg-indigo-100 transition-colors flex items-center gap-1">
+                                                <span class="material-symbols-outlined text-sm">hub</span> 그룹 캐미 보기
+                                            </a>
+                                            <button
+                                                onclick="shareKakao('{{ request.url_root }}shared/{{ session.user_id }}', '{{ travti_label }}', '나의 여행 페르소나를 확인해보세요!')"
+                                                class="w-8 h-8 flex items-center justify-center rounded-full bg-[#FEE500] text-[#191919] hover:bg-[#FDD800] transition-colors relative group">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                    fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-1.226 4.207-1.636z" />
+                                                </svg>
+                                                <div
+                                                    class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-2 py-1 bg-slate-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none text-center z-10">
+                                                    카카오톡 공유</div>
+                                            </button>
+                                            <button
+                                                onclick="copyLink('{{ request.url_root }}shared/{{ session.user_id }}')"
+                                                class="w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors relative group">
+                                                <span class="material-symbols-outlined text-sm">link</span>
+                                                <div
+                                                    class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-2 py-1 bg-slate-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none text-center z-10">
+                                                    링크 복사</div>
+                                            </button>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+
+                                    {% if travti_label %}
+                                    <div
+                                        class="bg-slate-50 rounded-xl p-10 mb-10 border border-slate-100 flex-grow flex flex-col justify-center shadow-inner">
+                                        <div class="flex items-start gap-6">
+                                            <span
+                                                class="material-symbols-outlined text-5xl text-blue-400">format_quote</span>
+                                            <div>
+                                                <h4 class="text-2xl font-bold text-slate-800 mb-4">{{ travti_label }}
+                                                </h4>
+                                                <p class="text-slate-600 leading-relaxed text-lg">
+                                                    당신은 여행의 매 순간을 특별하게 만드는 능력을 가지고 있군요.<br>
+                                                    {{ mbti_type }} 성향을 바탕으로,
+                                                    {% if scores.ei > 0 %}새로운 사람들과 어울리며 에너지를 얻고,{% else %}조용히 사색하며 내면의
+                                                    평화를
+                                                    찾고,{%
+                                                    endif %}
+                                                    {% if scores.jp > 0 %}체계적인 계획으로 완벽한 여행을 추구합니다.{% else %}즉흥적인 발견에서 오는
+                                                    기쁨을
+                                                    만끽합니다.{% endif %}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-12 pb-6">
+                                        <!-- EI -->
+                                        <div>
+                                            <div class="flex justify-between text-base font-bold text-slate-700 mb-3">
+                                                <span>내향 (I)</span>
+                                                <span>외향 (E)</span>
+                                            </div>
+                                            <div
+                                                class="h-6 bg-slate-100 rounded-full overflow-hidden relative shadow-inner">
+                                                <div class="absolute top-0 bottom-0 w-0.5 bg-slate-300 left-1/2"></div>
+                                                <div class="h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-full opacity-90"
+                                                    style="width: {{ (scores.ei + 1) * 50 }}%; margin-left: 0;"></div>
+                                            </div>
+                                            <p class="text-sm text-slate-500 mt-2 text-right">에너지의 방향</p>
+                                        </div>
+                                        <!-- SN -->
+                                        <div>
+                                            <div class="flex justify-between text-base font-bold text-slate-700 mb-3">
+                                                <span>직관 (N)</span>
+                                                <span>감각 (S)</span>
+                                            </div>
+                                            <div
+                                                class="h-6 bg-slate-100 rounded-full overflow-hidden relative shadow-inner">
+                                                <div class="absolute top-0 bottom-0 w-0.5 bg-slate-300 left-1/2"></div>
+                                                <div class="h-full bg-gradient-to-r from-purple-400 to-purple-600 rounded-full opacity-90"
+                                                    style="width: {{ (scores.sn + 1) * 50 }}%; margin-left: 0;"></div>
+                                            </div>
+                                            <p class="text-sm text-slate-500 mt-2 text-right">인식 방식</p>
+                                        </div>
+                                        <!-- TF -->
+                                        <div>
+                                            <div class="flex justify-between text-base font-bold text-slate-700 mb-3">
+                                                <span>감정 (F)</span>
+                                                <span>사고 (T)</span>
+                                            </div>
+                                            <div
+                                                class="h-6 bg-slate-100 rounded-full overflow-hidden relative shadow-inner">
+                                                <div class="absolute top-0 bottom-0 w-0.5 bg-slate-300 left-1/2"></div>
+                                                <div class="h-full bg-gradient-to-r from-green-400 to-green-600 rounded-full opacity-90"
+                                                    style="width: {{ (scores.tf + 1) * 50 }}%; margin-left: 0;"></div>
+                                            </div>
+                                            <p class="text-sm text-slate-500 mt-2 text-right">판단 기준</p>
+                                        </div>
+                                        <!-- JP -->
+                                        <div>
+                                            <div class="flex justify-between text-base font-bold text-slate-700 mb-3">
+                                                <span>인식 (P)</span>
+                                                <span>판단 (J)</span>
+                                            </div>
+                                            <div
+                                                class="h-6 bg-slate-100 rounded-full overflow-hidden relative shadow-inner">
+
+                                                <div class="absolute top-0 bottom-0 w-0.5 bg-slate-300 left-1/2"></div>
+                                                <div class="h-full bg-gradient-to-r from-orange-400 to-orange-600 rounded-full opacity-90"
+                                                    style="width: {{ (scores.jp + 1) * 50 }}%; margin-left: 0;"></div>
+                                            </div>
+                                            <p class="text-xs text-slate-500 mt-2 text-right">생활 양식</p>
+                                        </div>
+                                    </div>
+                                    {% else %}
+                                    <div
+                                        class="text-center py-20 bg-slate-50 rounded-xl border border-dashed border-slate-300">
+                                        <p class="text-slate-500 mb-4">아직 분석 데이터가 없습니다.</p>
+                                        <a href="/test"
+                                            class="inline-block px-6 py-2 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 transition-colors">분석
+                                            시작하기</a>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <!-- Sidebar (1/3): My Plans (Moved Here) -->
+                            <div class="lg:col-span-1 space-y-6">
+                                <!-- My Plans -->
+                                <div
+                                    class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 h-full flex flex-col min-h-[400px]">
+                                    <div class="flex items-center justify-between mb-6">
+                                        <h3 class="font-bold text-slate-900 flex items-center gap-2">
+                                            <span class="material-symbols-outlined text-blue-500">map</span>
+                                            나의 여행 계획
+                                        </h3>
+                                        <span
+                                            class="px-2 py-0.5 bg-blue-50 text-blue-600 text-[10px] font-bold rounded-full border border-blue-100">BETA</span>
+                                    </div>
+
+                                    <div
+                                        class="flex-grow flex flex-col items-center justify-center p-6 bg-slate-50 rounded-xl border border-dashed border-slate-200 text-center">
+                                        <div
+                                            class="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 text-blue-200 shadow-sm">
+                                            <span class="material-symbols-outlined text-3xl">flight_takeoff</span>
+                                        </div>
+                                        <h4 class="text-sm font-bold text-slate-900 mb-1">여행 계획 서비스 준비 중</h4>
+                                        <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+                                            나만의 맞춤형 여행 일정을<br>곧 만나보실 수 있습니다.
+                                        </p>
+                                        <button
+                                            class="px-4 py-2 bg-white border border-slate-200 text-slate-400 rounded-lg text-xs font-bold cursor-not-allowed"
+                                            disabled>
+                                            Coming Soon
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Floating Friend Widget -->
+                        <div class="fixed bottom-8 right-8 z-50 group">
+                            <!-- Friend List Popup (Visible on Hover) -->
+                            <div
+                                class="absolute bottom-full right-0 mb-4 w-72 bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 pointer-events-none group-hover:pointer-events-auto">
+                                <div
+                                    class="p-4 border-b border-slate-100 bg-slate-50 flex justify-between items-center">
+                                    <h3 class="font-bold text-slate-800 text-sm">내 친구 목록</h3>
+                                    <span
+                                        class="bg-blue-100 text-blue-600 text-[10px] font-bold px-1.5 py-0.5 rounded-full">2</span>
+                                </div>
+                                <div class="max-h-64 overflow-y-auto p-2">
+                                    <div
+                                        class="flex items-center gap-3 p-2 hover:bg-slate-50 rounded-lg cursor-pointer transition-colors">
+                                        <div
+                                            class="w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center text-blue-400 border border-blue-100">
+                                            <span class="material-symbols-outlined text-sm">face_3</span>
+                                        </div>
+                                        <div>
+                                            <div class="text-xs font-bold text-slate-700">김민지</div>
+                                            <div class="text-[10px] text-slate-500">감성 휴양가 (INFP)</div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="flex items-center gap-3 p-2 hover:bg-slate-50 rounded-lg cursor-pointer transition-colors">
+                                        <div
+                                            class="w-8 h-8 bg-green-50 rounded-full flex items-center justify-center text-green-400 border border-green-100">
+                                            <span class="material-symbols-outlined text-sm">face_6</span>
+                                        </div>
+                                        <div>
+                                            <div class="text-xs font-bold text-slate-700">이준호</div>
+                                            <div class="text-[10px] text-slate-500">액티브 탐험가 (ESTP)</div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2 pt-2 border-t border-slate-100 text-center">
+                                        <button
+                                            class="text-xs text-blue-600 hover:text-blue-700 font-medium flex items-center justify-center gap-1 w-full py-1">
+                                            <span class="material-symbols-outlined text-[10px]">add</span> 친구 추가
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAB Button -->
+                            <button
+                                class="bg-slate-900 hover:bg-blue-600 text-white rounded-full px-6 py-4 shadow-lg flex items-center gap-2 transition-all hover:scale-105 active:scale-95">
+                                <span class="material-symbols-outlined">group</span>
+                                <span class="font-bold text-sm">친구</span>
+                            </button>
+                        </div>
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 mt-auto py-8">
+        <div class="max-w-7xl mx-auto px-6 text-center text-slate-500 text-sm">
+            &copy; 2026 Travis Inc. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.5.0/kakao.min.js"
+        integrity="sha384-kZA7Ay8jw1oAitbB2B9yHhZ1sWz+n4l5WbA75Q1r/9QyIAnbXJkXm+aA6H3o1J/9"
+        crossorigin="anonymous"></script>
+    <script>
+        function shareKakao(url, title, desc) {
+            if (!window.Kakao) return alert('카카오톡 공유를 지원하지 않는 환경입니다.');
+            if (!Kakao.isInitialized()) {
+                Kakao.init('81ae42ee905952c6f1a8c3d712ce5eb1'); // This is a placeholder/test key. It needs valid Web Platform registered in Kakao dev.
+            }
+            Kakao.Share.sendDefault({
+                objectType: 'feed',
+                content: {
+                    title: `[TraVTI] 내 여행 페르소나는 ${title}!`,
+                    description: desc,
+                    imageUrl: 'https://gaboda.app/static/img/meta_image.png',
+                    link: {
+                        mobileWebUrl: url,
+                        webUrl: url,
+                    },
+                },
+                buttons: [
+                    {
+                        title: '나도 테스트 하러가기',
+                        link: {
+                            mobileWebUrl: url,
+                            webUrl: url,
+                        },
+                    },
+                ],
+            });
+        }
+        function copyLink(url) {
+            navigator.clipboard.writeText(url).then(() => {
+                alert('링크가 복사되었습니다!');
+            }).catch(err => {
+                alert('복사에 실패했습니다.');
+            });
+        }
+    </script>
+</body>
+
+</html>

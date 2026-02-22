@@ -1,0 +1,1 @@
+const levels = [-1, -0.5556, -0.3333, -0.1111, 0.1111, 0.3333, 0.5556, 1]; const diffs = new Set(); for(let a of levels){ for(let b of levels){ diffs.add(Math.abs(a-b).toFixed(4)); } } console.log(Array.from(diffs).sort());  
