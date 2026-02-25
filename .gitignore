@@ -8,6 +8,7 @@ Travis_env/
 venv/
 env/
 .env
+.venv/
 
 # Database
 *.db

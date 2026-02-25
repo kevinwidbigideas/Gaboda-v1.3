@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    {{ common_head|safe }}
+    <title>그룹 페이지 - TraVTI</title>
+</head>
+
+<body class="bg-slate-50 min-h-screen flex flex-col">
+    {{ header|safe }}
+
+    <main class="flex-grow max-w-6xl mx-auto w-full px-6 py-12">
+        <section class="mb-10">
+            <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                    <div>
+                        <h1 class="text-3xl font-extrabold text-slate-900 mb-2">그룹 여행 페이지</h1>
+                        <p class="text-slate-500">그룹 생성, 멤버 초대, 그룹 케미 분석을 위한 UI 미리보기 화면입니다.</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="px-3 py-1 text-xs font-bold rounded-full bg-blue-50 text-blue-600 border border-blue-100">{{ my_name }}</span>
+                        {% if my_label %}
+                        <span class="px-3 py-1 text-xs font-bold rounded-full bg-indigo-50 text-indigo-600 border border-indigo-100">{{ my_label }}</span>
+                        {% else %}
+                        <span class="px-3 py-1 text-xs font-bold rounded-full bg-slate-100 text-slate-500 border border-slate-200">미진단</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+            <div class="lg:col-span-1 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="material-symbols-outlined text-blue-500">group_add</span>
+                    <h2 class="text-lg font-bold text-slate-900">그룹 생성</h2>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 mb-2">그룹 이름</label>
+                        <input type="text" placeholder="예: 일본 4인 여행" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:outline-none focus:border-blue-500 focus:bg-white transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 mb-2">설명</label>
+                        <textarea rows="3" placeholder="그룹 여행 컨셉을 입력하세요" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:outline-none focus:border-blue-500 focus:bg-white transition-colors"></textarea>
+                    </div>
+                    <button class="w-full px-4 py-3 rounded-xl bg-slate-900 text-white text-sm font-bold hover:bg-slate-800 transition-colors">그룹 만들기</button>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-indigo-500">groups</span>
+                        <h2 class="text-lg font-bold text-slate-900">내 그룹 목록</h2>
+                    </div>
+                    <span class="text-xs font-bold text-slate-400">UI Preview</span>
+                </div>
+                <div class="space-y-3">
+                    <div class="border border-slate-200 rounded-xl p-4 hover:border-blue-300 transition-colors">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                            <div>
+                                <div class="text-sm font-bold text-slate-800">오사카 먹방 원정대</div>
+                                <div class="text-xs text-slate-500 mt-1">멤버 4명 · 초대 1건 대기</div>
+                            </div>
+                            <button class="px-3 py-2 rounded-lg bg-blue-600 text-white text-xs font-bold hover:bg-blue-700 transition-colors">상세 보기</button>
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-xl p-4 hover:border-blue-300 transition-colors">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                            <div>
+                                <div class="text-sm font-bold text-slate-800">제주 힐링 캠프</div>
+                                <div class="text-xs text-slate-500 mt-1">멤버 3명 · owner</div>
+                            </div>
+                            <button class="px-3 py-2 rounded-lg bg-blue-600 text-white text-xs font-bold hover:bg-blue-700 transition-colors">상세 보기</button>
+                        </div>
+                    </div>
+
+                    <div class="border border-dashed border-slate-300 rounded-xl p-6 text-center text-sm text-slate-400">
+                        API 연결 전 상태입니다. 실제 그룹 데이터가 이 영역에 표시됩니다.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="material-symbols-outlined text-emerald-500">person_add</span>
+                    <h2 class="text-lg font-bold text-slate-900">친구 초대</h2>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between rounded-xl bg-slate-50 border border-slate-200 p-3">
+                        <div>
+                            <div class="text-sm font-bold text-slate-800">김여행</div>
+                            <div class="text-xs text-slate-500">TFAJ</div>
+                        </div>
+                        <button class="px-3 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 transition-colors">초대</button>
+                    </div>
+                    <div class="flex items-center justify-between rounded-xl bg-slate-50 border border-slate-200 p-3">
+                        <div>
+                            <div class="text-sm font-bold text-slate-800">박트래블</div>
+                            <div class="text-xs text-slate-500">IFSJ</div>
+                        </div>
+                        <button class="px-3 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 transition-colors">초대</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="material-symbols-outlined text-orange-500">analytics</span>
+                    <h2 class="text-lg font-bold text-slate-900">그룹 케미 리포트</h2>
+                </div>
+                <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                    <div class="text-xs font-bold text-slate-500 mb-2">PREVIEW</div>
+                    <div class="text-sm text-slate-700 leading-relaxed">
+                        그룹 멤버의 성향 벡터를 종합해 점수와 코멘트를 생성하는 영역입니다.
+                        다음 단계에서 차트/요약 카드/API 연동을 붙이면 바로 리포트 페이지로 확장 가능합니다.
+                    </div>
+                </div>
+                <a href="/chemistry" class="inline-flex items-center gap-1 mt-4 text-sm font-bold text-blue-600 hover:text-blue-700 transition-colors">
+                    <span class="material-symbols-outlined text-base">arrow_back</span>
+                    1:1 케미 페이지로 돌아가기
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 mt-auto py-8">
+        <div class="max-w-7xl mx-auto px-6 text-center text-slate-500 text-sm">
+            &copy; 2026 Travis Inc. All rights reserved.
+        </div>
+    </footer>
+</body>
+
+</html>

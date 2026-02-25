@@ -27,9 +27,9 @@ def get_header(current_page):
     hamburger_btn_html = ""
     sidebar_html = ""
 
-    if current_page != 'home' and current_page != 'test':
+    if current_page != 'test':
         hamburger_btn_html = """
-                    <button id="menu-toggle-header" class="md:hidden p-2 rounded-md hover:bg-slate-100">
+                    <button id="menu-toggle-header" class="p-2 rounded-md hover:bg-slate-100">
                         <span class="flex flex-col gap-1 items-center">
                             <span class="block w-6 h-0.5 bg-slate-800 rounded"></span>
                             <span class="block w-6 h-0.5 bg-slate-800 rounded"></span>
@@ -40,7 +40,7 @@ def get_header(current_page):
         sidebar_html = """
     <div id="sidebar-backdrop-common" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[90] hidden opacity-0 transition-opacity duration-300"></div>
 
-    <aside id="sidebar-common" class="md:hidden fixed top-0 right-0 h-full w-full sm:w-[360px] bg-white z-[100] translate-x-full transition-transform duration-300 ease-in-out shadow-2xl overflow-y-auto">
+    <aside id="sidebar-common" class="fixed top-0 right-0 h-full w-full sm:w-[360px] bg-white z-[100] translate-x-full transition-transform duration-300 ease-in-out shadow-2xl overflow-y-auto">
         <div class="p-6">
                 <div class="flex justify-end mb-6">
                 <button id="close-menu-common" class="p-1 text-gray-500 hover:text-black text-2xl font-bold">X</button>
@@ -48,16 +48,26 @@ def get_header(current_page):
             <div class="px-2">
                 <a id="header-login-btn" href="/login" class="block text-lg font-medium mb-6 text-gray-800 cursor-pointer hover:text-blue-500 transition-colors">로그인 / 회원가입</a>
                 <div id="user-id-display" class="hidden mb-6">
-                    <div class="flex items-center justify-between">
-                        <span id="user-id-text" class="text-lg font-medium text-gray-800">로그인</span>
-                        <a id="my-travti-link" href="/my-travti" class="text-sm font-semibold text-blue-500 hover:text-blue-600">내 TraVTI 확인</a>
+                    <div class="rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 to-white p-4 shadow-sm">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <div class="text-[11px] font-bold text-blue-500 mb-1">WELCOME</div>
+                                <span id="user-id-text" class="block text-lg font-bold text-slate-800">로그인</span>
+                            </div>
+                            <a id="my-travti-link" href="/my-info-edit" class="text-xs font-bold text-blue-600 hover:text-blue-700">내 정보 수정</a>
+                        </div>
+                        <div class="mt-3 flex flex-wrap gap-2">
+                            <span id="sidebar-travti-chip" class="hidden px-2.5 py-1 rounded-full text-[11px] font-bold bg-indigo-50 text-indigo-600 border border-indigo-100"></span>
+                            <span id="sidebar-mbti-chip" class="hidden px-2.5 py-1 rounded-full text-[11px] font-bold bg-blue-50 text-blue-600 border border-blue-100"></span>
+                            <a id="sidebar-test-chip" href="/test" class="hidden px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-50 text-amber-700 border border-amber-100 hover:bg-amber-100 transition-colors">TraVTI 검사하기</a>
+                        </div>
                     </div>
                 </div>
                 <div class="space-y-1">
-                    <a class="block py-4 text-lg font-medium border-b border-gray-100 hover:text-blue-500 transition-colors" href="/test">TraVTI 검사</a>
-                    <a class="menu-protected block py-4 text-lg font-medium border-b border-gray-100 hover:text-blue-500 transition-colors" href="#" data-page="여행계획 작성">여행계획 작성</a>
-                    <a class="menu-protected block py-4 text-lg font-medium border-b border-gray-100 hover:text-blue-500 transition-colors" href="#" data-page="입국 서류">나의 입국서류정보</a>
-                    <a class="menu-protected block py-4 text-lg font-medium border-b border-gray-100 hover:text-blue-500 transition-colors" href="#" data-page="나의 여행계획">나의 여행계획</a>
+                    <a class="block py-4 text-lg font-medium border-b border-gray-100 hover:text-blue-500 transition-colors" href="/my-travti">마이페이지</a>
+                    <a class="block py-4 text-lg font-medium border-b border-gray-100 hover:text-blue-500 transition-colors" href="/my-travti?tab=traits">내 여행 성향</a>
+                    <a class="block py-4 text-lg font-medium border-b border-gray-100 hover:text-blue-500 transition-colors" href="/my-travti?tab=groups">내 그룹</a>
+                    <a class="block py-4 text-lg font-medium border-b border-gray-100 text-slate-400 cursor-not-allowed" href="#" onclick="event.preventDefault(); alert('내 여행 기능은 준비 중입니다.');">내 여행 (Coming Soon)</a>
                 </div>
             </div>
         </div>
@@ -124,6 +134,9 @@ def get_header(current_page):
                 const userIdDisplay = document.getElementById('user-id-display');
                 const userIdText = document.getElementById('user-id-text');
                 const logoutBtn = document.getElementById('logout-btn');
+                const sidebarTravtiChip = document.getElementById('sidebar-travti-chip');
+                const sidebarMbtiChip = document.getElementById('sidebar-mbti-chip');
+                const sidebarTestChip = document.getElementById('sidebar-test-chip');
                 
                 // Desktop Elements
                 const desktopLoginBtn = document.getElementById('desktop-login-btn');
@@ -145,6 +158,26 @@ def get_header(current_page):
                             if(userIdDisplay) userIdDisplay.classList.remove('hidden');
                             if (userIdText) userIdText.textContent = `${name} 님`;
                             if(logoutBtn) logoutBtn.classList.remove('hidden');
+                            if (sidebarTravtiChip) {
+                                if (label && label !== 'None') {
+                                    sidebarTravtiChip.textContent = label;
+                                    sidebarTravtiChip.classList.remove('hidden');
+                                } else {
+                                    sidebarTravtiChip.classList.add('hidden');
+                                }
+                            }
+                            if (sidebarMbtiChip) {
+                                if (data.mbti && data.mbti !== 'None') {
+                                    sidebarMbtiChip.textContent = data.mbti;
+                                    sidebarMbtiChip.classList.remove('hidden');
+                                } else {
+                                    sidebarMbtiChip.classList.add('hidden');
+                                }
+                            }
+                            if (sidebarTestChip) {
+                                if (label && label !== 'None') sidebarTestChip.classList.add('hidden');
+                                else sidebarTestChip.classList.remove('hidden');
+                            }
 
                             // Desktop
                             if(desktopLoginBtn) {
@@ -176,6 +209,9 @@ def get_header(current_page):
                             if(loginBtn) loginBtn.classList.remove('hidden');
                             if(userIdDisplay) userIdDisplay.classList.add('hidden');
                             if(logoutBtn) logoutBtn.classList.add('hidden');
+                            if(sidebarTravtiChip) sidebarTravtiChip.classList.add('hidden');
+                            if(sidebarMbtiChip) sidebarMbtiChip.classList.add('hidden');
+                            if(sidebarTestChip) sidebarTestChip.classList.add('hidden');
                             
                             // Desktop
                             if(desktopLoginBtn) {
@@ -195,6 +231,9 @@ def get_header(current_page):
                         if(loginBtn) loginBtn.classList.remove('hidden');
                         if(userIdDisplay) userIdDisplay.classList.add('hidden');
                         if(logoutBtn) logoutBtn.classList.add('hidden');
+                        if(sidebarTravtiChip) sidebarTravtiChip.classList.add('hidden');
+                        if(sidebarMbtiChip) sidebarMbtiChip.classList.add('hidden');
+                        if(sidebarTestChip) sidebarTestChip.classList.add('hidden');
                         // Desktop fallback
                         if(desktopLoginBtn) {
                             desktopLoginBtn.classList.remove('hidden');

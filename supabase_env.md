@@ -1,19 +1,25 @@
-Data API
+# Environment Reference (Masked)
 
-Project URL
-https://utsairuqlvobwzzofetk.supabase.co
+민감정보는 `.env`에만 저장하고, 이 문서에는 실제 키를 남기지 않습니다.
 
-Publishable Key
-sb_publishable_NLNKlQUy0Rh5myxk61B5Pw_bd_b9n6t
+## Supabase
 
+- Project URL: `https://***.supabase.co`
+- Publishable/Anon Key: `sb_publishable_***` 또는 `eyJ***`
 
+## Kakao
 
-kakao rest api
-80e1242ce0013f2990abe4989809d041
+- REST API Key: `***`
+- Client Secret: `***`
+- Callback URL: `https://***.supabase.co/auth/v1/callback`
 
-kakao secret
-1CDWfagOOL9al9485wFptNW3AwUhwVH5
+## .env key mapping
 
-kakao Callback URL (for OAuth)
-https://utsairuqlvobwzzofetk.supabase.co/auth/v1/callback
+아래 키 이름으로 `.env`에 설정합니다.
+
+- `SUPABASE_URL`
+- `SUPABASE_KEY`
+- `KAKAO_REST_API_KEY`
+- `KAKAO_CLIENT_SECRET`
+- `KAKAO_CALLBACK_URL`
 

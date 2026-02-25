@@ -1,0 +1,254 @@
+[
+    {
+        "code": "P__DIM_EI__RISK_W1__INT_LOW",
+        "category": "personality",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "여행 중 에너지 사용 방식에서 약간의 차이가 드러날 수 있습니다. 활동 전환이나 휴식 타이밍에서 미세한 조정 지점이 생길 수 있습니다."
+    },
+    {
+        "code": "P__DIM_EI__RISK_W1__INT_MID",
+        "category": "personality",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "여행의 활동 밀도와 휴식에 대한 기대가 다르게 나타날 수 있습니다. 일정 흐름에 대한 체감 속도에서 차이가 인식될 수 있습니다."
+    },
+    {
+        "code": "P__DIM_EI__RISK_W1__INT_HIGH",
+        "category": "personality",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "활동을 이어가려는 방향과 쉬고자 하는 방향이 엇갈릴 수 있습니다. 하루의 리듬을 맞추는 과정에서 긴장이 발생할 여지가 있습니다."
+    },
+    {
+        "code": "P__DIM_EI__RISK_W2__INT_LOW",
+        "category": "personality",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "에너지 회복 방식과 소모 속도의 차이가 누적될 수 있습니다. 일정 후반부로 갈수록 체감 피로의 간극이 커질 가능성이 있습니다."
+    },
+    {
+        "code": "P__DIM_EI__RISK_W2__INT_MID",
+        "category": "personality",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "활동 중심과 휴식 중심의 기대가 반복적으로 충돌할 수 있습니다. 여행의 전반적인 리듬 유지가 부담으로 느껴질 수 있습니다."
+    },
+    {
+        "code": "P__DIM_EI__RISK_W2__INT_HIGH",
+        "category": "personality",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "여행을 소화하는 에너지 기준이 크게 다를 수 있습니다. 일정 구성 자체가 한쪽에 과부하로 작용할 가능성이 있습니다."
+    },
+    {
+        "code": "P__DIM_EI__RISK_X__INT_LOW",
+        "category": "personality",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "활동과 휴식에 대한 기본적인 기대가 구조적으로 다를 수 있습니다. 여행 전반의 흐름을 합의하기 어려운 지점이 발생할 수 있습니다."
+    },
+    {
+        "code": "P__DIM_EI__RISK_X__INT_MID",
+        "category": "personality",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "여행을 즐기는 방식의 전제가 서로 다를 수 있습니다. 일정 운영 과정에서 반복적인 마찰 지점이 나타날 수 있습니다."
+    },
+    {
+        "code": "P__DIM_EI__RISK_X__INT_HIGH",
+        "category": "personality",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "에너지 사용에 대한 기준이 근본적으로 엇갈릴 수 있습니다. 여행의 기본 구조 자체가 부담으로 작용할 가능성이 있습니다."
+    },
+    {
+        "code": "P__DIM_SN__RISK_W1__INT_LOW",
+        "category": "personality",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "여행 중 주목하는 요소에서 약간의 차이가 드러날 수 있습니다. 정보 해석의 방향이 다르게 느껴질 수 있습니다."
+    },
+    {
+        "code": "P__DIM_SN__RISK_W1__INT_MID",
+        "category": "personality",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "현장에서 중요하게 여기는 포인트가 달라질 수 있습니다. 같은 장소에서도 관심이 분산될 가능성이 있습니다."
+    },
+    {
+        "code": "P__DIM_SN__RISK_W1__INT_HIGH",
+        "category": "personality",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "여행 중 관찰하는 방식과 해석의 초점이 다르게 나타날 수 있습니다. 장소 선택이나 설명 방식에서 간극이 생길 수 있습니다."
+    },
+    {
+        "code": "P__DIM_SN__RISK_W2__INT_LOW",
+        "category": "personality",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "여행에서 의미를 두는 기준이 누적적으로 어긋날 수 있습니다. 만족 포인트가 쉽게 겹치지 않을 가능성이 있습니다."
+    },
+    {
+        "code": "P__DIM_SN__RISK_W2__INT_MID",
+        "category": "personality",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "현실적인 정보와 분위기적 가치 사이에서 시선이 갈릴 수 있습니다. 일정 선택의 근거가 달라질 수 있습니다."
+    },
+    {
+        "code": "P__DIM_SN__RISK_W2__INT_HIGH",
+        "category": "personality",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "여행 경험을 해석하는 관점이 크게 다를 수 있습니다. 같은 일정에서도 체감 만족도가 엇갈릴 가능성이 있습니다."
+    },
+    {
+        "code": "P__DIM_SN__RISK_X__INT_LOW",
+        "category": "personality",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "여행에서 중요하게 여기는 가치의 출발점이 다를 수 있습니다. 일정 구성의 방향성을 맞추기 어려울 수 있습니다."
+    },
+    {
+        "code": "P__DIM_SN__RISK_X__INT_MID",
+        "category": "personality",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "현장에서 느끼는 의미와 만족 기준이 구조적으로 다를 수 있습니다. 여행의 목적 해석에서 차이가 발생할 수 있습니다."
+    },
+    {
+        "code": "P__DIM_SN__RISK_X__INT_HIGH",
+        "category": "personality",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "여행을 바라보는 관점 자체가 서로 다를 수 있습니다. 일정 전반에서 지속적인 이질감이 생길 가능성이 있습니다."
+    },
+    {
+        "code": "P__DIM_TF__RISK_W1__INT_LOW",
+        "category": "personality",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "의사결정 과정에서 기준이 약간 다르게 나타날 수 있습니다. 판단의 방향성에서 미세한 차이가 느껴질 수 있습니다."
+    },
+    {
+        "code": "P__DIM_TF__RISK_W1__INT_MID",
+        "category": "personality",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "상황을 바라보는 판단 기준이 다르게 작동할 수 있습니다. 결정 속도나 접근 방식에서 차이가 드러날 수 있습니다."
+    },
+    {
+        "code": "P__DIM_TF__RISK_W1__INT_HIGH",
+        "category": "personality",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "합리성과 공감 중 어느 쪽에 무게를 두는지가 엇갈릴 수 있습니다. 선택 과정에서 조율 포인트가 생길 수 있습니다."
+    },
+    {
+        "code": "P__DIM_TF__RISK_W2__INT_LOW",
+        "category": "personality",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "의사결정 방식의 차이가 누적될 수 있습니다. 일정 변경이나 문제 상황에서 체감 온도가 달라질 수 있습니다."
+    },
+    {
+        "code": "P__DIM_TF__RISK_W2__INT_MID",
+        "category": "personality",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "판단의 기준이 반복적으로 엇갈릴 수 있습니다. 의사결정 과정 자체가 부담으로 느껴질 가능성이 있습니다."
+    },
+    {
+        "code": "P__DIM_TF__RISK_W2__INT_HIGH",
+        "category": "personality",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "문제를 바라보는 관점이 크게 다를 수 있습니다. 결정이 누군가에게는 차갑게, 누군가에게는 비효율적으로 느껴질 수 있습니다."
+    },
+    {
+        "code": "P__DIM_TF__RISK_X__INT_LOW",
+        "category": "personality",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "의사결정의 기본 논리가 다를 수 있습니다. 판단 과정에서 상호 이해가 어려운 구간이 생길 수 있습니다."
+    },
+    {
+        "code": "P__DIM_TF__RISK_X__INT_MID",
+        "category": "personality",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "문제 해결 접근법이 구조적으로 다를 수 있습니다. 합의 도출에 시간이 소요될 가능성이 있습니다."
+    },
+    {
+        "code": "P__DIM_TF__RISK_X__INT_HIGH",
+        "category": "personality",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "의사결정에 대한 기대와 기준이 근본적으로 다를 수 있습니다. 여행 중 중요한 선택에서 반복적인 충돌 가능성이 있습니다."
+    },
+    {
+        "code": "P__DIM_JP__RISK_W1__INT_LOW",
+        "category": "personality",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "일정을 바라보는 유연성에서 약간의 차이가 나타날 수 있습니다. 계획 변경 시 체감 안정감이 다를 수 있습니다."
+    },
+    {
+        "code": "P__DIM_JP__RISK_W1__INT_MID",
+        "category": "personality",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "계획과 즉흥성 사이에서 기대가 엇갈릴 수 있습니다. 일정 확정 시점에 대한 인식 차이가 드러날 수 있습니다."
+    },
+    {
+        "code": "P__DIM_JP__RISK_W1__INT_HIGH",
+        "category": "personality",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "여행 일정의 고정도에 대한 선호가 다를 수 있습니다. 일정 운영 방식에서 긴장이 생길 수 있습니다."
+    },
+    {
+        "code": "P__DIM_JP__RISK_W2__INT_LOW",
+        "category": "personality",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "계획 변경에 대한 체감 부담이 누적될 수 있습니다. 일정 흐름이 불안정하게 느껴질 수 있습니다."
+    },
+    {
+        "code": "P__DIM_JP__RISK_W2__INT_MID",
+        "category": "personality",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "일정 관리 방식의 차이가 반복적으로 드러날 수 있습니다. 여행의 안정감에 영향을 줄 수 있습니다."
+    },
+    {
+        "code": "P__DIM_JP__RISK_W2__INT_HIGH",
+        "category": "personality",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "계획에 대한 기대 수준이 크게 다를 수 있습니다. 일정 운영 자체가 스트레스 요인이 될 가능성이 있습니다."
+    },
+    {
+        "code": "P__DIM_JP__RISK_X__INT_LOW",
+        "category": "personality",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "여행을 준비하고 운영하는 기본 전제가 다를 수 있습니다. 일정 합의에 어려움이 생길 수 있습니다."
+    },
+    {
+        "code": "P__DIM_JP__RISK_X__INT_MID",
+        "category": "personality",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "계획과 즉흥 중 어느 쪽을 기준으로 삼는지가 구조적으로 다를 수 있습니다. 일정 조정이 반복될 가능성이 있습니다."
+    },
+    {
+        "code": "P__DIM_JP__RISK_X__INT_HIGH",
+        "category": "personality",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "일정에 대한 기대 구조가 근본적으로 다를 수 있습니다. 여행의 전체 안정성이 영향을 받을 수 있습니다."
+    }
+]

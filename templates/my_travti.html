@@ -14,18 +14,39 @@
         <div class="mb-10 flex items-end justify-between">
             <div>
                 <h1 class="text-3xl font-bold text-slate-900 mb-2">마이페이지</h1>
-                <p class="text-slate-500">나의 여행 스타일과 저장된 일정을 확인하세요.</p>
             </div>
             <div class="hidden md:block">
-                <span class="inline-block bg-white border border-slate-200 rounded-lg px-4 py-2 text-sm text-slate-600">
-                    <span class="material-symbols-outlined align-middle text-lg mr-1">person</span>
-                    {{ user_name }}님
-                </span>
+                <div class="bg-white rounded-2xl border border-slate-200 p-2 shadow-sm inline-flex gap-2 flex-wrap">
+                    <button class="mypage-tab-btn px-4 py-2 text-sm font-bold rounded-lg bg-blue-600 text-white"
+                        data-target="info">내 정보</button>
+                    <button
+                        class="mypage-tab-btn px-4 py-2 text-sm font-bold rounded-lg text-slate-600 hover:bg-slate-100"
+                        data-target="traits">내 여행 성향</button>
+                    <button
+                        class="mypage-tab-btn px-4 py-2 text-sm font-bold rounded-lg text-slate-600 hover:bg-slate-100"
+                        data-target="groups">내 그룹</button>
+                    <button
+                        class="mypage-tab-btn px-4 py-2 text-sm font-bold rounded-lg text-slate-600 hover:bg-slate-100"
+                        data-target="travel">내 여행</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-8 md:hidden">
+            <div class="bg-white rounded-2xl border border-slate-200 p-2 shadow-sm inline-flex gap-2 flex-wrap">
+                <button class="mypage-tab-btn px-4 py-2 text-sm font-bold rounded-lg bg-blue-600 text-white"
+                    data-target="info">내 정보</button>
+                <button class="mypage-tab-btn px-4 py-2 text-sm font-bold rounded-lg text-slate-600 hover:bg-slate-100"
+                    data-target="traits">내 여행 성향</button>
+                <button class="mypage-tab-btn px-4 py-2 text-sm font-bold rounded-lg text-slate-600 hover:bg-slate-100"
+                    data-target="groups">내 그룹</button>
+                <button class="mypage-tab-btn px-4 py-2 text-sm font-bold rounded-lg text-slate-600 hover:bg-slate-100"
+                    data-target="travel">내 여행</button>
             </div>
         </div>
 
         <!-- Top Section: Passport (Full Width) -->
-        <div class="mb-12">
+        <div id="mypage-panel-info" class="mypage-tab-panel mb-12">
             <!-- Passport Style Card (Horizontal Layout on Desktop) -->
             <div
                 class="rounded-2xl shadow-xl overflow-hidden relative min-h-[360px] max-w-4xl mx-auto flex flex-col md:flex-row font-sans bg-[#1a365d]">
@@ -169,7 +190,7 @@
 
                         {% else %}
                         <!-- Unissued State -->
-                        <div class="h-full flex flex-col justify-between relative z-10 w-full pt-2">
+                        <div class="flex flex-col relative z-10 w-full pt-2">
                             <!-- Header -->
                             <div class="flex justify-between items-end border-b-2 border-slate-900 pb-2 mb-4">
                                 <span class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">여권
@@ -180,7 +201,7 @@
                             </div>
 
                             <!-- Bio Info -->
-                            <div class="flex gap-6 flex-grow">
+                            <div class="flex gap-6">
                                 <!-- Photo Placeholder -->
                                 <div class="w-32 shrink-0">
                                     <div
@@ -194,7 +215,7 @@
                                 </div>
 
                                 <!-- Fields -->
-                                <div class="flex-grow flex flex-col justify-between py-1">
+                                <div class="flex-grow flex flex-col py-1">
                                     <div class="grid grid-cols-2 gap-x-4 gap-y-2 content-start">
                                         <div class="col-span-1">
                                             <div class="text-[8px] text-slate-400 uppercase font-bold">Type / 종류
@@ -253,232 +274,278 @@
                                                 class="font-bold pr-1">0</span>
                                         </div>
                                 </div>
-                                {% endif %}
                             </div>
+                            {% endif %}
                         </div>
+                    </div>
 
-                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                            <!-- Main Content: Persona Analysis (2/3) -->
-                            <div class="lg:col-span-2 h-full">
-                                <!-- Persona Analysis -->
+                    <div class="max-w-4xl mx-auto mt-5 flex justify-end">
+                        <a href="/my-info-edit"
+                            class="px-4 py-2 rounded-lg border border-slate-200 bg-white text-slate-700 text-sm font-bold hover:bg-slate-50 transition-colors">
+                            내 정보 수정
+                        </a>
+                    </div>
+
+                </div>
+
+                <div id="mypage-panel-traits" class="mypage-tab-panel hidden">
+                    <div class="grid grid-cols-1 gap-8 items-start">
+                        <div class="h-full">
+                            <!-- Persona Analysis -->
+                            <div
+                                class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 h-full flex flex-col">
                                 <div
-                                    class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 h-full flex flex-col">
-                                    <div
-                                        class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-                                        <h3 class="font-bold text-slate-900 text-xl flex items-center gap-2">
-                                            <span class="material-symbols-outlined text-blue-500">psychology</span>
-                                            나의 여행 페르소나 분석
-                                        </h3>
-
-                                        {% if travti_label %}
-                                        <div class="flex items-center gap-2">
-                                            <a href="/chemistry"
-                                                class="px-3 py-1.5 text-xs font-bold bg-indigo-50 text-indigo-600 border border-indigo-100 rounded-lg hover:bg-indigo-100 transition-colors flex items-center gap-1">
-                                                <span class="material-symbols-outlined text-sm">hub</span> 그룹 캐미 보기
-                                            </a>
-                                            <button
-                                                onclick="shareKakao('{{ request.url_root }}shared/{{ session.user_id }}', '{{ travti_label }}', '나의 여행 페르소나를 확인해보세요!')"
-                                                class="w-8 h-8 flex items-center justify-center rounded-full bg-[#FEE500] text-[#191919] hover:bg-[#FDD800] transition-colors relative group">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                                    fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-1.226 4.207-1.636z" />
-                                                </svg>
-                                                <div
-                                                    class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-2 py-1 bg-slate-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none text-center z-10">
-                                                    카카오톡 공유</div>
-                                            </button>
-                                            <button
-                                                onclick="copyLink('{{ request.url_root }}shared/{{ session.user_id }}')"
-                                                class="w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors relative group">
-                                                <span class="material-symbols-outlined text-sm">link</span>
-                                                <div
-                                                    class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-2 py-1 bg-slate-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none text-center z-10">
-                                                    링크 복사</div>
-                                            </button>
-                                        </div>
-                                        {% endif %}
-                                    </div>
+                                    class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                                    <h3 class="font-bold text-slate-900 text-xl flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-blue-500">psychology</span>
+                                        나의 여행 페르소나 분석
+                                    </h3>
 
                                     {% if travti_label %}
-                                    <div
-                                        class="bg-slate-50 rounded-xl p-10 mb-10 border border-slate-100 flex-grow flex flex-col justify-center shadow-inner">
-                                        <div class="flex items-start gap-6">
-                                            <span
-                                                class="material-symbols-outlined text-5xl text-blue-400">format_quote</span>
-                                            <div>
-                                                <h4 class="text-2xl font-bold text-slate-800 mb-4">{{ travti_label }}
-                                                </h4>
-                                                <p class="text-slate-600 leading-relaxed text-lg">
-                                                    당신은 여행의 매 순간을 특별하게 만드는 능력을 가지고 있군요.<br>
-                                                    {{ mbti_type }} 성향을 바탕으로,
-                                                    {% if scores.ei > 0 %}새로운 사람들과 어울리며 에너지를 얻고,{% else %}조용히 사색하며 내면의
-                                                    평화를
-                                                    찾고,{%
-                                                    endif %}
-                                                    {% if scores.jp > 0 %}체계적인 계획으로 완벽한 여행을 추구합니다.{% else %}즉흥적인 발견에서 오는
-                                                    기쁨을
-                                                    만끽합니다.{% endif %}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-12 pb-6">
-                                        <!-- EI -->
-                                        <div>
-                                            <div class="flex justify-between text-base font-bold text-slate-700 mb-3">
-                                                <span>내향 (I)</span>
-                                                <span>외향 (E)</span>
-                                            </div>
+                                    <div class="flex items-center gap-2">
+                                        <button
+                                            onclick="shareKakao('{{ request.url_root }}shared/{{ session.user_id }}', '{{ travti_label }}', '나의 여행 페르소나를 확인해보세요!')"
+                                            class="w-8 h-8 flex items-center justify-center rounded-full bg-[#FEE500] text-[#191919] hover:bg-[#FDD800] transition-colors relative group">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-1.226 4.207-1.636z" />
+                                            </svg>
                                             <div
-                                                class="h-6 bg-slate-100 rounded-full overflow-hidden relative shadow-inner">
-                                                <div class="absolute top-0 bottom-0 w-0.5 bg-slate-300 left-1/2"></div>
-                                                <div class="h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-full opacity-90"
-                                                    style="width: {{ (scores.ei + 1) * 50 }}%; margin-left: 0;"></div>
-                                            </div>
-                                            <p class="text-sm text-slate-500 mt-2 text-right">에너지의 방향</p>
-                                        </div>
-                                        <!-- SN -->
-                                        <div>
-                                            <div class="flex justify-between text-base font-bold text-slate-700 mb-3">
-                                                <span>직관 (N)</span>
-                                                <span>감각 (S)</span>
-                                            </div>
+                                                class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-2 py-1 bg-slate-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none text-center z-10">
+                                                카카오톡 공유</div>
+                                        </button>
+                                        <button onclick="copyLink('{{ request.url_root }}shared/{{ session.user_id }}')"
+                                            class="w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors relative group">
+                                            <span class="material-symbols-outlined text-sm">link</span>
                                             <div
-                                                class="h-6 bg-slate-100 rounded-full overflow-hidden relative shadow-inner">
-                                                <div class="absolute top-0 bottom-0 w-0.5 bg-slate-300 left-1/2"></div>
-                                                <div class="h-full bg-gradient-to-r from-purple-400 to-purple-600 rounded-full opacity-90"
-                                                    style="width: {{ (scores.sn + 1) * 50 }}%; margin-left: 0;"></div>
-                                            </div>
-                                            <p class="text-sm text-slate-500 mt-2 text-right">인식 방식</p>
-                                        </div>
-                                        <!-- TF -->
-                                        <div>
-                                            <div class="flex justify-between text-base font-bold text-slate-700 mb-3">
-                                                <span>감정 (F)</span>
-                                                <span>사고 (T)</span>
-                                            </div>
-                                            <div
-                                                class="h-6 bg-slate-100 rounded-full overflow-hidden relative shadow-inner">
-                                                <div class="absolute top-0 bottom-0 w-0.5 bg-slate-300 left-1/2"></div>
-                                                <div class="h-full bg-gradient-to-r from-green-400 to-green-600 rounded-full opacity-90"
-                                                    style="width: {{ (scores.tf + 1) * 50 }}%; margin-left: 0;"></div>
-                                            </div>
-                                            <p class="text-sm text-slate-500 mt-2 text-right">판단 기준</p>
-                                        </div>
-                                        <!-- JP -->
-                                        <div>
-                                            <div class="flex justify-between text-base font-bold text-slate-700 mb-3">
-                                                <span>인식 (P)</span>
-                                                <span>판단 (J)</span>
-                                            </div>
-                                            <div
-                                                class="h-6 bg-slate-100 rounded-full overflow-hidden relative shadow-inner">
-
-                                                <div class="absolute top-0 bottom-0 w-0.5 bg-slate-300 left-1/2"></div>
-                                                <div class="h-full bg-gradient-to-r from-orange-400 to-orange-600 rounded-full opacity-90"
-                                                    style="width: {{ (scores.jp + 1) * 50 }}%; margin-left: 0;"></div>
-                                            </div>
-                                            <p class="text-xs text-slate-500 mt-2 text-right">생활 양식</p>
-                                        </div>
-                                    </div>
-                                    {% else %}
-                                    <div
-                                        class="text-center py-20 bg-slate-50 rounded-xl border border-dashed border-slate-300">
-                                        <p class="text-slate-500 mb-4">아직 분석 데이터가 없습니다.</p>
-                                        <a href="/test"
-                                            class="inline-block px-6 py-2 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 transition-colors">분석
-                                            시작하기</a>
+                                                class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-2 py-1 bg-slate-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none text-center z-10">
+                                                링크 복사</div>
+                                        </button>
                                     </div>
                                     {% endif %}
                                 </div>
-                            </div>
 
-                            <!-- Sidebar (1/3): My Plans (Moved Here) -->
-                            <div class="lg:col-span-1 space-y-6">
-                                <!-- My Plans -->
+                                {% if travti_label %}
                                 <div
-                                    class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 h-full flex flex-col min-h-[400px]">
-                                    <div class="flex items-center justify-between mb-6">
-                                        <h3 class="font-bold text-slate-900 flex items-center gap-2">
-                                            <span class="material-symbols-outlined text-blue-500">map</span>
-                                            나의 여행 계획
-                                        </h3>
+                                    class="bg-slate-50 rounded-xl p-10 mb-10 border border-slate-100 flex-grow flex flex-col justify-center shadow-inner">
+                                    <div class="flex items-start gap-6">
                                         <span
-                                            class="px-2 py-0.5 bg-blue-50 text-blue-600 text-[10px] font-bold rounded-full border border-blue-100">BETA</span>
+                                            class="material-symbols-outlined text-5xl text-blue-400">format_quote</span>
+                                        <div>
+                                            <h4 class="text-2xl font-bold text-slate-800 mb-4">{{ travti_label }}
+                                            </h4>
+                                            <p class="text-slate-600 leading-relaxed text-lg">
+                                                당신은 여행의 매 순간을 특별하게 만드는 능력을 가지고 있군요.<br>
+                                                {{ mbti_type }} 성향을 바탕으로,
+                                                {% if scores.ei > 0 %}새로운 사람들과 어울리며 에너지를 얻고,{% else %}조용히 사색하며 내면의
+                                                평화를
+                                                찾고,{%
+                                                endif %}
+                                                {% if scores.jp > 0 %}체계적인 계획으로 완벽한 여행을 추구합니다.{% else %}즉흥적인 발견에서 오는
+                                                기쁨을
+                                                만끽합니다.{% endif %}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-12 pb-6">
+                                    <!-- EI -->
+                                    <div>
+                                        <div class="flex justify-between text-base font-bold text-slate-700 mb-3">
+                                            <span>내향 (I)</span>
+                                            <span>외향 (E)</span>
+                                        </div>
+                                        <div
+                                            class="h-6 bg-slate-100 rounded-full overflow-hidden relative shadow-inner">
+                                            <div class="absolute top-0 bottom-0 w-0.5 bg-slate-300 left-1/2"></div>
+                                            <div class="h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-full opacity-90"
+                                                style="width: {{ (scores.ei + 1) * 50 }}%; margin-left: 0;"></div>
+                                        </div>
+                                        <p class="text-sm text-slate-500 mt-2 text-right">에너지의 방향</p>
+                                    </div>
+                                    <!-- SN -->
+                                    <div>
+                                        <div class="flex justify-between text-base font-bold text-slate-700 mb-3">
+                                            <span>직관 (N)</span>
+                                            <span>감각 (S)</span>
+                                        </div>
+                                        <div
+                                            class="h-6 bg-slate-100 rounded-full overflow-hidden relative shadow-inner">
+                                            <div class="absolute top-0 bottom-0 w-0.5 bg-slate-300 left-1/2"></div>
+                                            <div class="h-full bg-gradient-to-r from-purple-400 to-purple-600 rounded-full opacity-90"
+                                                style="width: {{ (scores.sn + 1) * 50 }}%; margin-left: 0;"></div>
+                                        </div>
+                                        <p class="text-sm text-slate-500 mt-2 text-right">인식 방식</p>
+                                    </div>
+                                    <!-- TF -->
+                                    <div>
+                                        <div class="flex justify-between text-base font-bold text-slate-700 mb-3">
+                                            <span>감정 (F)</span>
+                                            <span>사고 (T)</span>
+                                        </div>
+                                        <div
+                                            class="h-6 bg-slate-100 rounded-full overflow-hidden relative shadow-inner">
+                                            <div class="absolute top-0 bottom-0 w-0.5 bg-slate-300 left-1/2"></div>
+                                            <div class="h-full bg-gradient-to-r from-green-400 to-green-600 rounded-full opacity-90"
+                                                style="width: {{ (scores.tf + 1) * 50 }}%; margin-left: 0;"></div>
+                                        </div>
+                                        <p class="text-sm text-slate-500 mt-2 text-right">판단 기준</p>
+                                    </div>
+                                    <!-- JP -->
+                                    <div>
+                                        <div class="flex justify-between text-base font-bold text-slate-700 mb-3">
+                                            <span>인식 (P)</span>
+                                            <span>판단 (J)</span>
+                                        </div>
+                                        <div
+                                            class="h-6 bg-slate-100 rounded-full overflow-hidden relative shadow-inner">
+
+                                            <div class="absolute top-0 bottom-0 w-0.5 bg-slate-300 left-1/2"></div>
+                                            <div class="h-full bg-gradient-to-r from-orange-400 to-orange-600 rounded-full opacity-90"
+                                                style="width: {{ (scores.jp + 1) * 50 }}%; margin-left: 0;"></div>
+                                        </div>
+                                        <p class="text-xs text-slate-500 mt-2 text-right">생활 양식</p>
+                                    </div>
+                                </div>
+                                {% else %}
+                                <div
+                                    class="text-center py-20 bg-slate-50 rounded-xl border border-dashed border-slate-300">
+                                    <p class="text-slate-500 mb-4">아직 분석 데이터가 없습니다.</p>
+                                    <a href="/test"
+                                        class="inline-block px-6 py-2 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 transition-colors">분석
+                                        시작하기</a>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="mypage-panel-groups" class="mypage-tab-panel hidden">
+                    <div class="grid grid-cols-1 gap-6">
+                        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                                <div>
+                                    <h3 class="font-bold text-slate-900 text-xl flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-indigo-500">groups</span>
+                                        내 그룹
+                                    </h3>
+                                    <p class="text-slate-500 text-sm mt-1">친구와 그룹을 만들고 케미를 확인해보세요.</p>
+                                </div>
+                                <a href="/chemistry"
+                                    class="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 bg-indigo-600 text-white text-sm font-bold rounded-xl hover:bg-indigo-700 transition-colors shadow-sm shrink-0">
+                                    <span class="material-symbols-outlined text-base">add</span>
+                                    새 그룹 만들기
+                                </a>
+                            </div>
+                            <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 items-start">
+                                <div class="flex flex-col gap-3">
+                                    <div
+                                        class="px-4 py-3 border-b border-slate-200 bg-slate-50 rounded-t-xl hidden xl:block">
+                                        <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+                                            <span class="material-symbols-outlined text-slate-600">list</span>
+                                            그룹 목록
+                                        </h3>
+                                    </div>
+                                    <div id="saved-group-block" class="flex flex-col gap-3 min-h-[300px]">
+                                        <div
+                                            class="flex flex-col items-center justify-center py-12 text-center bg-slate-50 border border-slate-200 rounded-xl h-full">
+                                            <div class="text-sm text-slate-500">저장된 그룹을 불러오는 중...</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                                    <div class="px-4 py-3 border-b border-slate-200 bg-slate-50">
+                                        <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+                                            <span class="material-symbols-outlined text-slate-600">group</span>
+                                            친구 관리
+                                        </h3>
                                     </div>
 
-                                    <div
-                                        class="flex-grow flex flex-col items-center justify-center p-6 bg-slate-50 rounded-xl border border-dashed border-slate-200 text-center">
-                                        <div
-                                            class="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 text-blue-200 shadow-sm">
-                                            <span class="material-symbols-outlined text-3xl">flight_takeoff</span>
+                                    <div class="px-4 py-3 border-b border-slate-200 bg-slate-50">
+                                        <div class="flex gap-2">
+                                            <input id="friend-search-input" type="text" placeholder="친구 검색..."
+                                                class="flex-1 px-3 py-2 text-sm rounded-lg bg-white border border-slate-300 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-300 focus:border-slate-400" />
+                                            <button id="friend-search-btn"
+                                                class="px-3 py-2 text-xs font-bold bg-blue-600 text-white rounded-lg hover:bg-blue-700 shrink-0 transition-colors">검색</button>
                                         </div>
-                                        <h4 class="text-sm font-bold text-slate-900 mb-1">여행 계획 서비스 준비 중</h4>
-                                        <p class="text-xs text-slate-500 mb-4 leading-relaxed">
-                                            나만의 맞춤형 여행 일정을<br>곧 만나보실 수 있습니다.
-                                        </p>
+                                    </div>
+
+                                    <div class="px-4 py-2 border-b border-slate-200 bg-slate-50 flex gap-1">
                                         <button
-                                            class="px-4 py-2 bg-white border border-slate-200 text-slate-400 rounded-lg text-xs font-bold cursor-not-allowed"
-                                            disabled>
-                                            Coming Soon
+                                            class="friend-tab active bg-blue-600 text-white px-3 py-1.5 text-xs font-bold rounded-lg transition-colors"
+                                            data-tab="friends">
+                                            <span class="material-symbols-outlined text-sm align-middle">person</span>
+                                            친구 목록
                                         </button>
+                                        <button
+                                            class="friend-tab text-slate-600 px-3 py-1.5 text-xs font-bold rounded-lg transition-colors hover:bg-blue-100"
+                                            data-tab="requests">
+                                            <span
+                                                class="material-symbols-outlined text-sm align-middle">notification_add</span>
+                                            받은 요청
+                                        </button>
+                                        <button
+                                            class="friend-tab text-slate-600 px-3 py-1.5 text-xs font-bold rounded-lg transition-colors hover:bg-blue-100"
+                                            data-tab="search">
+                                            <span
+                                                class="material-symbols-outlined text-sm align-middle">person_add</span>
+                                            친구 추가
+                                        </button>
+                                    </div>
+
+                                    <div class="max-h-96 overflow-y-auto overflow-x-visible">
+                                        <div id="tab-friends" class="friend-tab-content">
+                                            <div id="my-friends-list" class="divide-y divide-slate-100"></div>
+                                        </div>
+
+                                        <div id="tab-requests" class="friend-tab-content hidden">
+                                            <div id="incoming-friend-requests" class="divide-y divide-slate-100"></div>
+                                        </div>
+
+                                        <div id="tab-search" class="friend-tab-content hidden">
+                                            <div id="friend-search-results" class="divide-y divide-slate-100"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
 
-                        <!-- Floating Friend Widget -->
-                        <div class="fixed bottom-8 right-8 z-50 group">
-                            <!-- Friend List Popup (Visible on Hover) -->
+                <div id="mypage-panel-travel" class="mypage-tab-panel hidden">
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 flex flex-col">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="font-bold text-slate-900 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-blue-500">map</span>
+                                내 여행
+                            </h3>
+                            <span
+                                class="px-2 py-0.5 bg-blue-50 text-blue-600 text-[10px] font-bold rounded-full border border-blue-100">BETA</span>
+                        </div>
+
+                        <div
+                            class="flex-grow flex flex-col items-center justify-center p-6 bg-slate-50 rounded-xl border border-dashed border-slate-200 text-center">
                             <div
-                                class="absolute bottom-full right-0 mb-4 w-72 bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 pointer-events-none group-hover:pointer-events-auto">
-                                <div
-                                    class="p-4 border-b border-slate-100 bg-slate-50 flex justify-between items-center">
-                                    <h3 class="font-bold text-slate-800 text-sm">내 친구 목록</h3>
-                                    <span
-                                        class="bg-blue-100 text-blue-600 text-[10px] font-bold px-1.5 py-0.5 rounded-full">2</span>
-                                </div>
-                                <div class="max-h-64 overflow-y-auto p-2">
-                                    <div
-                                        class="flex items-center gap-3 p-2 hover:bg-slate-50 rounded-lg cursor-pointer transition-colors">
-                                        <div
-                                            class="w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center text-blue-400 border border-blue-100">
-                                            <span class="material-symbols-outlined text-sm">face_3</span>
-                                        </div>
-                                        <div>
-                                            <div class="text-xs font-bold text-slate-700">김민지</div>
-                                            <div class="text-[10px] text-slate-500">감성 휴양가 (INFP)</div>
-                                        </div>
-                                    </div>
-                                    <div
-                                        class="flex items-center gap-3 p-2 hover:bg-slate-50 rounded-lg cursor-pointer transition-colors">
-                                        <div
-                                            class="w-8 h-8 bg-green-50 rounded-full flex items-center justify-center text-green-400 border border-green-100">
-                                            <span class="material-symbols-outlined text-sm">face_6</span>
-                                        </div>
-                                        <div>
-                                            <div class="text-xs font-bold text-slate-700">이준호</div>
-                                            <div class="text-[10px] text-slate-500">액티브 탐험가 (ESTP)</div>
-                                        </div>
-                                    </div>
-                                    <div class="mt-2 pt-2 border-t border-slate-100 text-center">
-                                        <button
-                                            class="text-xs text-blue-600 hover:text-blue-700 font-medium flex items-center justify-center gap-1 w-full py-1">
-                                            <span class="material-symbols-outlined text-[10px]">add</span> 친구 추가
-                                        </button>
-                                    </div>
-                                </div>
+                                class="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 text-blue-200 shadow-sm">
+                                <span class="material-symbols-outlined text-3xl">flight_takeoff</span>
                             </div>
-
-                            <!-- FAB Button -->
+                            <h4 class="text-sm font-bold text-slate-900 mb-1">내 여행 서비스 준비 중</h4>
+                            <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+                                나만의 맞춤형 여행 일정을<br>곧 만나보실 수 있습니다.
+                            </p>
                             <button
-                                class="bg-slate-900 hover:bg-blue-600 text-white rounded-full px-6 py-4 shadow-lg flex items-center gap-2 transition-all hover:scale-105 active:scale-95">
-                                <span class="material-symbols-outlined">group</span>
-                                <span class="font-bold text-sm">친구</span>
+                                class="px-4 py-2 bg-white border border-slate-200 text-slate-400 rounded-lg text-xs font-bold cursor-not-allowed"
+                                disabled>
+                                Coming Soon
                             </button>
                         </div>
+                    </div>
+                </div>
+
     </main>
 
     <footer class="bg-white border-t border-slate-200 mt-auto py-8">
@@ -525,6 +592,391 @@
                 alert('복사에 실패했습니다.');
             });
         }
+
+        (function () {
+            const tabButtons = document.querySelectorAll('.mypage-tab-btn');
+            const tabPanels = document.querySelectorAll('.mypage-tab-panel');
+
+            function activateTab(tabName) {
+                tabButtons.forEach(btn => {
+                    const isActive = btn.dataset.target === tabName;
+                    if (isActive) {
+                        btn.classList.add('bg-blue-600', 'text-white');
+                        btn.classList.remove('text-slate-600', 'hover:bg-slate-100');
+                    } else {
+                        btn.classList.remove('bg-blue-600', 'text-white');
+                        btn.classList.add('text-slate-600', 'hover:bg-slate-100');
+                    }
+                });
+
+                tabPanels.forEach(panel => {
+                    if (panel.id === `mypage-panel-${tabName}`) panel.classList.remove('hidden');
+                    else panel.classList.add('hidden');
+                });
+            }
+
+            tabButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const target = btn.dataset.target || 'info';
+                    activateTab(target);
+                    const nextUrl = new URL(window.location.href);
+                    nextUrl.searchParams.set('tab', target);
+                    window.history.replaceState({}, '', nextUrl);
+                });
+            });
+
+            const urlTab = new URLSearchParams(window.location.search).get('tab');
+            const initialTab = ['info', 'traits', 'groups', 'travel'].includes(urlTab) ? urlTab : 'info';
+            activateTab(initialTab);
+        })();
+
+        (function () {
+            const CURRENT_USER_ID = "{{ session.get('user_id', '') }}";
+
+            const searchInput = document.getElementById('friend-search-input');
+            const searchBtn = document.getElementById('friend-search-btn');
+            const searchResults = document.getElementById('friend-search-results');
+            const incomingBox = document.getElementById('incoming-friend-requests');
+            const friendsListBox = document.getElementById('my-friends-list');
+            const savedGroupBlock = document.getElementById('saved-group-block');
+            const tabs = document.querySelectorAll('.friend-tab');
+            const tabContents = document.querySelectorAll('.friend-tab-content');
+
+            let myFriends = [];
+
+            // Tab Switching
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const targetTab = tab.dataset.tab;
+                    tabs.forEach(t => {
+                        t.classList.remove('active', 'bg-blue-600', 'text-white');
+                        t.classList.add('text-slate-600');
+                    });
+                    tab.classList.add('active', 'bg-blue-600', 'text-white');
+                    tab.classList.remove('text-slate-600');
+
+                    tabContents.forEach(content => {
+                        if (content.id === `tab-${targetTab}`) {
+                            content.classList.remove('hidden');
+                        } else {
+                            content.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            async function apiGet(url) {
+                const res = await fetch(url, { credentials: 'include' });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.message || data.error || '요청 실패');
+                return data;
+            }
+
+            async function apiPost(url, body) {
+                const res = await fetch(url, {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body || {})
+                });
+                const data = await res.json();
+                if (!res.ok) {
+                    const error = new Error(data.message || data.error || '요청 실패');
+                    error.data = data;
+                    error.status = res.status;
+                    throw error;
+                }
+                return data;
+            }
+
+            function renderSavedGroups(groups) {
+                if (!savedGroupBlock) return;
+
+                if (!groups || groups.length === 0) {
+                    savedGroupBlock.innerHTML = `
+                        <div class="flex flex-col items-center justify-center py-12 text-center bg-slate-50 border border-slate-200 rounded-xl h-full min-h-[300px]">
+                            <span class="material-symbols-outlined text-4xl text-slate-300 mb-3">group_off</span>
+                            <p class="text-sm font-bold text-slate-600 mb-1">소속된 그룹이 없습니다.</p>
+                            <p class="text-xs text-slate-400">오른쪽 위 버튼을 눌러 새 그룹을 만들어보세요.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                savedGroupBlock.innerHTML = groups.map(group => {
+                    const name = group.group_name || '내 그룹';
+                    const role = group.my_role === 'owner' ? '그룹장' : '멤버';
+                    const status = group.my_invite_status === 'joined' ? '수락완료' : '대기중';
+
+                    let bgClass = "bg-white";
+                    if (group.my_invite_status !== 'joined') bgClass = "bg-slate-50 opacity-80";
+
+                    return `
+                        <div class="flex items-center justify-between gap-3 p-4 border border-slate-200 rounded-xl ${bgClass} shadow-sm hover:shadow-md transition-all">
+                            <div class="min-w-0">
+                                <div class="text-base font-bold text-slate-900 truncate">${name}</div>
+                                <div class="flex items-center gap-2 mt-1.5">
+                                    <span class="px-2 py-0.5 rounded bg-slate-100 text-[10px] font-bold text-slate-500 border border-slate-200">${role}</span>
+                                    <span class="text-xs text-slate-400">상태: ${status}</span>
+                                </div>
+                            </div>
+                            <div class="shrink-0 flex items-center gap-2">
+                                ${group.my_invite_status === 'joined' ?
+                            `<a href="/group-report?group_id=${group.id}" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-indigo-50 text-indigo-600 border border-indigo-100 text-xs font-bold hover:bg-indigo-100 transition-colors">
+                                        리포트 <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                    </a>`
+                            :
+                            `<span class="text-[10px] text-amber-500 font-bold px-2">수락 대기중</span>`
+                        }
+                                <button onclick="deleteGroup('${group.id}', '${name.replace(/'/g, "\\'")}', '${group.my_role}')" class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-slate-50 text-slate-400 border border-slate-200 hover:bg-red-50 hover:text-red-500 hover:border-red-200 transition-colors" title="${group.my_role === 'owner' ? '그룹 삭제' : '그룹 나가기'}">
+                                    <span class="material-symbols-outlined text-sm">${group.my_role === 'owner' ? 'delete' : 'logout'}</span>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            async function deleteGroup(groupId, groupName, role) {
+                const actionText = role === 'owner' ? '삭제' : '나가기';
+                const confirmMsg = role === 'owner' ?
+                    `'${groupName}' 그룹을 완전히 삭제하시겠습니까? (삭제 시 멤버들도 볼 수 없습니다)` :
+                    `'${groupName}' 그룹에서 정말 나가시겠습니까?`;
+
+                if (!confirm(confirmMsg)) return;
+
+                try {
+                    await apiPost('/api/groups/delete', { group_id: groupId });
+                    alert(`그룹이 성공적으로 ${actionText}되었습니다.`);
+                    loadSavedGroups();
+                } catch (e) {
+                    alert(`그룹 ${actionText}에 실패했습니다.`);
+                }
+            }
+
+            async function loadSavedGroups() {
+                if (!savedGroupBlock) return;
+                try {
+                    const data = await apiGet('/api/groups/list');
+                    const groups = (data.groups || []).filter(group => group.my_invite_status === 'joined' || group.my_role === 'owner');
+                    renderSavedGroups(groups);
+                } catch (e) {
+                    renderSavedGroups([]);
+                }
+            }
+
+            function setEmpty(el, text) {
+                el.innerHTML = `<div class="text-xs text-slate-500 p-4 text-center">${text}</div>`;
+            }
+
+            function renderFriends(friends) {
+                myFriends = friends || [];
+                if (!myFriends.length) {
+                    setEmpty(friendsListBox, '친구가 없습니다.');
+                    return;
+                }
+                friendsListBox.innerHTML = myFriends.map(friend => {
+                    const name = friend.name || '여행자';
+                    const label = friend.travti_label || '미분석';
+                    return `
+                        <div class="flex items-center gap-3 p-3 hover:bg-blue-50 transition-colors relative">
+                            <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold shrink-0 shadow-sm">
+                                ${name.charAt(0).toUpperCase()}
+                            </div>
+                            <div class="min-w-0 flex-1">
+                                <div class="text-sm font-bold text-slate-800 truncate">${name}</div>
+                                <div class="text-xs text-slate-500 truncate">${label}</div>
+                            </div>
+                            <button class="friend-delete-btn px-3 py-1.5 text-xs bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors relative shrink-0 font-bold" data-friend-id="${friend.friend_id}" data-friend-name="${name}">
+                                삭제
+                            </button>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            async function loadFriends() {
+                try {
+                    const data = await apiGet('/api/friends/list');
+                    renderFriends(data.friends || []);
+                } catch (e) {
+                    setEmpty(friendsListBox, '친구 목록을 불러오지 못했습니다.');
+                }
+            }
+
+            async function loadFriendRequests() {
+                try {
+                    const data = await apiGet('/api/friends/requests');
+                    const incoming = data.incoming || [];
+                    if (!incoming.length) {
+                        setEmpty(incomingBox, '받은 요청이 없습니다.');
+                        return;
+                    }
+                    incomingBox.innerHTML = incoming.map(row => {
+                        const name = row.name || '여행자';
+                        return `
+                            <div class="flex items-center gap-3 p-3 hover:bg-blue-50 transition-colors">
+                                <div class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-full flex items-center justify-center text-white font-bold shrink-0 shadow-sm">
+                                    ${name.charAt(0).toUpperCase()}
+                                </div>
+                                <div class="min-w-0 flex-1">
+                                    <div class="text-sm font-bold text-slate-800 truncate">${name}</div>
+                                    <div class="text-xs text-slate-500">친구 요청을 보냈습니다</div>
+                                </div>
+                                <div class="flex gap-1 shrink-0">
+                                    <button class="friend-accept px-3 py-1.5 text-xs rounded-lg bg-emerald-600 text-white hover:bg-emerald-700 transition-colors font-bold" data-requester-id="${row.requester_id}">수락</button>
+                                    <button class="friend-reject px-3 py-1.5 text-xs rounded-lg bg-slate-200 text-slate-700 hover:bg-slate-300 transition-colors font-bold" data-requester-id="${row.requester_id}">거절</button>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                } catch (e) {
+                    setEmpty(incomingBox, '요청 목록을 불러오지 못했습니다.');
+                }
+            }
+
+            async function handleSearch() {
+                const q = (searchInput.value || '').trim();
+                if (!q) {
+                    setEmpty(searchResults, '검색어를 입력하세요.');
+                    return;
+                }
+                try {
+                    const data = await apiGet('/api/search_user?q=' + encodeURIComponent(q));
+                    const rows = (data.results || []).filter(row => row.id && row.id !== CURRENT_USER_ID);
+                    if (!rows.length) {
+                        setEmpty(searchResults, '검색 결과가 없습니다.');
+                        return;
+                    }
+                    searchResults.innerHTML = rows.map(row => {
+                        const name = row.name || '여행자';
+                        const email = row.email || '';
+                        return `
+                            <div class="flex items-center gap-3 p-3 hover:bg-blue-50 transition-colors">
+                                <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold shrink-0 shadow-sm">
+                                    ${name.charAt(0).toUpperCase()}
+                                </div>
+                                <div class="min-w-0 flex-1">
+                                    <div class="text-sm font-bold text-slate-800 truncate">${name}</div>
+                                    <div class="text-xs text-slate-500 truncate">${email}</div>
+                                </div>
+                                <button class="friend-add-btn px-3 py-1.5 text-xs rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors shrink-0 font-bold" data-user-id="${row.id}">
+                                    <span class="material-symbols-outlined text-sm align-middle">person_add</span>
+                                </button>
+                            </div>
+                        `;
+                    }).join('');
+                } catch (e) {
+                    setEmpty(searchResults, '검색 중 오류가 발생했습니다.');
+                }
+            }
+
+            document.addEventListener('click', async (e) => {
+                const addBtn = e.target.closest('.friend-add-btn');
+                if (addBtn) {
+                    const targetId = addBtn.dataset.userId;
+                    try {
+                        const result = await apiPost('/api/friends/request', { target_user_id: targetId });
+
+                        // Handle success with different statuses
+                        if (result.status === 'already_friends') {
+                            addBtn.innerHTML = '<span class="material-symbols-outlined text-sm">check</span>';
+                            addBtn.disabled = true;
+                            addBtn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+                            addBtn.classList.add('bg-slate-700', 'cursor-not-allowed');
+                            alert('이미 친구입니다!');
+                        } else if (result.status === 'already_requested') {
+                            addBtn.innerHTML = '<span class="material-symbols-outlined text-sm">schedule</span>';
+                            addBtn.disabled = true;
+                            addBtn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+                            addBtn.classList.add('bg-slate-700', 'cursor-not-allowed');
+                            alert('이미 친구 요청을 보냈습니다.');
+                        } else {
+                            // Normal pending request
+                            addBtn.innerHTML = '<span class="material-symbols-outlined text-sm">check</span>';
+                            addBtn.disabled = true;
+                            addBtn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+                            addBtn.classList.add('bg-emerald-600', 'cursor-default');
+                        }
+                    } catch (err) {
+                        const message = err.message || '알 수 없는 오류';
+                        const errorData = err.data || {};
+
+                        // Handle specific error cases
+                        if (errorData.error === 'already_requested' || message.includes('이미') || errorData.status === 'incoming_request_exists') {
+                            addBtn.innerHTML = '<span class="material-symbols-outlined text-sm">info</span>';
+                            addBtn.disabled = true;
+                            addBtn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+                            addBtn.classList.add('bg-amber-600', 'cursor-not-allowed');
+
+                            if (errorData.status === 'incoming_request_exists') {
+                                alert('상대방이 먼저 친구 요청을 보냈습니다. "받은 요청" 탭을 확인하세요!');
+                            } else {
+                                alert(message);
+                            }
+                        } else {
+                            alert('친구 요청 실패: ' + message);
+                        }
+                    }
+                    return;
+                }
+
+                const acceptBtn = e.target.closest('.friend-accept');
+                if (acceptBtn) {
+                    try {
+                        await apiPost('/api/friends/respond', { requester_id: acceptBtn.dataset.requesterId, action: 'accept' });
+                        await Promise.all([loadFriendRequests(), loadFriends()]);
+                        // Switch to friends tab
+                        document.querySelector('.friend-tab[data-tab="friends"]').click();
+                    } catch (err) {
+                        alert('요청 수락 실패: ' + err.message);
+                    }
+                    return;
+                }
+
+                const rejectBtn = e.target.closest('.friend-reject');
+                if (rejectBtn) {
+                    try {
+                        await apiPost('/api/friends/respond', { requester_id: rejectBtn.dataset.requesterId, action: 'reject' });
+                        await loadFriendRequests();
+                    } catch (err) {
+                        alert('요청 거절 실패: ' + err.message);
+                    }
+                    return;
+                }
+
+                const deleteBtn = e.target.closest('.friend-delete-btn');
+                if (deleteBtn) {
+                    const friendId = deleteBtn.dataset.friendId;
+                    const friendName = deleteBtn.dataset.friendName || '이 친구';
+                    const confirmed = window.confirm(`${friendName}님을 친구 목록에서 삭제할까요?`);
+                    if (!confirmed) return;
+
+                    try {
+                        deleteBtn.disabled = true;
+                        await apiPost('/api/friends/delete', { friend_id: friendId });
+                        await Promise.all([loadFriends(), loadSavedGroups()]);
+                    } catch (err) {
+                        alert('친구 삭제 실패: ' + err.message);
+                    } finally {
+                        deleteBtn.disabled = false;
+                    }
+                    return;
+                }
+            });
+
+            if (searchBtn) searchBtn.addEventListener('click', handleSearch);
+            if (searchInput) {
+                searchInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        handleSearch();
+                    }
+                });
+            }
+
+            Promise.all([loadFriends(), loadFriendRequests(), loadSavedGroups()]);
+        })();
     </script>
 </body>
 

@@ -3,113 +3,92 @@
 
 <head>
     {{ common_head|safe }}
-    <title>그룹 캐미 보기 - TraVTI</title>
+    <title>새 그룹 만들기 - TraVTI</title>
 </head>
 
 <body class="bg-slate-50 min-h-screen flex flex-col">
     {{ header|safe }}
 
-    <main class="flex-grow max-w-5xl mx-auto w-full px-6 py-12">
-        <div class="mb-10 text-center">
-            <h1 class="text-3xl font-bold text-slate-900 mb-2">여행 그룹 캐미 확인하기</h1>
-            <p class="text-slate-500">나와 친구의 여행 스타일은 얼마나 잘 맞을까요? 친구를 검색하고 궁합을 확인해보세요.</p>
+    <main class="flex-grow max-w-4xl mx-auto w-full px-6 py-12">
+        <div class="mb-4">
+            <button type="button" onclick="goBack()"
+                class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-600 text-sm font-bold hover:bg-slate-50 transition-colors">
+                <span class="material-symbols-outlined text-base">arrow_back</span>
+                이전 화면
+            </button>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-            <!-- 나 (왼쪽) -->
-            <div
-                class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 flex flex-col items-center text-center">
-                <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center text-blue-500 mb-4">
-                    <span class="material-symbols-outlined text-4xl">person</span>
-                </div>
-                <h3 class="text-lg font-bold text-slate-800 mb-1">{{ my_name }}</h3>
-                {% if my_label %}
-                <span
-                    class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm font-bold border border-blue-100 mb-2">{{
-                    my_label }}</span>
-                <span class="text-xs text-slate-500 font-bold uppercase">{{ my_mbti }}</span>
-                {% else %}
-                <span class="text-sm text-slate-400">결과 없음</span>
-                <a href="/test" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-bold">검사하러 가기</a>
-                {% endif %}
+        <div class="mb-8 text-center">
+            <h1 class="text-3xl font-bold text-slate-900 mb-2">새 그룹 만들기</h1>
+            <p class="text-slate-500">여행 그룹의 이름을 정하고, 함께할 친구들을 초대해주세요.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 mb-8">
+            <div class="flex flex-col gap-2">
+                <label for="group-name-input" class="text-sm font-bold text-slate-800">그룹 이름 <span
+                        class="text-red-500">*</span></label>
+                <input type="text" id="group-name-input" placeholder="예) 부산 2박 3일 힐링 여행"
+                    class="w-full px-4 py-3 border-2 border-slate-100 bg-slate-50 rounded-xl focus:outline-none focus:border-blue-500 focus:bg-white transition-colors text-slate-800 font-medium"
+                    oninput="updateProceedButton()">
             </div>
+        </div>
 
-            <!-- VS / 궁합 (가운데) -->
-            <div class="flex flex-col items-center justify-center relative">
-                <div class="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-slate-200 -z-10 -translate-y-1/2">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <!-- 왼쪽: 친구 목록 검색 및 추가 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 flex flex-col h-[500px]">
+                <h3 class="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2 shrink-0">
+                    <span class="material-symbols-outlined text-blue-500">search</span>
+                    내 친구 초대
+                </h3>
+
+                <div class="relative mb-4 shrink-0">
+                    <input type="text" id="stranger-search-input" placeholder="이름/이메일 검색"
+                        class="w-full pl-10 pr-4 py-3 border-2 border-slate-100 bg-slate-50 rounded-xl focus:outline-none focus:border-blue-500 focus:bg-white transition-colors text-slate-800 text-sm font-medium">
+                    <span
+                        class="material-symbols-outlined text-xl absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
                 </div>
 
-                <div id="chemistry-result-badge"
-                    class="bg-white border-4 border-slate-100 rounded-full w-32 h-32 flex flex-col items-center justify-center shadow-lg z-10 transition-all">
-                    <span class="material-symbols-outlined text-5xl text-slate-300 mb-1">help_center</span>
-                    <span class="text-xs font-bold text-slate-500">친구 대기 중</span>
-                </div>
-            </div>
-
-            <!-- 친구 (오른쪽) -->
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 flex flex-col items-center text-center relative overflow-hidden"
-                id="friend-card">
-
-                <!-- 친구가 선택되지 않았을 때 -->
-                <div id="friend-empty-state"
-                    class="w-full h-full flex flex-col items-center justify-center min-h-[160px]">
-                    <div
-                        class="w-16 h-16 bg-slate-50 border-2 border-dashed border-slate-300 rounded-full flex items-center justify-center text-slate-400 mb-4">
-                        <span class="material-symbols-outlined text-2xl">person_add</span>
+                <!-- 검색 결과 리스트 -->
+                <div id="search-results" class="flex-grow flex flex-col gap-3 overflow-y-auto pr-2 pb-2">
+                    <div class="flex items-center justify-center h-full text-sm text-slate-400">
+                        불러오는 중...
                     </div>
-                    <p class="text-sm font-bold text-slate-500 mb-4">아래에서 친구를 검색해주세요</p>
                 </div>
+            </div>
 
-                <!-- 친구가 선택되었을 때 -->
-                <div id="friend-selected-state" class="hidden w-full h-full flex flex-col items-center">
-                    <button onclick="clearFriend()"
-                        class="absolute top-4 right-4 text-slate-400 hover:text-red-500 transition-colors">
-                        <span class="material-symbols-outlined text-xl">close</span>
-                    </button>
+            <!-- 오른쪽: 선택된 그룹 멤버 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 flex flex-col h-[500px]">
+                <div class="flex items-center justify-between mb-2 shrink-0">
+                    <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-indigo-500">groups</span>
+                        그룹 멤버
+                    </h3>
+                    <button id="clear-selected-friends" onclick="clearAllFriends()"
+                        class="text-xs font-bold text-slate-500 hover:text-red-500 transition-colors">전체 해제</button>
+                </div>
+                <p id="selected-friend-summary" class="text-xs text-slate-500 mb-4 shrink-0">현재 1명(나 포함)</p>
+
+                <div id="selected-friends-list" class="flex-grow space-y-2 overflow-y-auto pr-2 pb-2">
                     <div
-                        class="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-500 mb-4">
-                        <span class="material-symbols-outlined text-4xl">emoji_people</span>
+                        class="text-sm text-slate-800 font-bold py-4 px-4 bg-slate-50 border border-slate-200 rounded-xl flex items-center gap-3">
+                        <div
+                            class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-sm">person</span>
+                        </div>
+                        <div>
+                            <div>{{ my_name }} (나)</div>
+                            <div class="text-[11px] font-normal text-slate-500 mt-0.5">그룹장 · 결과 반영 완료</div>
+                        </div>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-800 mb-1" id="selected-friend-name">친구 이름</h3>
-                    <span id="selected-friend-label"
-                        class="px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full text-sm font-bold border border-indigo-100 mb-2">페르소나명</span>
-                    <span id="selected-friend-mbti" class="text-xs text-slate-500 font-bold uppercase">MBTI</span>
                 </div>
             </div>
         </div>
 
-        <div id="chemistry-description-container"
-            class="max-w-3xl mx-auto bg-indigo-50 border border-indigo-100 rounded-2xl p-8 mb-16 hidden text-center shadow-sm">
-            <h3 class="text-xl font-bold text-indigo-900 mb-4 flex items-center justify-center gap-2">
-                <span class="material-symbols-outlined text-indigo-500">auto_awesome</span>
-                두 분의 여행 케미 포인트
-            </h3>
-            <p id="chemistry-description" class="text-indigo-800 leading-relaxed text-lg font-medium"></p>
-        </div>
-
-
-        <!-- 친구 검색 컨테이너 -->
-        <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
-            <h3 class="text-lg font-bold text-slate-800 mb-6 flex items-center gap-2">
-                <span class="material-symbols-outlined text-blue-500">search</span>
-                친구 검색하기
-            </h3>
-
-            <div class="relative mb-6">
-                <input type="text" id="stranger-search-input" placeholder="친구의 이름이나 이메일을 검색해보세요."
-                    class="w-full pl-12 pr-4 py-4 border-2 border-slate-100 bg-slate-50 rounded-xl focus:outline-none focus:border-blue-500 focus:bg-white transition-colors text-slate-800 font-medium">
-                <span
-                    class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">search</span>
-                <button onclick="searchUser()"
-                    class="absolute right-2 top-1/2 -translate-y-1/2 bg-slate-900 text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-slate-800 transition-colors">검색</button>
-            </div>
-
-            <!-- 검색 결과 리스트 -->
-            <div id="search-results" class="flex flex-col gap-3 min-h-[100px] max-h-[300px] overflow-y-auto">
-                <div class="flex items-center justify-center h-full text-sm text-slate-400 py-8">
-                    검색 결과가 여기에 표시됩니다.
-                </div>
-            </div>
+        <div class="flex justify-end mt-4">
+            <button id="go-report-btn" disabled onclick="createGroupAndGoToReport()"
+                class="px-8 py-4 rounded-xl bg-slate-300 text-white text-base font-bold cursor-not-allowed transition-all shadow-sm">
+                새 그룹 만들기
+            </button>
         </div>
 
     </main>
@@ -124,251 +103,309 @@
         const myName = "{{ my_name }}";
         const myLabel = "{{ my_label }}";
         const myMbti = "{{ my_mbti }}";
+        const myId = "{{ my_id }}";
 
-        const myVectorStr = '{{ my_vector_score | safe }}';
-        let myVector = {};
-        try { myVector = JSON.parse(myVectorStr); } catch (e) { }
+        let selectedFriends = [];
+        let friendPoolData = [];
+        let filteredFriendsData = [];
 
-        let currentFriend = null;
-
-        // MD파일 3.1.2 등급표 (9단계)
-        function getTraitScore(d) {
-            if (d < 0.1) return 18;
-            if (d < 0.3) return 16;
-            if (d < 0.5) return 14;
-            if (d < 0.75) return 12;
-            if (d < 0.95) return 10;
-            if (d < 1.2) return 8;
-            if (d < 1.4) return 6;
-            if (d < 1.7) return 4;
-            return 2;
+        function goBack() {
+            if (window.history.length > 1) {
+                window.history.back();
+                return;
+            }
+            window.location.href = '/my-travti?tab=groups';
         }
 
-        // WHI 기반 100점 만점 케미 계산 (협의된 스케일링 로직 적용)
-        function calculateChemistry(v1, v2) {
-            if (!v1 || !v2 || Object.keys(v1).length === 0 || Object.keys(v2).length === 0) {
-                return {
-                    score: 50,
-                    desc: "상세 검사 결과가 부족하여 정확한 분석이 어렵습니다.", color: "text-slate-500", icon: "help_center", title: "정보 부족"
-                };
-            }
+        function updateProceedButton() {
+            const button = document.getElementById('go-report-btn');
+            const groupName = document.getElementById('group-name-input').value.trim();
+            const hasFriends = selectedFriends.length > 0;
+            const hasName = groupName.length > 0;
 
-            // 1. 성향 점수 추론(최대 65점)
-            const eiDiff = Math.abs((v1.ei || 0) - (v2.ei || 0));
-            const snDiff = Math.abs((v1.sn || 0) - (v2.sn || 0));
-            const tfDiff = Math.abs((v1.tf || 0) - (v2.tf || 0));
-            const jpDiff = Math.abs((v1.jp || 0) - (v2.jp || 0));
-
-            // 각 성향별 최대 배점 가중치
-            const eiScore = (getTraitScore(eiDiff) / 18) * 22.75;
-            const snScore = (getTraitScore(snDiff) / 18) * 16.25;
-            const tfScore = (getTraitScore(tfDiff) / 18) * 13.00;
-            const jpScore = (getTraitScore(jpDiff) / 18) * 13.00;
-            const traitTotal = eiScore + snScore + tfScore + jpScore;
-
-            // 2. 체력 점수(최대 25점 ~최소 10점)
-            const staminaDiff = Math.abs((v1.stamina || 0.5) - (v2.stamina || 0.5));
-            let staminaTot = 25;
-            if (staminaDiff > 0.6) staminaTot = 10;
-            else if (staminaDiff > 0.4) staminaTot = 15;
-            else if (staminaDiff > 0.15) staminaTot = 20;
-
-            // 3. 음주 점수 (최대 10점 ~ 최소 2점)
-            let alcTot = 10;
-            const a1 = (v1.alcohol !== undefined) ? v1.alcohol : 0.5;
-            const a2 = (v2.alcohol !== undefined) ? v2.alcohol : 0.5;
-
-            if ((a1 > 0.8 && a2 > 0.8) || (a1 < 0.2 && a2 < 0.2)) {
-                alcTot = 10;
-            } else if (a1 > 0.2 && a1 < 0.8 && a2 > 0.2 && a2 < 0.8) {
-                alcTot = 8;
-            } else if ((a1 > 0.2 && a1 < 0.8 && a2 < 0.2) || (a2 > 0.2 && a2 < 0.8 && a1 < 0.2)) {
-                alcTot = 6;
-            } else if ((a1 > 0.8 && a2 > 0.2 && a2 < 0.8) || (a2 > 0.8 && a1 > 0.2 && a1 < 0.8)) {
-                alcTot = 4;
+            if (hasFriends && hasName) {
+                button.disabled = false;
+                button.classList.remove('bg-slate-300', 'cursor-not-allowed');
+                button.classList.add('bg-blue-600', 'hover:bg-blue-700', 'shadow-md');
+                button.textContent = `총 ${selectedFriends.length + 1}명으로 그룹 생성하기`;
             } else {
-                alcTot = 2; // High Conflict
-            }
+                button.disabled = true;
+                button.classList.add('bg-slate-300', 'cursor-not-allowed');
+                button.classList.remove('bg-blue-600', 'hover:bg-blue-700', 'shadow-md');
 
-            let totalScore = traitTotal + staminaTot + alcTot;
-            return getChemistryDetails(Math.round(totalScore));
-        }
-
-        // 5점 단위 버킷팅으로 코멘트 노출
-        function getChemistryDetails(score) {
-            if (score >= 95) {
-                return { score, icon: 'favorite', color: 'text-pink-500', title: '영혼의 단짝', desc: "모든 면에서 환상적으로 잘 맞습니다! 서로 말하지 않아도 통하는 완벽한 템포의 여행이 기대되네요." };
-            } else if (score >= 90) {
-                return { score, icon: 'handshake', color: 'text-pink-400', title: '찰떡궁합', desc: "여행 스타일의 우선순위가 대단히 비슷합니다. 사소한 차이점조차 부드럽게 넘어갈 수 있는 멋진 조합입니다." };
-            } else if (score >= 85) {
-                return { score, icon: 'thumb_up', color: 'text-indigo-500', title: '환상 케미', desc: "대부분의 상황에서 마음이 잘 맞습니다. 서로에게 신뢰감을 주며 안정적으로 계획을 실행할 수 있습니다." };
-            } else if (score >= 80) {
-                return { score, icon: 'high_quality', color: 'text-blue-500', title: '최고의 콤비', desc: "훌륭한 밸런스를 가진 파트너입니다. 대화로 가볍게 일정을 조율하며 즐겁게 다닐 수 있습니다." };
-            } else if (score >= 75) {
-                return { score, icon: 'diversity_3', color: 'text-blue-400', title: '티키타카', desc: "성향이 조금 다르지만 오히려 각자의 장점을 발휘할 수 있는 긍정적인 시너지 조합입니다." };
-            } else if (score >= 70) {
-                return { score, icon: 'balance', color: 'text-teal-500', title: '존중과 배려', desc: "뚜렷한 관점 차이가 존재할 수 있습니다. 상대를 이해하려는 배려 깊은 태도가 있다면 멋진 추억이 될 거예요." };
-            } else if (score >= 65) {
-                return { score, icon: 'directions_walk', color: 'text-teal-400', title: '맞춤형 동행', desc: "구체적인 타협안과 룰이 필요한 단계입니다. 일정 중 일부는 각자 자유시간을 쿨하게 보내는 것도 좋은 전략이에요." };
-            } else if (score >= 60) {
-                return { score, icon: 'compare_arrows', color: 'text-orange-400', title: '극과 극 콤비', desc: "서로 다른 별에서 왔다고 느낄 정도로 성향이 꽤 다르네요! 갈등을 방지하려면 미리 명확한 동선을 나눠보는 것을 권장합니다." };
-            } else {
-                return { score, icon: 'bolt', color: 'text-orange-500', title: '다이나믹 듀오', desc: "물과 기름! 관점의 차이가 크기 때문에 충돌을 방지하려면 저녁시간 등을 철저히 분리해서 행동하는 것도 좋은 방법 중 하나입니다." };
+                if (!hasName) {
+                    button.textContent = '그룹 이름을 입력해주세요';
+                } else if (!hasFriends) {
+                    button.textContent = '초대할 친구를 1명 이상 선택해주세요';
+                }
             }
         }
 
-        function updateChemistryUI() {
-            const badge = document.getElementById('chemistry-result-badge');
-            const descContainer = document.getElementById('chemistry-description-container');
-            const descEl = document.getElementById('chemistry-description');
+        async function createGroupAndGoToReport() {
+            const button = document.getElementById('go-report-btn');
+            const groupName = document.getElementById('group-name-input').value.trim();
 
-            if (!currentFriend) {
-                badge.innerHTML = `
-                    <span class="material-symbols-outlined text-5xl text-slate-300 mb-1">help_center</span>
-                    <span class="text-xs font-bold text-slate-500">친구 대기 중</span>
-                `;
-                badge.className = "bg-white border-4 border-slate-100 rounded-full w-32 h-32 flex flex-col items-center justify-center shadow-lg z-10 transition-all";
-                descContainer.classList.add('hidden');
+            if (!groupName) {
+                alert('그룹 이름을 입력해주세요.');
+                return;
+            }
+            if (!selectedFriends.length) {
+                alert('초대할 친구를 1명 이상 선택해주세요.');
                 return;
             }
 
-            const chem = calculateChemistry(myVector, currentFriend.vector_score);
+            button.disabled = true;
+            button.textContent = '생성 중...';
 
-            badge.innerHTML = `
-                <span class="material-symbols-outlined text-5xl ${chem.color} mb-1">${chem.icon}</span>
-                <span class="text-sm font-black ${chem.color}">${chem.title}</span>
-                <div class="absolute -top-2 -right-2 bg-slate-900 text-white text-[10px] font-bold px-2 py-1 rounded-full shadow border-2 border-white">${chem.score}점</div>
+            const friendIds = selectedFriends.map(friend => friend.id).filter(Boolean);
+
+            try {
+                const response = await fetch('/api/groups/create', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        group_name: groupName,
+                        member_ids: friendIds
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // 성공적으로 그룹 생성됨, 새로 생성된 그룹 리포트 페이지로 이동 (id 기반)
+                    const groupId = data.group.id;
+                    window.location.href = `/group-report?group_id=${groupId}`;
+                } else {
+                    alert('그룹 생성에 실패했습니다: ' + (data.message || data.error));
+                    button.disabled = false;
+                    updateProceedButton();
+                }
+            } catch (error) {
+                console.error('Group creation error:', error);
+                alert('서버 오류가 발생했습니다.');
+                button.disabled = false;
+                updateProceedButton();
+            }
+        }
+
+        function renderSelectedFriends() {
+            const listEl = document.getElementById('selected-friends-list');
+            const summaryEl = document.getElementById('selected-friend-summary');
+            const currentTotal = selectedFriends.length + 1;
+
+            summaryEl.textContent = `현재 ${currentTotal}명 (나 포함)`;
+
+            let html = `
+                <div class="text-sm text-slate-800 font-bold py-4 px-4 bg-slate-50 border border-slate-200 rounded-xl flex items-center gap-3">
+                    <div class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-sm">person</span>
+                    </div>
+                    <div>
+                        <div>${myName} (나)</div>
+                        <div class="text-[11px] font-normal text-slate-500 mt-0.5">그룹장 · 결과 반영 완료</div>
+                    </div>
+                </div>
             `;
-            // 테두리 색상 동적 변경
-            badge.className = `bg-white border-4 border-${chem.color.split('-')[1]}-100 rounded-full w-32 h-32 flex flex-col items-center justify-center shadow-xl z-10 transition-all transform scale-110 relative`;
 
-            descEl.innerText = chem.desc;
-            descContainer.classList.remove('hidden');
+            if (selectedFriends.length > 0) {
+                const friendRows = selectedFriends.map(friend => {
+                    const mbtiText = friend.mbti || '미진단';
+                    const labelText = friend.travti_label || '검사 결과 없음';
+                    return `
+                        <div class="flex items-center justify-between gap-2 px-4 py-3 rounded-xl border border-slate-200 bg-white shadow-sm">
+                            <div class="flex items-center gap-3 min-w-0">
+                                <div class="w-8 h-8 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-sm">person</span>
+                                </div>
+                                <div class="min-w-0">
+                                    <div class="text-sm font-bold text-slate-800 truncate">${friend.name || '여행자'}</div>
+                                    <div class="text-[11px] font-normal text-blue-500 mt-0.5 truncate">${labelText} · ${mbtiText}</div>
+                                </div>
+                            </div>
+                            <button onclick="removeFriend('${friend.id}')" class="shrink-0 p-1.5 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors">
+                                <span class="material-symbols-outlined text-sm">close</span>
+                            </button>
+                        </div>
+                    `;
+                }).join('');
+                html += friendRows;
+            }
+
+            listEl.innerHTML = html;
         }
 
         function selectFriend(user) {
-            currentFriend = user;
+            if (!user || !user.id) return;
+            if (selectedFriends.some(friend => friend.id === user.id)) return;
 
-            // UI 변경
-            document.getElementById('friend-empty-state').classList.add('hidden');
-            const selectedState = document.getElementById('friend-selected-state');
-            selectedState.classList.remove('hidden');
-
-            document.getElementById('selected-friend-name').textContent = user.name;
-
-            const labelEl = document.getElementById('selected-friend-label');
-            if (user.travti_label) {
-                labelEl.textContent = user.travti_label;
-                labelEl.classList.remove('hidden');
-            } else {
-                labelEl.classList.add('hidden');
-            }
-
-            const mbtiEl = document.getElementById('selected-friend-mbti');
-            if (user.mbti) {
-                mbtiEl.textContent = user.mbti;
-                mbtiEl.classList.remove('hidden');
-            } else {
-                mbtiEl.textContent = '아직 검사하지 않음';
-                mbtiEl.classList.remove('hidden');
-            }
-
-            // 스크롤 올리기 (궁합 결과 보이도록)
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            updateChemistryUI();
+            selectedFriends.push(user);
+            renderSelectedFriends();
+            renderSearchResults();
+            updateProceedButton();
         }
 
-        function clearFriend() {
-            currentFriend = null;
-            document.getElementById('friend-selected-state').classList.add('hidden');
-            document.getElementById('friend-empty-state').classList.remove('hidden');
-            updateChemistryUI();
+        function removeFriend(friendId) {
+            selectedFriends = selectedFriends.filter(friend => friend.id !== friendId);
+            renderSelectedFriends();
+            renderSearchResults();
+            updateProceedButton();
         }
 
-        let searchResultsData = [];
+        function clearAllFriends() {
+            selectedFriends = [];
+            renderSelectedFriends();
+            renderSearchResults();
+            updateProceedButton();
+        }
 
-        async function searchUser() {
-            const query = document.getElementById('stranger-search-input').value.trim();
+        function inviteFriendForTest(user) {
+            if (!user) return;
+            const inviteText = `${user.name || '친구'}님, 함께 여행 그룹을 만들기 위해 TraVTI 성향 검사를 부탁드려요!\n${window.location.origin}/test`;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(inviteText)
+                    .then(() => alert('초대 문구를 복사했습니다. 친구에게 보내면 이 목록에 결과가 표시됩니다!'))
+                    .catch(() => alert(inviteText));
+            } else {
+                alert(inviteText);
+            }
+        }
+
+        function renderSearchResults() {
             const resultsContainer = document.getElementById('search-results');
 
-            if (!query) {
-                resultsContainer.innerHTML = `<div class="flex items-center justify-center h-full text-sm text-slate-400 py-8">검색어를 입력해주세요.</div>`;
+            if (!friendPoolData.length) {
+                resultsContainer.innerHTML = `<div class="flex items-center justify-center h-full text-sm text-slate-400 text-center px-4 leading-relaxed">아직 등록된 친구가 없습니다.<br>마이페이지에서 친구를 먼저 추가해주세요.</div>`;
                 return;
             }
 
-            resultsContainer.innerHTML = `<div class="flex items-center justify-center h-full py-8"><span class="material-symbols-outlined animate-spin text-blue-500">sync</span></div>`;
+            if (!filteredFriendsData.length) {
+                resultsContainer.innerHTML = `<div class="flex items-center justify-center h-full text-sm text-slate-400">검색 결과가 없습니다.</div>`;
+                return;
+            }
 
+            resultsContainer.innerHTML = filteredFriendsData.map((user) => {
+                const isSelected = selectedFriends.some(friend => friend.id === user.id);
+                const hasResult = !!user.travti_label;
+
+                let actionButton = '';
+                if (isSelected) {
+                    actionButton = `<button disabled class="px-3 py-1.5 text-xs font-bold rounded-lg bg-slate-100 text-slate-400 cursor-not-allowed border border-slate-200">선택됨</button>`;
+                } else if (!hasResult) {
+                    actionButton = `<button onclick="inviteFriendForTest({name: '${user.name}', id: '${user.id}'})" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-amber-100 text-amber-700 hover:bg-amber-200 transition-colors">검사 요청</button>`;
+                } else {
+                    actionButton = `<button onclick="selectFriend({id: '${user.id}', name: '${user.name}', email: '${user.email}', travti_label: '${user.travti_label}', mbti: '${user.mbti}'})" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors border border-blue-200">초대</button>`;
+                }
+
+                const subLabel = hasResult
+                    ? `<span class="text-[10px] font-bold text-slate-500 mt-0.5 truncate">${user.travti_label}</span>`
+                    : `<span class="text-[10px] text-amber-500 mt-0.5">결과 없음</span>`;
+
+                return `
+                    <div class="flex items-center justify-between p-3 bg-white border border-slate-100 rounded-xl hover:bg-slate-50 transition-colors shrink-0 ${isSelected ? 'opacity-60' : ''}">
+                        <div class="flex items-center gap-3 min-w-0">
+                            <div class="w-10 h-10 ${hasResult ? 'bg-blue-50 text-blue-500' : 'bg-slate-100 text-slate-400'} rounded-full flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-lg">person</span>
+                            </div>
+                            <div class="flex flex-col min-w-0">
+                                <span class="text-sm font-bold text-slate-800 truncate">${user.name}</span>
+                                ${subLabel}
+                            </div>
+                        </div>
+                        ${actionButton}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        async function searchUser() {
+            const query = document.getElementById('stranger-search-input').value.trim().toLowerCase();
+            if (!friendPoolData.length) return;
+
+            filteredFriendsData = friendPoolData.filter(user => {
+                if (!query) return true;
+                return (user.name || '').toLowerCase().includes(query) || (user.email || '').toLowerCase().includes(query);
+            });
+            renderSearchResults();
+        }
+
+        document.getElementById('stranger-search-input').addEventListener('input', searchUser);
+
+        async function loadDefaultGroupName() {
             try {
-                const response = await fetch('/api/search_user?q=' + encodeURIComponent(query));
+                const response = await fetch('/api/groups/list');
                 const data = await response.json();
+                const myGroups = (data.groups || []).filter(g => g.owner_id === myId);
 
-                if (!data.results || data.results.length === 0) {
-                    resultsContainer.innerHTML = `<div class="flex items-center justify-center h-full text-sm text-slate-500 py-8 text-center px-4 bg-slate-50 rounded-xl">"${query}"에 해당하는 사용자를 찾을 수 없습니다.</div>`;
-                    return;
-                }
+                let baseName = `${myName}님의 친구그룹`;
+                let defaultName = baseName;
+                let maxNum = 1;
+                let foundBase = false;
 
-                const myUserId = "{{ my_id }}";
-
-                // 필터링: 나 자신 제외
-                searchResultsData = data.results.filter(u => u.id !== myUserId);
-
-                if (searchResultsData.length === 0) {
-                    resultsContainer.innerHTML = `<div class="flex items-center justify-center h-full text-sm text-slate-500 py-8">검색 결과가 없습니다.</div>`;
-                    return;
-                }
-
-                resultsContainer.innerHTML = searchResultsData.map((user, index) => {
-                    return `
-                                    <div class="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-xl shadow-sm hover:border-blue-300 transition-colors">
-                                        <div class="flex items-center gap-4">
-                                            <div class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-400 shrink-0">
-                                                <span class="material-symbols-outlined">person</span>
-                                            </div>
-                                            <div class="flex flex-col">
-                                                <span class="font-bold text-slate-800">${user.name}</span>
-                                                <span class="text-xs text-slate-400">${user.email || ''}</span>
-                                                ${user.travti_label ?
-                            `<span class="text-[10px] font-bold text-blue-500 mt-0.5">${user.travti_label} (${user.mbti})</span>` :
-                            `<span class="text-[10px] text-slate-400 mt-0.5">결과 없음</span>`
+                myGroups.forEach(g => {
+                    if (g.group_name === baseName) {
+                        foundBase = true;
+                    } else if (g.group_name && g.group_name.startsWith(baseName + ' ')) {
+                        const numStr = g.group_name.replace(baseName + ' ', '');
+                        const num = parseInt(numStr);
+                        if (!isNaN(num) && num >= maxNum) {
+                            maxNum = num;
+                            foundBase = true;
                         }
-                                            </div>
-                                        </div>
-                                        <button onclick="selectFriend(searchResultsData[${index}])" class="px-4 py-2 bg-slate-900 text-white text-xs font-bold rounded-lg hover:bg-slate-700 transition">선택</button>
-                                    </div>
-                                    `;
-                }).join('');
+                    }
+                });
 
+                if (foundBase) {
+                    defaultName = `${baseName} ${maxNum + 1}`;
+                }
+
+                const inputEl = document.getElementById('group-name-input');
+                if (inputEl.value === baseName || inputEl.value === "") {
+                    inputEl.value = defaultName;
+                    updateProceedButton();
+                }
             } catch (e) {
                 console.error(e);
-                resultsContainer.innerHTML = `<div class="flex items-center justify-center h-full text-sm text-red-500 py-8">검색 중 오류가 발생했습니다.</div>`;
             }
         }
 
-        // 엔터 키로 검색 가능하게
-        document.getElementById('stranger-search-input').addEventListener('keypress',
-            function (e) {
-                if (e.key === 'Enter') searchUser();
-            });
-
-        // 페이지 로드 시 friend_id 쿼리 파라미터가 있다면 자동 검색 및 적용 로직
         window.addEventListener('load', async () => {
+            document.getElementById('group-name-input').value = `${myName}님의 친구그룹`;
+            loadDefaultGroupName();
+
             const friendIdQuery = "{{ friend_id_query }}";
-            if (friendIdQuery && friendIdQuery !== "None") {
-                try {
-                    const response = await fetch('/api/get_user_identity?user_id=' + friendIdQuery);
-                    const data = await response.json();
-                    if (data && data.name) {
-                        selectFriend({
-                            id: friendIdQuery,
-                            name: data.name,
-                            travti_label: data.travti_label,
-                            mbti: data.mbti,
-                            vector_score: data.vector_score
-                        });
+            const resultsContainer = document.getElementById('search-results');
+
+            try {
+                const response = await fetch('/api/friends/list');
+                const data = await response.json();
+                const rows = data.friends || [];
+                friendPoolData = rows.map(row => ({
+                    id: row.friend_id || row.id,
+                    name: row.name || '여행자',
+                    email: row.email || '',
+                    travti_label: row.travti_label,
+                    mbti: row.mbti,
+                    vector_score: row.vector_score || {}
+                })).filter(row => row.id && row.id !== myId);
+
+                filteredFriendsData = [...friendPoolData];
+                renderSearchResults();
+
+                if (friendIdQuery && friendIdQuery !== "None") {
+                    const friendToAdd = friendPoolData.find(f => f.id === friendIdQuery);
+                    if (friendToAdd) {
+                        selectFriend(friendToAdd);
+                    } else {
+                        // DB fetch if friend in query but not in friend list directly?
                     }
-                } catch (e) { }
+                }
+            } catch (e) {
+                console.error(e);
+                resultsContainer.innerHTML = `<div class="flex items-center justify-center h-full text-sm text-red-500 text-center">친구 목록을 불러오지 못했습니다.</div>`;
             }
+
+            renderSelectedFriends();
+            updateProceedButton();
         });
 
     </script>

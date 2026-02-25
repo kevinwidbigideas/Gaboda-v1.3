@@ -1,0 +1,212 @@
+[
+    {
+        "code": "S__DIFF_LOW__ROLE_ANCH__TONE_NEUTRAL",
+        "category": "stamina",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "전반적인 체력 리듬은 큰 무리 없이 맞는 편으로 보입니다. 이동 간 간단한 휴식 포인트 정도만 염두에 두셔도 충분해 보입니다."
+    },
+    {
+        "code": "S__DIFF_LOW__ROLE_ANCH__TONE_CARE",
+        "category": "stamina",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "체력 차이는 크지 않지만, 앵커 기준으로 이동 후 잠시 숨을 고를 수 있는 여유를 두면 더 편안한 흐름이 될 수 있습니다."
+    },
+    {
+        "code": "S__DIFF_LOW__ROLE_ANCH__TONE_WARN",
+        "category": "stamina",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "큰 문제는 없어 보이지만, 연속 이동이 길어질 경우 앵커의 피로가 쌓이지 않도록 주의가 필요해 보입니다."
+    },
+    {
+        "code": "S__DIFF_LOW__ROLE_NON__TONE_NEUTRAL",
+        "category": "stamina",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "체력 차이가 크지 않아 일정 흐름은 비교적 안정적으로 유지될 수 있습니다."
+    },
+    {
+        "code": "S__DIFF_LOW__ROLE_NON__TONE_CARE",
+        "category": "stamina",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "현재 리듬은 무리가 적은 편이니, 중간중간 선택 가능한 휴식 정도만 준비해 두셔도 좋겠습니다."
+    },
+    {
+        "code": "S__DIFF_LOW__ROLE_NON__TONE_WARN",
+        "category": "stamina",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "체력 차이는 작지만 일정이 길어질 경우 피로 누적 가능성은 염두에 둘 필요가 있습니다."
+    },
+    {
+        "code": "S__DIFF_MID__ROLE_ANCH__TONE_NEUTRAL",
+        "category": "stamina",
+        "severity": "medium",
+        "anchor_sensitive": true,
+        "text": "체력 리듬에 다소 차이가 있어 이동과 휴식의 균형을 고려한 일정 설계가 도움이 될 수 있습니다."
+    },
+    {
+        "code": "S__DIFF_MID__ROLE_ANCH__TONE_CARE",
+        "category": "stamina",
+        "severity": "medium",
+        "anchor_sensitive": true,
+        "text": "앵커 기준으로 체력 부담이 누적되지 않도록, 이동 강도가 다른 선택지를 함께 두는 편이 좋아 보입니다."
+    },
+    {
+        "code": "S__DIFF_MID__ROLE_ANCH__TONE_WARN",
+        "category": "stamina",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "체력 차이가 일정 후반에 부담으로 이어질 수 있어, 앵커의 휴식 타이밍을 우선적으로 고려할 필요가 있어 보입니다."
+    },
+    {
+        "code": "S__DIFF_MID__ROLE_NON__TONE_NEUTRAL",
+        "category": "stamina",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "체력 차이로 인해 일정 속도에 조정이 필요할 수 있습니다."
+    },
+    {
+        "code": "S__DIFF_MID__ROLE_NON__TONE_CARE",
+        "category": "stamina",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "활동 밀도가 다른 선택지를 나누어 두면 전체 피로를 줄이는 데 도움이 될 수 있습니다."
+    },
+    {
+        "code": "S__DIFF_MID__ROLE_NON__TONE_WARN",
+        "category": "stamina",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "일정이 길어질수록 체력 차이가 피로로 드러날 수 있어 주의가 필요해 보입니다."
+    },
+    {
+        "code": "S__DIFF_HIGH__ROLE_ANCH__TONE_NEUTRAL",
+        "category": "stamina",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "체력 차이가 큰 편으로, 앵커 기준 일정 속도를 중심에 두는 설계가 필요해 보입니다."
+    },
+    {
+        "code": "S__DIFF_HIGH__ROLE_ANCH__TONE_CARE",
+        "category": "stamina",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "앵커의 피로 누적을 최소화하기 위해 이동 거리와 활동 강도를 나누는 구성이 적합해 보입니다."
+    },
+    {
+        "code": "S__DIFF_HIGH__ROLE_ANCH__TONE_WARN",
+        "category": "stamina",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "체력 차이가 일정 전체에 영향을 줄 수 있어, 앵커의 휴식과 대기 시간을 충분히 확보하는 것이 중요해 보입니다."
+    },
+    {
+        "code": "S__DIFF_HIGH__ROLE_NON__TONE_NEUTRAL",
+        "category": "stamina",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "체력 차이가 커 일정 속도 조정이 불가피할 수 있습니다."
+    },
+    {
+        "code": "S__DIFF_HIGH__ROLE_NON__TONE_CARE",
+        "category": "stamina",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "활동량이 다른 선택지를 분리해 두는 것이 전체 피로를 줄이는 데 도움이 될 수 있습니다."
+    },
+    {
+        "code": "S__DIFF_HIGH__ROLE_NON__TONE_WARN",
+        "category": "stamina",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "체력 차이가 누적 피로로 이어질 가능성이 있어 일정 구성에 주의가 필요해 보입니다."
+    },
+    {
+        "code": "A__TYPE_MISMATCH__ROLE_ANCH__TONE_NEUTRAL",
+        "category": "alcohol",
+        "severity": "medium",
+        "anchor_sensitive": true,
+        "text": "야간 일정에서 음주 강도 차이가 있어, 앵커 기준으로 선택 가능한 마무리 방식을 두는 편이 좋겠습니다."
+    },
+    {
+        "code": "A__TYPE_MISMATCH__ROLE_ANCH__TONE_CARE",
+        "category": "alcohol",
+        "severity": "medium",
+        "anchor_sensitive": true,
+        "text": "앵커의 컨디션을 고려해 음주 여부와 상관없이 편안한 대안 일정이 함께 있으면 도움이 될 수 있습니다."
+    },
+    {
+        "code": "A__TYPE_MISMATCH__ROLE_ANCH__TONE_WARN",
+        "category": "alcohol",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "음주 성향 차이가 야간 피로로 이어질 수 있어, 앵커의 회복을 우선한 마무리가 필요해 보입니다."
+    },
+    {
+        "code": "A__TYPE_MISMATCH__ROLE_NON__TONE_NEUTRAL",
+        "category": "alcohol",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "음주 선호 차이로 밤 일정의 만족도가 갈릴 수 있습니다."
+    },
+    {
+        "code": "A__TYPE_MISMATCH__ROLE_NON__TONE_CARE",
+        "category": "alcohol",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "음주 여부에 따라 선택지를 나누면 불필요한 피로를 줄일 수 있습니다."
+    },
+    {
+        "code": "A__TYPE_MISMATCH__ROLE_NON__TONE_WARN",
+        "category": "alcohol",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "음주 성향 차이가 누적되면 일정 리듬에 영향을 줄 수 있어 주의가 필요해 보입니다."
+    },
+    {
+        "code": "A__TYPE_LATE__ROLE_ANCH__TONE_NEUTRAL",
+        "category": "alcohol",
+        "severity": "medium",
+        "anchor_sensitive": true,
+        "text": "늦은 시간까지 이어지는 일정은 앵커의 회복 리듬에 영향을 줄 수 있습니다."
+    },
+    {
+        "code": "A__TYPE_LATE__ROLE_ANCH__TONE_CARE",
+        "category": "alcohol",
+        "severity": "medium",
+        "anchor_sensitive": true,
+        "text": "야간 일정은 앵커가 먼저 쉬어갈 수 있는 흐름을 함께 고려해 보시면 좋겠습니다."
+    },
+    {
+        "code": "A__TYPE_LATE__ROLE_ANCH__TONE_WARN",
+        "category": "alcohol",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "야간 일정이 길어질 경우 앵커의 다음 날 컨디션에 부담이 될 수 있어 주의가 필요해 보입니다."
+    },
+    {
+        "code": "A__TYPE_LATE__ROLE_NON__TONE_NEUTRAL",
+        "category": "alcohol",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "늦은 밤 일정이 다음 날 리듬에 영향을 줄 수 있습니다."
+    },
+    {
+        "code": "A__TYPE_LATE__ROLE_NON__TONE_CARE",
+        "category": "alcohol",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "야간 일정 이후 충분한 회복 시간을 염두에 두는 편이 좋겠습니다."
+    },
+    {
+        "code": "A__TYPE_LATE__ROLE_NON__TONE_WARN",
+        "category": "alcohol",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "늦은 시간까지의 활동이 피로 누적으로 이어질 수 있어 일정 구성에 주의가 필요해 보입니다."
+    }
+]

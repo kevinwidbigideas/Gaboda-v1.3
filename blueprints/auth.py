@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, session, redirect, url_for
+from flask import Blueprint, render_template, session, redirect, url_for, request, current_app
 import os
 from utils import COMMON_HEAD, get_header
 
@@ -40,47 +40,60 @@ def my_travti():
         db_client = supabase
         
         if supabase:
-            access_token = session.get('access_token')
-            refresh_token = session.get('refresh_token') or ""
-            if access_token:
+            # Primary: Use session data if available
+            travti_label = session.get('user_travti_label')
+            mbti_type = session.get('user_mbti')
+            vector_score = session.get('user_travti_vector') or {}
+            
+            # Fallback: Fetch from DB if not in session (fresh page load)
+            if not mbti_type and not travti_label:
+                print(f"[DEBUG] Session data missing, fetching from DB for user_id: {user_id}")
+                access_token = session.get('access_token')
+                refresh_token = session.get('refresh_token') or ""
                 try:
+                    # Try with user's auth token first (respects RLS)
                     db_client = create_client(os.environ.get("SUPABASE_URL"), os.environ.get("SUPABASE_KEY"))
-                    db_client.auth.set_session(access_token, refresh_token)
-                except Exception as se:
-                    print(f"Set session warn in my_travti: {se}")
-
-            # 1. Fetch User Profile & Scores (travis_user_data)
-            try:
-                # Assuming Supabase returns columns in lowercase or as defined. 
-                # Attempting to fetch both casing styles just in case, or relying on lowercase which is standard Postgres storage
-                res = db_client.table('travis_user_data').select('*').eq('id', user_id).execute()
+                    if access_token:
+                        db_client.auth.set_session(access_token, refresh_token)
+                    
+                    res = db_client.table('travis_user_data').select('*').eq('id', user_id).execute()
+                    print(f"[DEBUG] Query result from DB: {res.data}")
+                    
+                    if res.data:
+                        profile = res.data[0]
+                        user_name = profile.get('name') or user_name
+                        travti_label = profile.get('travti_label')
+                        mbti_type = profile.get('mbti')
+                        vector_score = profile.get('vector_score') or {}
+                        
+                        # Store scores
+                        scores['ei'] = float(vector_score.get('ei') or 0)
+                        scores['sn'] = float(vector_score.get('sn') or 0)
+                        scores['tf'] = float(vector_score.get('tf') or 0)
+                        scores['jp'] = float(vector_score.get('jp') or 0)
+                        
+                        # Derive MBTI if not found
+                        if not mbti_type:
+                            mbti_e = "E" if scores['ei'] > 0 else "I"
+                            mbti_s = "S" if scores['sn'] > 0 else "N"
+                            mbti_t = "T" if scores['tf'] > 0 else "F"
+                            mbti_j = "J" if scores['jp'] > 0 else "P"
+                            mbti_type = f"{mbti_e}{mbti_s}{mbti_t}{mbti_j}"
+                    else:
+                        print(f"[DEBUG] No profile data found in DB for user {user_id}")
+                except Exception as db_e:
+                    import traceback
+                    print(f"[DEBUG] DB fetch failed: {db_e}")
+                    traceback.print_exc()
+            else:
+                print(f"[DEBUG] Using session data: mbti={mbti_type}, label={travti_label}")
                 
-                if res.data:
-                    profile = res.data[0]
-                    # Map fields - trying case-insensitive get if possible, but dict is case sensitive.
-                    # Commonly Supabase returns lowercase keys unless quoted in creation.
-                    user_name = profile.get('name') or profile.get('Name') or user_name
-                    travti_label = profile.get('travti_label') or profile.get('TraVTI_Label')
-                    
-                    mbti_type = profile.get('mbti')
-                    vector_score = profile.get('vector_score') or {}
-                    
-                    # Store scores
+                # Parse vector_score from session
+                if vector_score:
                     scores['ei'] = float(vector_score.get('ei') or 0)
                     scores['sn'] = float(vector_score.get('sn') or 0)
                     scores['tf'] = float(vector_score.get('tf') or 0)
                     scores['jp'] = float(vector_score.get('jp') or 0)
-
-                    # Derive MBTI if not found
-                    if not mbti_type:
-                        mbti_e = "E" if scores['ei'] > 0 else "I"
-                        mbti_s = "S" if scores['sn'] > 0 else "N"
-                        mbti_t = "T" if scores['tf'] > 0 else "F"
-                        mbti_j = "J" if scores['jp'] > 0 else "P"
-                        mbti_type = f"{mbti_e}{mbti_s}{mbti_t}{mbti_j}"
-                    
-            except Exception as e:
-                print(f"Supabase Profile Fetch Error: {e}")
 
             # (tb_occasion_info feature removed)
         else:
@@ -130,3 +143,40 @@ def my_travti():
                          mrz_date=mrz_date,
                          my_plans=my_plans,
                          travti_icon=travti_icon)
+
+
+@auth_bp.route('/my-info-edit', methods=['GET', 'POST'])
+def my_info_edit():
+    user_id = session.get('user_id')
+    if not user_id:
+        return redirect(url_for('auth.login_page'))
+
+    current_name = session.get('user_name', '여행자')
+    current_mbti = session.get('user_mbti')
+    current_travti = session.get('user_travti_label')
+
+    if request.method == 'POST':
+        new_name = (request.form.get('user_name') or '').strip()
+        if new_name:
+            session['user_name'] = new_name
+            current_name = new_name
+
+            try:
+                supabase = getattr(current_app, 'supabase', None)
+                if supabase:
+                    supabase.table('travis_user_data').update({'name': new_name}).eq('id', user_id).execute()
+            except Exception as e:
+                print(f"my_info_edit update warn: {e}")
+
+        return redirect(url_for('auth.my_info_edit', saved='1'))
+
+    saved = request.args.get('saved') == '1'
+    return render_template(
+        'my_info_edit.html',
+        common_head=COMMON_HEAD,
+        header=get_header('mypage'),
+        user_name=current_name,
+        mbti_type=current_mbti,
+        travti_label=current_travti,
+        saved=saved,
+    )

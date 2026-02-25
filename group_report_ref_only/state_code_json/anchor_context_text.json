@@ -1,0 +1,101 @@
+[
+  {
+    "code": "ANCH_PARENT__TONE_NEUTRAL",
+    "category": "group",
+    "severity": "low",
+    "anchor_sensitive": true,
+    "text_variants": [
+      "부모님 일정 리듬을 중심으로 흐름을 맞춰가요.",
+      "전체 일정이 부모님 속도에 자연히 맞춰지는 편이에요.",
+      "부담 없는 템포가 자연스러운 기준이 되는 구성이에요."
+    ]
+  },
+  {
+    "code": "ANCH_PARENT__TONE_CARE",
+    "category": "group",
+    "severity": "medium",
+    "anchor_sensitive": true,
+    "text_variants": [
+      "이동과 휴식의 간격을 조금 더 여유 있게 보는 편이 좋아요.",
+      "체력 소모가 쌓이지 않도록 완급을 조절해줘요.",
+      "중간중간 숨 돌릴 여지가 있는 흐름이 안정적이에요."
+    ]
+  },
+  {
+    "code": "ANCH_PARENT__TONE_WARN",
+    "category": "group",
+    "severity": "high",
+    "anchor_sensitive": true,
+    "text_variants": [
+      "일정이 빽빽해지면 피로가 눈에 띄게 드러날 수 있어요.",
+      "이동이 겹치면 체력 부담이 빠르게 누적될 가능성이 있어요.",
+      "리듬이 깨질 경우 하루 전체가 무거워질 수 있어요."
+    ]
+  },
+  {
+    "code": "ANCH_VIP__TONE_NEUTRAL",
+    "category": "group",
+    "severity": "low",
+    "anchor_sensitive": true,
+    "text_variants": [
+      "전체 일정의 완성도를 기준으로 흐름이 잡혀 있어요.",
+      "변수가 적은 쪽으로 자연스럽게 정리된 구성이에요.",
+      "안정적인 진행을 전제로 한 일정이에요."
+    ]
+  },
+  {
+    "code": "ANCH_VIP__TONE_CARE",
+    "category": "group",
+    "severity": "medium",
+    "anchor_sensitive": true,
+    "text_variants": [
+      "예약·동선 같은 디테일을 한 번 더 점검하면 좋아요.",
+      "작은 어긋남이 생기지 않도록 준비도를 높여줘요.",
+      "진행의 매끄러움이 분위기에 영향을 주는 구간이에요."
+    ]
+  },
+  {
+    "code": "ANCH_VIP__TONE_WARN",
+    "category": "group",
+    "severity": "high",
+    "anchor_sensitive": true,
+    "text_variants": [
+      "사소한 변수도 전체 인상을 흐릴 수 있어요.",
+      "일정 차질이 체감되기 쉬운 민감한 흐름이에요.",
+      "완성도가 흔들리면 만족감이 급격히 낮아질 수 있어요."
+    ]
+  },
+  {
+    "code": "ANCH_COUPLE__TONE_NEUTRAL",
+    "category": "group",
+    "severity": "low",
+    "anchor_sensitive": true,
+    "text_variants": [
+      "둘의 흐름이 크게 어긋나지 않게 이어지는 편이에요.",
+      "자연스럽게 기분이 맞춰질 여지가 있는 일정이에요.",
+      "무리 없이 함께 움직일 수 있는 리듬이에요."
+    ]
+  },
+  {
+    "code": "ANCH_COUPLE__TONE_CARE",
+    "category": "group",
+    "severity": "medium",
+    "anchor_sensitive": true,
+    "text_variants": [
+      "작은 감정 변화가 쌓이지 않도록 여백이 필요해요.",
+      "말투나 반응에 조금 더 신경 쓰면 좋아요.",
+      "타이밍을 놓치지 않는 배려가 도움이 돼요."
+    ]
+  },
+  {
+    "code": "ANCH_COUPLE__TONE_WARN",
+    "category": "group",
+    "severity": "high",
+    "anchor_sensitive": true,
+    "text_variants": [
+      "사소한 불편이 감정 소모로 이어지기 쉬운 흐름이에요.",
+      "타이밍이 어긋나면 분위기가 급격히 식을 수 있어요.",
+      "누적된 피로가 감정적인 마찰로 번질 가능성이 있어요."
+    ]
+  }
+]

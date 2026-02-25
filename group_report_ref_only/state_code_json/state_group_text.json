@@ -1,0 +1,1514 @@
+[
+    {
+        "code": "G__MODE_A__SCORE_90P__ANCH_NONE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "전반적으로 여행 흐름이 안정적으로 이어질 가능성이 높습니다. 서로의 리듬을 크게 흔들지 않고 무난하게 합을 맞출 수 있는 분위기입니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_90P__ANCH_PARENT__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "전반적으로 안정적인 편이라 부모님 일정도 큰 무리 없이 흘러갈 가능성이 높습니다. 이동과 휴식의 균형만 가볍게 챙기면 편안한 분위기를 유지하기 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_90P__ANCH_COUPLE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "전체적으로 안정적인 조합이라 커플 여행에서도 분위기가 부드럽게 이어질 가능성이 높습니다. 서로의 페이스를 자연스럽게 맞추며 만족도를 유지하기 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_90P__ANCH_VIP__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "전반적으로 안정도가 높아 VIP 관점에서도 큰 불편 없이 진행될 가능성이 큽니다. 중요한 순간의 선택지만 조금 여유 있게 준비하면 더 매끄럽게 운영할 수 있겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_80__ANCH_NONE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "대체로 무난하고 안정적인 흐름을 기대할 수 있습니다. 큰 갈림 없이 일정이 이어지되, 작은 취향 차이는 자연스럽게 조정될 수 있습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_80__ANCH_PARENT__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "전반적으로 무난한 편이라 부모님 동선도 크게 흔들리지 않을 가능성이 있습니다. 다만 체력 소모가 누적되지 않도록 여유 구간을 조금 더 두는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_80__ANCH_COUPLE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "대체로 안정적인 편이라 커플 여행의 분위기가 크게 흔들릴 가능성은 낮습니다. 일정의 밀도만 서로 맞추면 편안하게 유지되기 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_80__ANCH_VIP__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "전체 흐름은 무난한 편이라 VIP 기준에서도 큰 부담은 적을 가능성이 있습니다. 선택의 순간마다 대안을 한두 개 준비해 두면 더 안정적으로 운영될 수 있겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_70__ANCH_NONE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "전반적으로 무난하지만, 몇몇 구간에서 조정이 필요할 수 있습니다. 서로의 우선순위를 한 번쯤 맞춰두면 흐름이 더 안정적으로 이어지겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_70__ANCH_PARENT__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": true,
+        "text": "전체적으로는 무난하나 부모님 페이스를 기준으로 일부 구간은 조정이 필요할 수 있습니다. 이동 강도와 휴식 간격을 조금 더 보수적으로 잡아두면 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_70__ANCH_COUPLE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "전반적으로는 괜찮지만 커플 간 일정 밀도나 선호가 엇갈리는 구간이 생길 수 있습니다. 하루의 핵심 포인트만 맞추고 나머지는 유연하게 두면 부담이 줄 수 있습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_70__ANCH_VIP__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": true,
+        "text": "기본 흐름은 무난하지만 VIP 관점에서 민감한 지점이 일부 생길 수 있습니다. 중요한 일정은 안정성을 우선으로 두고, 변동 가능한 요소는 뒤로 배치하는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_60__ANCH_NONE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "전반적으로는 유지 가능하지만 일정 진행 중 조율 부담이 커질 수 있습니다. 갈림이 생길 만한 구간은 선택지를 단순화해 두면 흐름을 지키는 데 도움이 됩니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_60__ANCH_PARENT__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "부모님이 포함된 상황에서는 페이스 차이가 누적되며 부담으로 이어질 수 있습니다. 동선은 짧게, 휴식은 자주 넣는 방향으로 여유를 확보해 두는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_60__ANCH_COUPLE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "커플 여행에서는 리듬 차이가 쌓이면 피로감이 커질 수 있습니다. 서로 꼭 하고 싶은 것만 확정하고, 나머지는 상황에 따라 조정 가능한 형태가 부담을 줄 수 있습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_60__ANCH_VIP__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "VIP 상황에서는 작은 변수도 체감 부담으로 커질 수 있습니다. 핵심 일정은 안정적인 옵션 위주로 두고, 대체 동선을 미리 염두에 두는 편이 안전하겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_50__ANCH_NONE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "전체적으로 조율이 잦아질 수 있어 여행 흐름이 끊길 가능성이 있습니다. 일정의 밀도를 낮추고 합의가 필요한 지점을 줄여두면 부담을 완화하는 데 도움이 됩니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_50__ANCH_PARENT__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "부모님 동행에서는 무리한 구간이 생기면 피로가 빠르게 누적될 수 있습니다. 이동·대기·식사 리듬을 단순하게 설계해 두는 편이 안정적일 수 있습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_50__ANCH_COUPLE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "커플 여행에서는 선택의 갈림이 반복되면 피로감이 커질 수 있습니다. 하루의 기준을 한 가지로 맞추고, 나머지는 양보 가능한 영역으로 두는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_50__ANCH_VIP__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "VIP 기준에서는 만족도를 흔들 수 있는 요소가 비교적 자주 등장할 수 있습니다. 변수가 큰 일정은 최소화하고, 편의성과 확실성을 우선으로 두는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_LT50__ANCH_NONE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "여행 전반에서 조율 비용이 크게 느껴질 수 있는 구간입니다. 일정은 단순하게, 선택지는 적게 두어 흐름을 지키는 방향이 도움이 될 수 있습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_LT50__ANCH_PARENT__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "부모님 동행에서는 작은 무리도 크게 체감될 수 있어 전반적인 설계를 더 보수적으로 잡는 편이 좋겠습니다. 휴식과 이동 안정성을 최우선으로 두면 부담을 줄일 수 있습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_LT50__ANCH_COUPLE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "커플 여행에서는 리듬 차이가 누적되며 만족도가 흔들릴 수 있습니다. 핵심 일정만 확실히 맞추고, 나머지는 유연하게 비워두는 편이 안정적일 수 있습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_LT50__ANCH_VIP__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "VIP 상황에서는 안정성과 일관성이 특히 중요해질 수 있습니다. 변동성이 큰 요소는 줄이고, 예측 가능한 동선과 휴식 리듬을 중심으로 구성하는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_90P__ANCH_NONE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "앵커 기준으로 보아도 전반적인 만족도가 높게 유지될 가능성이 큽니다. 큰 무리 없이 계획이 흘러가며 안정적인 체감이 기대됩니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_90P__ANCH_PARENT__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "부모님 기준에서 여행이 매우 안정적으로 유지될 가능성이 높습니다. 부모님 페이스에 맞추더라도 전체 일정이 자연스럽게 따라올 수 있는 분위기입니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_90P__ANCH_COUPLE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "중요한 한 분의 만족도를 기준으로 보더라도 전반이 안정적일 가능성이 높습니다. 서로의 선택이 크게 충돌하지 않아 흐름을 유지하기 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_90P__ANCH_VIP__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "VIP 기준에서도 전반적 만족도가 높게 유지될 가능성이 큽니다. 핵심 일정의 안정성을 유지하면서도 무리 없는 운영이 가능해 보입니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_80__ANCH_NONE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "앵커 기준으로도 대체로 무난한 만족도를 기대할 수 있습니다. 작은 변수는 있어도 전체 흐름을 크게 흔들지 않는 편입니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_80__ANCH_PARENT__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "부모님 기준에서는 대체로 편안한 여행이 될 가능성이 있습니다. 다만 체력 소모가 누적되지 않도록 여유 있는 리듬을 유지하는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_80__ANCH_COUPLE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "핵심 한 분의 만족도 관점에서 보아도 전반적으로 무난한 편입니다. 일정의 밀도만 조절하면 안정감을 유지하기 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_80__ANCH_VIP__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "VIP 기준에서도 큰 불편 없이 진행될 가능성이 있습니다. 중요한 일정은 확실하게 잡고, 나머지는 유연하게 두면 더 안정적으로 흘러갈 수 있습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_70__ANCH_NONE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "앵커 관점에서는 무난하나, 일부 구간에서 체감 조정이 필요할 수 있습니다. 선택지가 많아지는 순간만 관리해 두면 흐름이 더 안정적일 수 있습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_70__ANCH_PARENT__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": true,
+        "text": "부모님 기준에서는 무난하지만 피로가 쌓이면 체감이 흔들릴 수 있습니다. 이동과 대기 시간을 줄이는 방향으로 여유를 확보해 두면 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_70__ANCH_COUPLE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "핵심 한 분의 만족도는 유지 가능하나, 일정 중간중간 조율이 필요할 수 있습니다. 중요 포인트를 우선 배치하면 체감 부담을 줄이기 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_70__ANCH_VIP__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": true,
+        "text": "VIP 기준에서는 전반적으로 무난하지만 민감한 구간이 생길 수 있습니다. 중요한 순간의 선택지는 단순하게 두는 편이 안정적일 수 있습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_60__ANCH_NONE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "앵커 만족도를 기준으로 보면 일정 운영 중 조정 부담이 커질 수 있습니다. 핵심 일정만 확정하고 나머지는 여백을 두면 흐름을 지키는 데 도움이 됩니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_60__ANCH_PARENT__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "부모님 기준에서는 무리한 구간이 생기면 체감 피로가 커질 수 있습니다. 편의성과 휴식 리듬을 우선으로 두면 안정감을 높이는 데 도움이 됩니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_60__ANCH_COUPLE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "핵심 한 분의 만족도는 유지 가능하지만 조정이 잦아질 수 있습니다. 선택의 갈림을 줄이고 일정 밀도를 낮추면 부담을 완화할 수 있습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_60__ANCH_VIP__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "VIP 기준에서는 작은 변수도 체감 부담으로 이어질 수 있습니다. 안정적인 동선과 확실한 옵션 위주로 구성하면 운영이 한층 수월해질 수 있습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_50__ANCH_NONE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "앵커 관점에서 만족도가 흔들릴 수 있는 구간이 비교적 많을 수 있습니다. 일정은 단순하게 잡고, 합의가 필요한 포인트를 줄이는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_50__ANCH_PARENT__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "부모님 기준에서는 피로 누적이 곧 불편으로 이어질 수 있어 더욱 조심스럽게 설계하는 편이 좋겠습니다. 이동 강도를 낮추고 휴식·식사 리듬을 안정적으로 두면 도움이 됩니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_50__ANCH_COUPLE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "핵심 한 분의 만족도가 일정 중간에 흔들릴 수 있습니다. 우선순위를 명확히 두고, 변동 가능한 일정은 뒤로 미루는 편이 안정적일 수 있습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_50__ANCH_VIP__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "VIP 기준에서는 안정감이 특히 중요해져 선택의 갈림이 부담으로 느껴질 수 있습니다. 예측 가능한 일정으로 중심을 잡고, 변수를 최소화하는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_LT50__ANCH_NONE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "앵커 만족도 기준에서 조정 비용이 크게 느껴질 수 있는 구간입니다. 핵심만 남기고 일정 구조를 단순화하면 흐름을 유지하는 데 도움이 될 수 있습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_LT50__ANCH_PARENT__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "부모님 기준에서는 작은 무리도 크게 체감될 수 있어 전체 설계를 더 보수적으로 잡는 편이 좋겠습니다. 안정적인 동선과 충분한 휴식이 중심이 되면 부담을 줄일 수 있습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_LT50__ANCH_COUPLE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "핵심 한 분의 만족도가 흔들릴 가능성이 있어 조율이 잦아질 수 있습니다. 확정 일정은 최소화하고, 상황에 따라 조정 가능한 여백을 늘리는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_LT50__ANCH_VIP__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "VIP 기준에서는 안정성과 일관성이 더욱 중요해질 수 있습니다. 변동성이 큰 요소는 줄이고, 편의성과 확실성을 중심으로 구성하는 편이 안전하겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_90P__ANCH_NONE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "여러 우선순위가 섞여도 전반적으로 안정적인 흐름을 기대할 수 있습니다. 배려 순서를 정리하기만 하면 자연스럽게 합을 맞추기 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_90P__ANCH_PARENT__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "여러 배려 대상이 있어도 부모님 기준에서 무리 없이 안정적으로 흘러갈 가능성이 높습니다. 휴식과 이동 안정성을 중심에 두면 전반 만족도가 잘 유지될 수 있습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_90P__ANCH_COUPLE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "배려 대상이 여러 명이어도 커플의 리듬이 크게 흔들리지 않을 가능성이 높습니다. 중요한 포인트만 합의해 두면 전반이 매끄럽게 이어지기 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_90P__ANCH_VIP__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "다중 배려 구조에서도 VIP 기준의 안정감이 높게 유지될 가능성이 큽니다. 핵심 일정의 확실성을 확보하면 전체 운영이 자연스럽게 따라올 수 있습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_80__ANCH_NONE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "여러 기준이 섞여도 대체로 무난한 흐름을 기대할 수 있습니다. 배려 순서가 헷갈리는 구간만 정리하면 안정감이 더 올라갈 수 있습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_80__ANCH_PARENT__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "부모님이 포함된 다중 배려 상황에서도 대체로 무난한 편입니다. 일정 밀도를 과하게 올리지만 않으면 편안함을 유지하기 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_80__ANCH_COUPLE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "다중 배려 구조에서도 전반은 무난하게 유지될 가능성이 있습니다. 커플의 페이스를 기준으로 하루의 리듬을 잡으면 조율 부담이 줄 수 있습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_80__ANCH_VIP__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "VIP가 포함된 다중 배려 상황에서도 대체로 무난한 운영이 가능해 보입니다. 중요한 일정은 변수를 줄이고, 나머지는 유연하게 두면 도움이 됩니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_70__ANCH_NONE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "전반적으로는 무난하지만 배려 우선순위가 엇갈리면 조정이 필요할 수 있습니다. 핵심 기준을 먼저 정리해 두면 흐름이 더 안정적일 수 있습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_70__ANCH_PARENT__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": true,
+        "text": "부모님이 포함된 다중 배려 상황에서는 페이스 차이가 드러날 수 있습니다. 부모님 기준의 안정 구간을 먼저 확보해 두면 전체가 따라오기 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_70__ANCH_COUPLE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "다중 배려 구조에서 커플 일정은 중간중간 조율이 필요할 수 있습니다. 서로의 우선순위를 하루에 하나씩만 확정해도 부담이 줄 수 있습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_70__ANCH_VIP__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": true,
+        "text": "VIP가 포함된 다중 배려 상황에서는 민감한 지점이 일부 생길 수 있습니다. 핵심 일정은 안정적으로, 변동 가능한 요소는 뒤로 두는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_60__ANCH_NONE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "여러 배려 기준이 겹치면서 조정 부담이 커질 수 있습니다. 일정 구조를 단순하게 두고, 합의가 필요한 포인트를 줄이는 편이 도움이 됩니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_60__ANCH_PARENT__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "부모님이 포함된 다중 배려 상황에서는 무리한 구간이 생기면 체감 피로가 크게 느껴질 수 있습니다. 부모님 기준의 안정 리듬을 중심으로 잡아두면 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_60__ANCH_COUPLE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "다중 배려 구조에서는 커플의 리듬이 흔들리며 피로가 쌓일 수 있습니다. 핵심 일정만 확정하고 여백을 늘리는 편이 안정적일 수 있습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_60__ANCH_VIP__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "VIP가 포함된 다중 배려 상황에서는 작은 변수도 부담으로 커질 수 있습니다. 확실한 옵션 위주로 중심을 잡고, 변동성은 최소화하는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_50__ANCH_NONE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "전반적으로 조정이 잦아질 수 있어 흐름이 끊길 가능성이 있습니다. 배려 기준을 우선순위로 정리하고 일정 밀도를 낮추면 부담을 완화할 수 있습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_50__ANCH_PARENT__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "부모님이 포함된 다중 배려 상황에서는 피로 누적이 빠르게 체감될 수 있습니다. 이동 강도를 낮추고 휴식·식사 리듬을 안정적으로 유지하는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_50__ANCH_COUPLE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "다중 배려 구조에서는 커플 간 선택의 갈림이 누적될 수 있습니다. 하루의 기준을 하나로 맞추고, 나머지는 상황에 따라 조정 가능한 형태가 도움이 됩니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_50__ANCH_VIP__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "VIP가 포함된 다중 배려 상황에서는 안정감이 흔들릴 수 있는 지점이 비교적 많을 수 있습니다. 변수를 줄이고 예측 가능한 동선을 중심으로 구성하는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_LT50__ANCH_NONE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "여러 배려 기준이 동시에 작동하며 조정 비용이 크게 느껴질 수 있습니다. 핵심만 남기고 일정 구조를 단순화하면 흐름을 유지하는 데 도움이 될 수 있습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_LT50__ANCH_PARENT__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "부모님이 포함된 다중 배려 상황에서는 작은 무리도 크게 체감될 수 있습니다. 부모님 기준의 안정 구간을 넉넉히 확보해 두면 전체 부담을 줄일 수 있습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_LT50__ANCH_COUPLE__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "다중 배려 구조에서 커플의 리듬이 흔들리면 피로가 빠르게 누적될 수 있습니다. 확정 일정은 최소화하고 여백을 넓히는 편이 안정적일 수 있습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_LT50__ANCH_VIP__TONE_NEUTRAL",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "VIP가 포함된 다중 배려 상황에서는 안정성과 일관성이 특히 중요해질 수 있습니다. 변동성이 큰 요소는 줄이고, 확실한 옵션 중심으로 구성하는 편이 안전하겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_90P__ANCH_NONE__TONE_CARE",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "전반적으로 여행 흐름이 매우 안정적으로 이어질 가능성이 높아 보입니다. 일정 조율에서도 큰 부담은 크지 않을 것으로 예상됩니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_90P__ANCH_PARENT__TONE_CARE",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "전반적으로 여행 흐름이 매우 안정적으로 이어질 가능성이 높아 보입니다. 부모님 일정 리듬을 중심에 두면 무리 없이 부드럽게 맞춰지기 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_90P__ANCH_COUPLE__TONE_CARE",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "전반적으로 여행 흐름이 매우 안정적으로 이어질 가능성이 높아 보입니다. 서로의 컨디션과 분위기만 가볍게 맞춰도 만족도가 잘 유지될 편입니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_90P__ANCH_VIP__TONE_CARE",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "전반적으로 여행 흐름이 매우 안정적으로 이어질 가능성이 높아 보입니다. VIP의 편안함을 우선 기준으로 잡아도 전체가 자연스럽게 따라가기 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_80__ANCH_NONE__TONE_CARE",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "전체적으로는 안정적인 편이라 큰 마찰 없이 진행될 가능성이 높아 보입니다. 다만 하루 리듬만 맞추면 만족도가 더 잘 유지되겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_80__ANCH_PARENT__TONE_CARE",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "전체적으로는 안정적인 편이라 큰 마찰 없이 진행될 가능성이 높아 보입니다. 부모님 페이스를 기준으로 여유 구간을 조금만 더 두면 더 편안하겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_80__ANCH_COUPLE__TONE_CARE",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "전체적으로는 안정적인 편이라 큰 마찰 없이 진행될 가능성이 높아 보입니다. 서로가 중요하게 여기는 포인트를 한두 번만 확인해도 흐름이 잘 이어질 것 같습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_80__ANCH_VIP__TONE_CARE",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "전체적으로는 안정적인 편이라 큰 마찰 없이 진행될 가능성이 높아 보입니다. VIP 기준을 먼저 세워두면 나머지 일정도 자연스럽게 정리되기 쉽겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_70__ANCH_NONE__TONE_CARE",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "대체로 무난하게 흘러가겠지만, 순간적으로 조율이 필요한 장면이 생길 수 있습니다. 중요한 선택지는 한 번만 더 맞춰두면 안정감이 올라가겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_70__ANCH_PARENT__TONE_CARE",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": true,
+        "text": "대체로 무난하게 흘러가겠지만, 순간적으로 조율이 필요한 장면이 생길 수 있습니다. 부모님 컨디션을 기준으로 이동과 휴식을 조금 더 촘촘히 배치하면 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_70__ANCH_COUPLE__TONE_CARE",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "대체로 무난하게 흘러가겠지만, 순간적으로 조율이 필요한 장면이 생길 수 있습니다. 서로의 기대를 가볍게 공유해 두면 감정 소모를 줄이는 데 도움이 되겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_70__ANCH_VIP__TONE_CARE",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": true,
+        "text": "대체로 무난하게 흘러가겠지만, 순간적으로 조율이 필요한 장면이 생길 수 있습니다. VIP의 편안함을 우선으로 두고 선택지를 정리해 두면 전체 안정도가 좋아지겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_60__ANCH_NONE__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "여행 중간중간에 리듬이 흔들릴 수 있어 보입니다. 선택지가 많아지는 순간에는 속도와 우선순위를 조금 더 조심스럽게 맞춰두는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_60__ANCH_PARENT__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "여행 중간중간에 리듬이 흔들릴 수 있어 보입니다. 부모님 페이스를 중심으로 이동 강도를 낮추면 전반 분위기가 훨씬 편안해질 가능성이 있습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_60__ANCH_COUPLE__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "여행 중간중간에 리듬이 흔들릴 수 있어 보입니다. 서로가 힘들어지는 구간을 미리 염두에 두면 분위기 유지에 도움이 되겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_60__ANCH_VIP__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "여행 중간중간에 리듬이 흔들릴 수 있어 보입니다. VIP 기준의 편안함을 먼저 확보해 두면 불확실한 순간에도 안정적으로 운영되기 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_50__ANCH_NONE__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "전체 분위기가 쉽게 갈릴 수 있어, 작은 선택에서도 피로가 누적될 가능성이 있습니다. 일정은 여유를 두고, 우선순위를 간단하게 잡아두면 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_50__ANCH_PARENT__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "전체 분위기가 쉽게 갈릴 수 있어, 작은 선택에서도 피로가 누적될 가능성이 있습니다. 부모님이 편안함을 느끼는 속도와 동선을 중심으로 잡아두는 편이 안전하겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_50__ANCH_COUPLE__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "전체 분위기가 쉽게 갈릴 수 있어, 작은 선택에서도 피로가 누적될 가능성이 있습니다. 서로가 중요하게 여기는 한두 가지를 먼저 지켜주면 전체 흐름이 안정될 수 있습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_50__ANCH_VIP__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "전체 분위기가 쉽게 갈릴 수 있어, 작은 선택에서도 피로가 누적될 가능성이 있습니다. VIP의 만족 기준을 명확히 두고 움직이면 불필요한 흔들림을 줄이는 데 도움이 되겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_LT50__ANCH_NONE__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "이번 조합은 여행 중 긴장이나 피로가 빠르게 쌓일 수 있는 구간이 보입니다. 계획은 단순하게 가져가고, 선택지를 줄이는 방향이 더 편안할 수 있습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_LT50__ANCH_PARENT__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "이번 조합은 여행 중 긴장이나 피로가 빠르게 쌓일 수 있는 구간이 보입니다. 부모님이 무리하지 않도록 여유와 회복 중심으로 설계하면 분위기 안정에 도움이 되겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_LT50__ANCH_COUPLE__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "이번 조합은 여행 중 긴장이나 피로가 빠르게 쌓일 수 있는 구간이 보입니다. 서로가 편안함을 느끼는 방식에 차이가 날 수 있어, 여백을 넉넉히 두는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_LT50__ANCH_VIP__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "이번 조합은 여행 중 긴장이나 피로가 빠르게 쌓일 수 있는 구간이 보입니다. VIP가 편안함을 유지할 수 있도록 동선과 선택지를 단순하게 가져가면 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_90P__ANCH_NONE__TONE_CARE",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "핵심 인물의 만족 관점에서 보았을 때, 여행이 매우 안정적으로 굴러갈 가능성이 높아 보입니다. 전체 흐름이 자연스럽게 정리되기 쉬운 편입니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_90P__ANCH_PARENT__TONE_CARE",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "부모님 만족 관점에서 보았을 때, 여행이 매우 안정적으로 굴러갈 가능성이 높아 보입니다. 부모님 리듬에 맞춰도 다른 구성원 부담이 크게 늘지 않을 것 같습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_90P__ANCH_COUPLE__TONE_CARE",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "핵심 인물(상대)의 만족 관점에서 보았을 때, 여행이 매우 안정적으로 유지될 가능성이 높아 보입니다. 서로가 편안함을 느끼는 흐름이 잘 맞을 편입니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_90P__ANCH_VIP__TONE_CARE",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "VIP 만족 관점에서 보았을 때, 여행이 매우 안정적으로 굴러갈 가능성이 높아 보입니다. 의전 리듬을 유지하면서도 전체 분위기가 무리 없이 따라가기 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_80__ANCH_NONE__TONE_CARE",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "핵심 인물의 만족 관점에서 보았을 때, 전반적으로 안정적인 흐름이 기대됩니다. 큰 변수만 없다면 무난하게 진행되기 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_80__ANCH_PARENT__TONE_CARE",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "부모님 만족 관점에서 보았을 때, 전반적으로 안정적인 흐름이 기대됩니다. 이동 강도만 조금 조심하면 부모님이 편안함을 유지하기 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_80__ANCH_COUPLE__TONE_CARE",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "핵심 인물(상대)의 만족 관점에서 보았을 때, 전반적으로 안정적인 흐름이 기대됩니다. 하루 리듬을 함께 맞추면 만족도가 더 잘 유지될 수 있습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_80__ANCH_VIP__TONE_CARE",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "VIP 만족 관점에서 보았을 때, 전반적으로 안정적인 흐름이 기대됩니다. VIP 기준을 먼저 두고 선택지를 정리하면 운영이 더 매끄럽겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_70__ANCH_NONE__TONE_CARE",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "핵심 인물의 만족은 무난하게 유지될 수 있으나, 상황에 따라 조율이 필요할 수 있습니다. 중요한 선택의 기준을 미리 정리해 두면 안정감이 올라가겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_70__ANCH_PARENT__TONE_CARE",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": true,
+        "text": "부모님 만족은 무난하게 유지될 수 있으나, 상황에 따라 조율이 필요할 수 있습니다. 부모님 피로가 쌓이지 않도록 휴식 구간을 조금 더 신경 쓰는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_70__ANCH_COUPLE__TONE_CARE",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "핵심 인물(상대)의 만족은 무난하게 유지될 수 있으나, 순간적으로 감정 소모가 생길 수 있습니다. 서로의 기대를 한 번만 더 맞추면 훨씬 편안해질 수 있습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_70__ANCH_VIP__TONE_CARE",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": true,
+        "text": "VIP 만족은 무난하게 유지될 수 있으나, 일정 선택에 따라 체감이 달라질 수 있습니다. VIP가 편안함을 느끼는 기준을 중심으로 흐름을 잡아두면 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_60__ANCH_NONE__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "핵심 인물의 만족도가 일정 선택에 따라 흔들릴 수 있어 보입니다. 일정은 단순하게 가져가고, 변수를 줄이는 방향이 더 편안할 수 있습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_60__ANCH_PARENT__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "부모님 만족도가 일정 선택에 따라 흔들릴 수 있어 보입니다. 부모님이 편안함을 유지할 수 있도록 이동 강도와 휴식을 조금 더 보호적으로 설계하는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_60__ANCH_COUPLE__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "핵심 인물(상대)의 만족도가 일정 선택에 따라 흔들릴 수 있어 보입니다. 서로가 지치기 쉬운 구간에서는 여백을 두는 편이 분위기 유지에 도움이 되겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_60__ANCH_VIP__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "VIP 만족도가 일정 선택에 따라 흔들릴 수 있어 보입니다. VIP 기준으로 동선과 선택지를 정돈해 두면 불필요한 리스크를 줄이는 데 도움이 되겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_50__ANCH_NONE__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "핵심 인물의 만족이 작은 결정에도 영향을 받을 수 있어, 전체 리듬이 불안정해질 수 있습니다. 일정은 여유를 두고, 우선순위를 간단히 잡아두면 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_50__ANCH_PARENT__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "부모님 만족이 작은 결정에도 영향을 받을 수 있어, 전체 리듬이 불안정해질 수 있습니다. 부모님이 편안하게 느끼는 속도를 기준으로 움직이면 부담이 크게 줄 수 있습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_50__ANCH_COUPLE__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "핵심 인물(상대)의 만족이 작은 결정에도 영향을 받을 수 있어, 분위기가 쉽게 흔들릴 수 있습니다. 서로의 ‘꼭 지키고 싶은 것’을 먼저 정해두면 도움이 되겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_50__ANCH_VIP__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "VIP 만족이 작은 결정에도 영향을 받을 수 있어, 운영 난도가 올라갈 수 있습니다. VIP가 편안함을 유지할 수 있도록 선택지를 줄여두는 편이 안전하겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_LT50__ANCH_NONE__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "핵심 인물의 만족이 쉽게 흔들릴 수 있어, 여행 전반에 피로가 빠르게 누적될 가능성이 있습니다. 계획은 단순하게 가져가고, 변수를 최소화하는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_LT50__ANCH_PARENT__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "부모님 만족이 쉽게 흔들릴 수 있어, 여행 전반에 피로가 빠르게 누적될 가능성이 있습니다. 부모님이 무리하지 않도록 회복 중심의 리듬을 우선으로 두면 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_LT50__ANCH_COUPLE__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "핵심 인물(상대)의 만족이 쉽게 흔들릴 수 있어, 감정 소모가 커질 수 있습니다. 일정의 밀도를 낮추고 여백을 넉넉히 두면 더 편안할 수 있습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_LT50__ANCH_VIP__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "VIP 만족이 쉽게 흔들릴 수 있어, 작은 변수에도 체감 리스크가 커질 수 있습니다. VIP 기준으로 동선과 선택지를 단순하게 설계하면 안정에 도움이 되겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_90P__ANCH_NONE__TONE_CARE",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "여러 우선순위를 함께 고려하더라도 전체 균형이 매우 안정적으로 잡힐 가능성이 높아 보입니다. 배려 순서를 가볍게 정리하는 정도로도 흐름이 잘 이어지겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_90P__ANCH_PARENT__TONE_CARE",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "여러 우선순위를 함께 고려하더라도 전체 균형이 매우 안정적으로 잡힐 가능성이 높아 보입니다. 부모님을 최우선 축으로 두어도 전체 흐름이 부드럽게 따라가기 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_90P__ANCH_COUPLE__TONE_CARE",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "여러 우선순위를 함께 고려하더라도 전체 균형이 매우 안정적으로 잡힐 가능성이 높아 보입니다. 서로의 감정 리듬을 중심에 두면 만족도가 자연스럽게 유지될 편입니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_90P__ANCH_VIP__TONE_CARE",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "여러 우선순위를 함께 고려하더라도 전체 균형이 매우 안정적으로 잡힐 가능성이 높아 보입니다. VIP 기준을 최상단에 두고 조율해도 무리 없이 운영되기 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_80__ANCH_NONE__TONE_CARE",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "여러 우선순위가 있어도 전반적인 균형은 안정적으로 유지될 가능성이 높아 보입니다. 중요한 기준만 먼저 합의해 두면 더 편안하겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_80__ANCH_PARENT__TONE_CARE",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "여러 우선순위가 있어도 전반적인 균형은 안정적으로 유지될 가능성이 높아 보입니다. 부모님 컨디션을 기준으로 속도를 잡으면 전체가 한결 편안해질 수 있습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_80__ANCH_COUPLE__TONE_CARE",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "여러 우선순위가 있어도 전반적인 균형은 안정적으로 유지될 가능성이 높아 보입니다. 서로가 중요하게 여기는 포인트를 번갈아 담으면 만족도가 잘 유지되겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_80__ANCH_VIP__TONE_CARE",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "여러 우선순위가 있어도 전반적인 균형은 안정적으로 유지될 가능성이 높아 보입니다. VIP 기준을 중심으로 배려 순서를 정리해 두면 더 매끄럽겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_70__ANCH_NONE__TONE_CARE",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "우선순위가 여러 갈래로 나뉘는 순간에는 조율이 필요할 수 있습니다. 배려 순서를 한 번만 정리해 두면 전체 분위기가 더 안정될 것 같습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_70__ANCH_PARENT__TONE_CARE",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": true,
+        "text": "우선순위가 여러 갈래로 나뉘는 순간에는 조율이 필요할 수 있습니다. 부모님이 무리하지 않도록 이동·휴식의 기준을 먼저 잡아두면 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_70__ANCH_COUPLE__TONE_CARE",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "우선순위가 여러 갈래로 나뉘는 순간에는 조율이 필요할 수 있습니다. 서로의 감정 균형을 우선 기준으로 두면 선택이 한결 쉬워질 수 있습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_70__ANCH_VIP__TONE_CARE",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": true,
+        "text": "우선순위가 여러 갈래로 나뉘는 순간에는 조율이 필요할 수 있습니다. VIP의 편안함을 최우선 기준으로 두고 나머지 선택지를 정리하면 안정감이 올라가겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_60__ANCH_NONE__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "우선순위가 겹치는 구간에서 흐름이 흔들릴 수 있어 보입니다. 일정 밀도를 낮추고 선택을 단순하게 가져가면 부담이 줄 수 있습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_60__ANCH_PARENT__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "우선순위가 겹치는 구간에서 흐름이 흔들릴 수 있어 보입니다. 부모님이 편안함을 유지할 수 있도록 회복 리듬을 먼저 확보해 두는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_60__ANCH_COUPLE__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "우선순위가 겹치는 구간에서 흐름이 흔들릴 수 있어 보입니다. 서로가 지치기 쉬운 타이밍에는 여백을 넉넉히 두는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_60__ANCH_VIP__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "우선순위가 겹치는 구간에서 흐름이 흔들릴 수 있어 보입니다. VIP 기준으로 동선과 선택지를 정돈해 두면 리스크를 크게 줄일 수 있습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_50__ANCH_NONE__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "배려 대상이 여러 명일수록 작은 결정이 누적되어 피로가 커질 수 있습니다. 우선순위를 단순화하고, 여유 구간을 넓히는 방향이 도움이 되겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_50__ANCH_PARENT__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "배려 대상이 여러 명일수록 작은 결정이 누적되어 피로가 커질 수 있습니다. 부모님을 최우선으로 두고 속도와 이동 강도를 낮추면 전체가 한결 안정될 수 있습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_50__ANCH_COUPLE__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "배려 대상이 여러 명일수록 작은 결정이 누적되어 피로가 커질 수 있습니다. 서로가 ‘꼭 지키고 싶은 것’을 먼저 정해두면 조율 부담이 줄 수 있습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_50__ANCH_VIP__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "배려 대상이 여러 명일수록 작은 결정이 누적되어 피로가 커질 수 있습니다. VIP 기준을 최우선 축으로 두고 나머지 우선순위를 정리하면 안정에 도움이 되겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_LT50__ANCH_NONE__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "우선순위가 겹치는 상황에서 긴장과 피로가 빠르게 쌓일 수 있어 보입니다. 일정은 단순하게 가져가고, 선택지를 줄이는 편이 더 편안할 수 있습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_LT50__ANCH_PARENT__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "우선순위가 겹치는 상황에서 긴장과 피로가 빠르게 쌓일 수 있어 보입니다. 부모님이 무리하지 않도록 회복 중심의 리듬을 최우선으로 두면 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_LT50__ANCH_COUPLE__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "우선순위가 겹치는 상황에서 긴장과 피로가 빠르게 쌓일 수 있어 보입니다. 서로의 감정 소모를 줄이기 위해 여백과 선택지 축소가 도움이 될 수 있습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_LT50__ANCH_VIP__TONE_CARE",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "우선순위가 겹치는 상황에서 긴장과 피로가 빠르게 쌓일 수 있어 보입니다. VIP가 편안함을 유지할 수 있도록 동선과 선택을 최대한 단순하게 가져가면 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_90P__ANCH_NONE__TONE_WARN",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "전반적으로 여행 흐름이 매우 안정적으로 이어질 가능성이 높습니다. 다만 작은 변수에도 리듬이 흐트러지지 않게, 핵심 일정의 우선순위만은 초반에 가볍게 맞춰두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_90P__ANCH_PARENT__TONE_WARN",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "전반적으로 여행이 매우 안정적으로 흘러갈 가능성이 높습니다. 부모님 컨디션과 이동 부담이 가장 먼저 편해지도록, 일정의 속도만은 조금 더 보수적으로 잡아두시면 안전합니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_90P__ANCH_COUPLE__TONE_WARN",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "전체 분위기가 매우 안정적이라 함께 움직일 때의 마찰이 크지 않을 것으로 보입니다. 다만 서로의 ‘지금 하고 싶은 것’이 바뀌는 순간이 생길 수 있으니, 여유 시간을 한두 군데 남겨두시면 더 편합니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_90P__ANCH_VIP__TONE_WARN",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "전반적으로 안정도가 매우 높아 일정 운영이 수월할 가능성이 큽니다. VIP 동선과 컨디션을 중심축으로 두고, 돌발 변수가 생겨도 깔끔히 대체할 수 있는 여지를 조금 남겨두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_80__ANCH_NONE__TONE_WARN",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "전반적으로 무난하게 유지될 가능성이 높습니다. 다만 일정이 길어지면 작은 피로가 누적될 수 있으니, 휴식 포인트를 한 번쯤은 미리 염두에 두시면 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_80__ANCH_PARENT__TONE_WARN",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "전체적으로는 무난하고 안정적인 편입니다. 부모님께 부담이 쌓이지 않도록 이동 간격과 휴식 타이밍을 조금 더 넉넉히 잡아두시면 더 안전합니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_80__ANCH_COUPLE__TONE_WARN",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "큰 틀에서는 안정적으로 흘러갈 가능성이 높습니다. 다만 컨디션에 따라 선호가 갈릴 수 있으니, ‘둘 다 만족하는 기본 코스’와 ‘가볍게 갈라졌다 합치는 옵션’을 함께 두면 편합니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_80__ANCH_VIP__TONE_WARN",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "전반적으로 안정적인 편이라 운영 난도가 높지 않을 것으로 보입니다. VIP 일정은 무리 없이 흘러가도록, 동선과 대기 변수를 조금 더 보수적으로 관리해두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_70__ANCH_NONE__TONE_WARN",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "전반적으로는 가능하되, 일정 중간에 리듬이 흔들릴 여지가 있습니다. 특히 선택지가 많아지는 구간에서는 우선순위를 한 번 더 확인해두시면 부담이 줄어듭니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_70__ANCH_PARENT__TONE_WARN",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": true,
+        "text": "전체적으로는 진행 가능하지만, 부모님 기준에서는 피로가 빨리 체감될 수 있습니다. 이동·대기 같은 변수가 생기면 무리하지 않도록, 완충 일정(카페/휴식)을 한 번 더 확보해두시면 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_70__ANCH_COUPLE__TONE_WARN",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "전체 흐름은 유지되겠지만, 순간적으로 기대가 갈라지는 장면이 나올 수 있습니다. 감정 소모가 커지기 전에 ‘짧게 조정 가능한 선택지’를 준비해두시면 더 편합니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_70__ANCH_VIP__TONE_WARN",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": true,
+        "text": "운영은 가능하나, VIP 관점에서는 작은 불편이 크게 느껴질 수 있습니다. 일정이 밀릴 때를 대비해 대체 코스나 휴식 옵션을 한 단계 더 촘촘히 준비해두시는 편이 안전합니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_60__ANCH_NONE__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "여행 중간중간 조정이 필요해질 가능성이 있습니다. 특히 일정 강도나 선택의 방향이 엇갈리면 피로가 빠르게 쌓일 수 있으니, 여유 시간과 대체안을 조금 더 적극적으로 두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_60__ANCH_PARENT__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "부모님을 함께 고려하면 조정이 필요한 구간이 생길 수 있습니다. 컨디션 변화를 먼저 반영할 수 있도록, 이동을 줄이는 옵션과 휴식 중심 선택지를 초반부터 안전하게 깔아두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_60__ANCH_COUPLE__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "전체적으로는 조정 포인트가 자주 발생할 수 있습니다. 작은 불만이 쌓이기 전에 ‘함께하는 시간’과 ‘각자 회복하는 시간’을 자연스럽게 섞어두시면 부담이 줄어듭니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_60__ANCH_VIP__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "VIP가 포함된 상황에서는 운영 난도가 올라갈 수 있습니다. 예상 밖의 변수에서 불편이 커지지 않도록, 핵심 일정은 간결하게 두고 대기·이동 부담을 줄이는 방향을 우선으로 잡아두시는 편이 안전합니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_50__ANCH_NONE__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "여행이 매끄럽게 이어지려면 중간 조정이 꽤 필요할 수 있습니다. 선택이 갈리는 순간이 잦을 수 있으니, ‘꼭 하고 싶은 것’과 ‘양보 가능한 것’을 빠르게 구분해두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_50__ANCH_PARENT__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "부모님 기준으로는 부담이 쉽게 누적될 수 있어 조정이 자주 필요할 수 있습니다. 무리한 동선이나 장시간 대기를 피할 수 있도록, 휴식 중심 플랜을 기본값으로 두시는 편이 안전합니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_50__ANCH_COUPLE__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "서로의 기대가 엇갈리는 순간이 생기면 피로가 빠르게 쌓일 수 있습니다. 감정 소모를 줄이기 위해, ‘같이 하는 핵심’과 ‘자유 시간’의 경계를 조금 더 명확히 두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_50__ANCH_VIP__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "VIP 일정은 작은 변수에도 체감 리스크가 커질 수 있습니다. 동선을 단순화하고 대체 옵션을 미리 확보해두지 않으면 운영이 급격히 어려워질 수 있으니, 안전장치를 한 단계 더 두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_LT50__ANCH_NONE__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "이번 조합은 여행 중 갈림길이 자주 생길 수 있어, 그대로 밀어붙이면 부담이 커질 가능성이 있습니다. 일정 강도와 선택 기준을 초반에 확실히 잡지 않으면 피로가 빠르게 누적될 수 있으니, 완충 플랜을 적극적으로 준비해두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_LT50__ANCH_PARENT__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "부모님을 함께 고려하면 리듬이 쉽게 무너질 수 있어, 조정이 필수에 가깝습니다. 무리한 이동이나 긴 대기가 겹치지 않도록, 휴식 중심의 안전한 기본 플랜을 먼저 깔아두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_LT50__ANCH_COUPLE__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "서로의 기대가 크게 엇갈리면 감정 소모가 커질 수 있는 구간입니다. 일정 선택이 겹치지 않는 순간을 대비해, ‘함께하는 핵심’과 ‘각자 회복하는 시간’을 분리해두는 편이 안정에 도움이 됩니다."
+    },
+    {
+        "code": "G__MODE_A__SCORE_LT50__ANCH_VIP__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "VIP 관점에서는 작은 불편도 크게 느껴질 수 있어, 운영 리스크가 높은 편입니다. 대기·이동·일정 밀림이 겹치지 않도록, 핵심 일정만 남기고 나머지는 유연하게 바꿀 수 있는 구조로 잡아두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_90P__ANCH_NONE__TONE_WARN",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "전반적으로 매우 안정적이라 여행 운영이 크게 흔들릴 가능성은 낮습니다. 다만 우선 기준이 되는 사람이 뚜렷하지 않다면, 작은 결정에서도 방향이 갈릴 수 있어 기준점만은 초반에 정해두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_90P__ANCH_PARENT__TONE_WARN",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "부모님 기준으로도 전반적인 만족이 높게 유지될 가능성이 큽니다. 다만 컨디션 변수는 언제든 생길 수 있으니, 무리 없이 ‘편안함 우선’으로만 흐름을 잡아두시면 더 안전합니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_90P__ANCH_COUPLE__TONE_WARN",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "한 분의 만족을 중심으로 보더라도 전반적으로 안정적인 편입니다. 다만 둘 사이의 기분 변화에 따라 우선순위가 바뀔 수 있으니, 선택지를 너무 꽉 채우지만 않으면 더 편합니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_90P__ANCH_VIP__TONE_WARN",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "VIP 기준에서도 전반적으로 안정적이라 큰 무리 없이 진행될 가능성이 높습니다. 다만 일정의 격식과 컨디션을 우선해, 변수 발생 시 바로 전환할 수 있는 여지를 남겨두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_80__ANCH_NONE__TONE_WARN",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "전반적으로 무난하게 유지될 가능성이 높습니다. 다만 누구 기준으로 성공을 판단할지가 애매하면 조정이 길어질 수 있으니, 핵심 우선순위만은 초반에 맞춰두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_80__ANCH_PARENT__TONE_WARN",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "부모님 만족도를 중심으로 보더라도 무난하게 흘러갈 가능성이 있습니다. 다만 피로가 누적되면 체감이 달라질 수 있으니, 휴식과 이동 부담을 조금 더 넉넉히 잡아두시면 안전합니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_80__ANCH_COUPLE__TONE_WARN",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "한 사람의 만족을 중심으로 보더라도 전체적으로는 무난한 편입니다. 다만 상대의 컨디션이나 분위기에 따라 선택이 달라질 수 있어, 여백을 조금 남겨두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_80__ANCH_VIP__TONE_WARN",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "VIP 만족도를 중심으로 보더라도 전반적으로는 안정적인 편입니다. 다만 대기나 이동 변수가 겹치면 체감이 달라질 수 있으니, 일정 운영을 한 단계 더 보수적으로 잡아두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_70__ANCH_NONE__TONE_WARN",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "전체적으로는 가능하지만, 만족 기준이 되는 포인트에서 흔들릴 여지가 있습니다. 우선순위가 명확하지 않으면 조정이 길어질 수 있으니, 기준점을 한 번 더 또렷하게 잡아두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_70__ANCH_PARENT__TONE_WARN",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": true,
+        "text": "부모님 만족도를 중심으로 보면 중간에 조정이 필요한 장면이 나올 수 있습니다. 컨디션이 떨어지는 순간을 대비해, 이동 최소화와 휴식 중심 선택지를 미리 확보해두시면 부담이 줄어듭니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_70__ANCH_COUPLE__TONE_WARN",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "한 사람의 만족을 중심으로 보더라도, 중간에 기대가 갈라질 수 있는 구간입니다. 분위기가 바뀌는 순간에 대비해 선택지를 너무 촘촘히 고정하지 않는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_70__ANCH_VIP__TONE_WARN",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": true,
+        "text": "VIP 만족도를 기준으로 보면 작은 변수에서도 체감이 크게 흔들릴 수 있습니다. 일정이 밀릴 때를 대비해 대체 코스나 휴식 옵션을 한 단계 더 준비해두시는 편이 안전합니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_60__ANCH_NONE__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "한 사람의 만족을 중심으로 보더라도 조정이 자주 필요할 수 있습니다. 기준점이 흐려지면 피로가 빠르게 쌓일 수 있으니, 우선순위를 선명하게 두고 운영 여지를 넉넉히 남겨두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_60__ANCH_PARENT__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "부모님 기준에서는 부담이 쉽게 누적될 수 있어 조정이 필요한 구간이 생길 가능성이 큽니다. 무리한 이동과 대기를 줄이는 방향으로, 안전한 기본 플랜을 먼저 두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_60__ANCH_COUPLE__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "한 사람의 만족을 중심으로 보더라도 중간 변수가 크게 작용할 수 있습니다. 감정 소모가 커지기 전에, 선택지를 유연하게 바꿀 수 있는 여백을 확보해두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_60__ANCH_VIP__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "VIP 기준에서는 작은 불편도 크게 느껴질 수 있어 운영 난도가 올라갈 수 있습니다. 일정의 핵심만 남기고, 대기·이동 변수에 즉시 대응할 수 있도록 여지를 더 두시는 편이 안전합니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_50__ANCH_NONE__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "여행의 성공 기준이 되는 지점에서 흔들림이 커질 수 있습니다. 우선순위가 정리되지 않으면 조정이 길어지고 피로가 크게 누적될 수 있으니, 기준을 먼저 세우는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_50__ANCH_PARENT__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "부모님 만족도를 중심으로 보면 부담이 커질 수 있어 조정이 자주 필요할 수 있습니다. 이동을 최소화하고 휴식 중심으로 구성하지 않으면 컨디션 이슈가 빠르게 드러날 수 있으니, 보수적으로 잡아두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_50__ANCH_COUPLE__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "한 사람의 만족을 중심으로 보더라도, 선택의 갈림길이 잦을 수 있는 구간입니다. 일정 강도를 낮추고 여백을 늘려두지 않으면 감정 소모가 커질 수 있으니, 완충 옵션을 두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_50__ANCH_VIP__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "VIP 만족도를 기준으로 보면 리스크가 빠르게 커질 수 있습니다. 대기·이동·일정 밀림이 겹치지 않도록, 대체 옵션과 운영 여지를 미리 충분히 확보해두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_LT50__ANCH_NONE__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "우선 기준이 되는 만족 지점이 크게 흔들릴 수 있어, 그대로 진행하면 부담이 커질 가능성이 있습니다. 기준점과 조정 원칙을 초반에 확실히 잡지 않으면 일정 운영이 빠르게 어려워질 수 있으니, 안전한 대체 플랜을 적극적으로 준비해두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_LT50__ANCH_PARENT__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "부모님 만족도를 중심으로 보면 리듬이 쉽게 무너질 수 있어, 조정이 필수에 가깝습니다. 무리한 동선과 긴 대기를 피할 수 있도록, 휴식 중심 기본 플랜과 대체안을 두텁게 준비해두시는 편이 안전합니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_LT50__ANCH_COUPLE__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "한 사람의 만족을 중심으로 보더라도, 기대가 크게 흔들리면 여행 만족도가 급격히 떨어질 수 있습니다. 감정 소모를 줄이기 위해 일정 강도를 낮추고, 선택지를 유연하게 바꿀 수 있는 여백을 넉넉히 두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_B__SCORE_LT50__ANCH_VIP__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "VIP 기준에서는 작은 변수도 크게 체감될 수 있어 리스크가 높은 편입니다. 대기·이동·일정 밀림이 한 번만 겹쳐도 부담이 커질 수 있으니, 핵심만 남기고 운영 여지를 최대한 확보해두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_90P__ANCH_NONE__TONE_WARN",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "전반적으로 매우 안정적이라, 여러 기준을 함께 보더라도 큰 흔들림은 적을 것으로 보입니다. 다만 우선순위가 분산되면 결정이 길어질 수 있어, 기준의 순서만은 가볍게 정리해두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_90P__ANCH_PARENT__TONE_WARN",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "여러 기준을 함께 고려하더라도 전반적인 안정도가 매우 높습니다. 부모님 편안함을 최우선 축으로 두고, 나머지는 여유롭게 조정해도 무리가 적을 가능성이 큽니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_90P__ANCH_COUPLE__TONE_WARN",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "전반적으로 매우 안정적이라, 서로의 우선순위를 함께 반영해도 큰 부담은 적을 것으로 보입니다. 다만 분위기 변화에 대비해, 완충 가능한 선택지를 한두 개 남겨두시면 더 편합니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_90P__ANCH_VIP__TONE_WARN",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "여러 우선 기준을 함께 두더라도 안정적으로 운영될 가능성이 높습니다. VIP 기준을 가장 보수적으로 잡아두고, 나머지는 그에 맞춰 유연하게 움직이시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_80__ANCH_NONE__TONE_WARN",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "전체적으로는 무난하지만, 우선순위가 여러 갈래로 나뉘면 조정이 길어질 수 있습니다. 기준의 순서를 한 번 정리해두면 일정 운영이 훨씬 수월해집니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_80__ANCH_PARENT__TONE_WARN",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "전반적으로는 무난한 편이지만, 부모님 기준에서는 피로가 먼저 드러날 수 있습니다. 이동 부담을 줄이는 선택지를 기본값으로 두시면 더 안전합니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_80__ANCH_COUPLE__TONE_WARN",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": false,
+        "text": "큰 틀에서는 무난하게 유지될 가능성이 높습니다. 다만 우선순위가 겹치지 않는 순간이 생길 수 있으니, 여유 시간을 조금 남겨두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_80__ANCH_VIP__TONE_WARN",
+        "category": "group",
+        "severity": "low",
+        "anchor_sensitive": true,
+        "text": "전체적으로는 안정적인 편이지만, VIP 기준에서는 작은 불편이 커질 수 있습니다. 일정의 격식과 컨디션 변수를 고려해 대체 옵션을 한 단계 더 준비해두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_70__ANCH_NONE__TONE_WARN",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "여러 기준을 함께 보면 중간에 조정이 필요한 구간이 생길 수 있습니다. 우선순위가 충돌하는 순간을 대비해, 선택 기준을 조금 더 명확히 해두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_70__ANCH_PARENT__TONE_WARN",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": true,
+        "text": "부모님을 포함한 여러 기준을 함께 고려하면 조정 포인트가 생길 수 있습니다. 컨디션이 흔들리는 순간에 바로 완충할 수 있도록, 휴식과 이동 최소화 옵션을 미리 확보해두시면 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_70__ANCH_COUPLE__TONE_WARN",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": false,
+        "text": "전반 흐름은 가능하지만, 우선순위가 갈라질 때 부담이 생길 수 있습니다. 감정 소모가 커지기 전에, 짧게 조정할 수 있는 선택지를 준비해두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_70__ANCH_VIP__TONE_WARN",
+        "category": "group",
+        "severity": "medium",
+        "anchor_sensitive": true,
+        "text": "VIP를 포함한 다중 기준에서는 작은 변수가 커질 수 있어 주의가 필요합니다. 일정이 밀릴 때를 대비해 대체 코스와 휴식 옵션을 한 단계 더 촘촘히 준비해두시는 편이 안전합니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_60__ANCH_NONE__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "여러 우선 기준을 함께 두면 조정이 자주 필요할 수 있습니다. 일정 강도와 선택의 기준을 정리해두지 않으면 피로가 빠르게 누적될 수 있으니, 운영 여지를 넉넉히 남겨두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_60__ANCH_PARENT__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "부모님을 포함한 다중 기준에서는 부담이 쉽게 쌓일 수 있습니다. 컨디션을 최우선으로 두고 이동·대기 변수를 줄이는 방향으로, 안전한 기본 플랜을 먼저 마련해두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_60__ANCH_COUPLE__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "조정 포인트가 꽤 생길 수 있어, 일정이 빡빡하면 부담이 커질 수 있습니다. ‘같이 하는 핵심’과 ‘각자 회복하는 시간’을 섞어두면 전체 안정에 도움이 됩니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_60__ANCH_VIP__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "VIP를 포함한 다중 기준에서는 운영 난도가 올라갈 수 있습니다. 변수 하나가 겹치면 체감 불편이 커질 수 있으니, 핵심 일정은 간결하게 두고 대체 옵션을 충분히 확보해두시는 편이 안전합니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_50__ANCH_NONE__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "여러 기준이 동시에 작동하면 조정이 길어지고 피로가 크게 누적될 수 있습니다. ‘무엇을 먼저 만족시키는지’가 정리되지 않으면 일정이 흔들릴 수 있으니, 우선순위를 선명히 두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_50__ANCH_PARENT__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "부모님을 포함한 다중 기준에서는 컨디션 이슈가 빠르게 표면화될 수 있어 조정이 자주 필요할 수 있습니다. 이동을 줄이고 휴식 중심으로 구성하지 않으면 부담이 커질 수 있으니, 보수적으로 설계해두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_50__ANCH_COUPLE__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "우선순위가 겹치지 않는 순간이 잦으면 감정 소모와 피로가 함께 커질 수 있습니다. 일정 강도를 낮추고, 선택지를 유연하게 바꿀 수 있는 여백을 늘려두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_50__ANCH_VIP__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "VIP를 포함한 다중 기준에서는 작은 변수도 크게 체감될 수 있어 리스크가 큽니다. 대기·이동·일정 밀림이 겹치지 않도록, 대체 옵션과 운영 여지를 충분히 두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_LT50__ANCH_NONE__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "여러 기준이 동시에 작동하는 상황에서 리듬이 쉽게 무너질 수 있어, 그대로 진행하면 부담이 커질 가능성이 있습니다. 우선순위와 조정 원칙을 초반에 확실히 잡지 않으면 일정 운영이 급격히 어려워질 수 있으니, 안전한 대체 플랜을 두텁게 준비해두시는 편이 좋겠습니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_LT50__ANCH_PARENT__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "부모님을 포함한 다중 기준에서는 작은 변수도 크게 누적되어 리스크가 높은 편입니다. 무리한 동선과 긴 대기를 피할 수 있도록, 휴식 중심 기본 플랜과 대체안을 적극적으로 확보해두시는 편이 안전합니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_LT50__ANCH_COUPLE__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": false,
+        "text": "우선순위가 크게 엇갈리면 감정 소모가 빠르게 커질 수 있는 구간입니다. 일정 강도를 낮추고, ‘함께하는 핵심’과 ‘각자 회복 시간’을 분리해두는 편이 안정에 도움이 됩니다."
+    },
+    {
+        "code": "G__MODE_C__SCORE_LT50__ANCH_VIP__TONE_WARN",
+        "category": "group",
+        "severity": "high",
+        "anchor_sensitive": true,
+        "text": "VIP를 포함한 다중 기준에서는 작은 변수 하나로도 체감 불편이 크게 커질 수 있어 리스크가 매우 높은 편입니다. 핵심 일정만 남기고 나머지는 유연하게 전환할 수 있도록, 운영 여지와 대체 옵션을 최대한 확보해두시는 편이 좋겠습니다."
+    }
+]

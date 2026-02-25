@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    {{ common_head|safe }}
+    <title>그룹 리포트 - TraVTI</title>
+</head>
+
+<body class="bg-slate-50 min-h-screen flex flex-col">
+    {{ header|safe }}
+
+    <main class="flex-grow max-w-5xl mx-auto w-full px-6 py-12">
+        <div class="mb-4">
+            <button type="button" onclick="goBackFromGroupReport()"
+                class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-600 text-sm font-bold hover:bg-slate-50 transition-colors">
+                <span class="material-symbols-outlined text-base">arrow_back</span>
+                이전 화면
+            </button>
+        </div>
+
+        <div class="mb-6 text-center">
+            <h1 class="text-3xl font-bold text-slate-900 mb-2">그룹 리포트</h1>
+            <p class="text-slate-500">선택한 멤버 기준으로 그룹 케미를 분석한 결과입니다.</p>
+        </div>
+
+        <div class="max-w-4xl mx-auto bg-white rounded-2xl border border-slate-200 shadow-sm p-8 mb-12"
+            id="group-report-section">
+            <div class="text-base text-slate-700 mb-2"><span class="font-bold">그룹 WHI 점수:</span> <span
+                    id="group-whi-score" class="font-bold text-blue-600">-</span></div>
+            <div id="group-radar-chart" class="my-4 flex justify-center"></div>
+            <div class="text-sm text-blue-600 mb-2"><span class="font-bold">한줄평:</span> <span
+                    id="group-whi-comment">-</span></div>
+            <div class="text-sm text-slate-700 mb-2"><span class="font-bold">그룹 요약:</span> <span
+                    id="group-summary-text">-</span></div>
+            <div class="text-sm text-slate-700 mb-2"><span class="font-bold">스테미나 평가:</span> <span
+                    id="group-stamina-comment">-</span></div>
+            <div class="text-sm text-slate-700 mb-2"><span class="font-bold">체력 편차:</span> <span
+                    id="group-stamina-gap-comment">-</span></div>
+            <div class="text-sm text-slate-700 mb-4"><span class="font-bold">알콜 성향:</span> <span
+                    id="group-alcohol-comment">-</span></div>
+            <div class="text-xs text-slate-500 mb-2"><span class="font-bold">해시태그:</span> <span id="group-tags">-</span>
+            </div>
+            <div class="text-xs text-slate-500 mb-6"><span class="font-bold">멤버:</span> <span
+                    id="group-member-list">-</span></div>
+
+            <div id="group-add-more-hint"
+                class="hidden mb-3 text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
+                친구를 더 추가해서 그룹의 다양한 조합도 확인해보세요.
+            </div>
+            <div class="mb-3 font-bold text-slate-900">나와 멤버 케미 보기</div>
+            <div id="member-chemistry-box" class="space-y-3"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <a href="/chemistry"
+                class="px-4 py-2 rounded-lg border border-slate-200 text-slate-600 text-sm font-bold hover:bg-slate-100 transition-colors">멤버
+                다시 선택</a>
+            <button id="next-step-btn"
+                class="px-5 py-2.5 rounded-lg bg-slate-900 text-white text-sm font-bold hover:bg-slate-800 transition-colors">다음
+                단계로</button>
+        </div>
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 mt-auto py-8">
+        <div class="max-w-7xl mx-auto px-6 text-center text-slate-500 text-sm">
+            &copy; 2026 Travis Inc. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        function goBackFromGroupReport() {
+            if (window.history.length > 1) {
+                window.history.back();
+                return;
+            }
+            window.location.href = '/my-travti?tab=groups';
+        }
+
+        const myUser = {
+            id: "{{ my_id }}",
+            name: "{{ my_name }}",
+            travti_label: "{{ my_label }}",
+            mbti: "{{ my_mbti }}",
+            vector_score: (() => {
+                try {
+                    return JSON.parse('{{ my_vector_score | safe }}');
+                } catch (e) {
+                    return {};
+                }
+            })()
+        };
+
+        const groupIdQuery = "{{ group_id_query }}";
+
+        function getTraitScore(d) {
+            if (d < 0.1) return 18;
+            if (d < 0.3) return 16;
+            if (d < 0.5) return 14;
+            if (d < 0.75) return 12;
+            if (d < 0.95) return 10;
+            if (d < 1.2) return 8;
+            if (d < 1.4) return 6;
+            if (d < 1.7) return 4;
+            return 2;
+        }
+
+        function calculateChemistry(v1, v2) {
+            if (!v1 || !v2 || Object.keys(v1).length === 0 || Object.keys(v2).length === 0) {
+                return { score: 50 };
+            }
+
+            const eiDiff = Math.abs((v1.ei || 0) - (v2.ei || 0));
+            const snDiff = Math.abs((v1.sn || 0) - (v2.sn || 0));
+            const tfDiff = Math.abs((v1.tf || 0) - (v2.tf || 0));
+            const jpDiff = Math.abs((v1.jp || 0) - (v2.jp || 0));
+
+            const eiScore = (getTraitScore(eiDiff) / 18) * 22.75;
+            const snScore = (getTraitScore(snDiff) / 18) * 16.25;
+            const tfScore = (getTraitScore(tfDiff) / 18) * 13.00;
+            const jpScore = (getTraitScore(jpDiff) / 18) * 13.00;
+            const traitTotal = eiScore + snScore + tfScore + jpScore;
+
+            const staminaDiff = Math.abs((v1.stamina || 0.5) - (v2.stamina || 0.5));
+            let staminaTot = 25;
+            if (staminaDiff > 0.6) staminaTot = 10;
+            else if (staminaDiff > 0.4) staminaTot = 15;
+            else if (staminaDiff > 0.15) staminaTot = 20;
+
+            let alcTot = 10;
+            const a1 = (v1.alcohol !== undefined) ? v1.alcohol : 0.5;
+            const a2 = (v2.alcohol !== undefined) ? v2.alcohol : 0.5;
+            if ((a1 > 0.8 && a2 > 0.8) || (a1 < 0.2 && a2 < 0.2)) alcTot = 10;
+            else if (a1 > 0.2 && a1 < 0.8 && a2 > 0.2 && a2 < 0.8) alcTot = 8;
+            else if ((a1 > 0.2 && a1 < 0.8 && a2 < 0.2) || (a2 > 0.2 && a2 < 0.8 && a1 < 0.2)) alcTot = 6;
+            else if ((a1 > 0.8 && a2 > 0.2 && a2 < 0.8) || (a2 > 0.8 && a1 > 0.2 && a1 < 0.8)) alcTot = 4;
+            else alcTot = 2;
+
+            return { score: Math.round(traitTotal + staminaTot + alcTot) };
+        }
+
+        function getWhiComment(score) {
+            if (score >= 85) return "케미가 매우 뛰어난 그룹입니다! 서로의 여행 스타일이 잘 맞아요.";
+            if (score >= 75) return "케미가 높은 그룹이에요! 대부분의 상황에서 잘 어울릴 수 있습니다.";
+            if (score >= 65) return "평균 이상의 케미를 가진 그룹입니다. 약간의 조율만 있으면 좋아요.";
+            if (score >= 55) return "보통 수준의 케미입니다. 서로 배려하면 충분히 즐거운 여행이 될 수 있어요.";
+            return "케미 차이가 큰 그룹입니다. 일정이나 역할 분담에 신경을 써보세요!";
+        }
+
+        function getGroupSummary(score) {
+            if (score >= 80) return "전반적으로 안정적인 조합입니다. 핵심 일정이 자연스럽게 이어질 가능성이 높습니다.";
+            if (score >= 70) return "대체로 무난한 흐름이며, 일부 구간에서만 가벼운 조율이 필요할 수 있습니다.";
+            if (score >= 60) return "조율 포인트가 보입니다. 일정 밀도를 낮추면 만족도를 높일 수 있습니다.";
+            return "취향 차이가 큰 편입니다. 선택지를 분리하고 합의 지점을 미리 정해두는 편이 좋습니다.";
+        }
+
+        function getPairComment(pairScore) {
+            if (pairScore >= 85) return '최고의 케미!';
+            if (pairScore >= 75) return '아주 잘 맞아요.';
+            if (pairScore >= 65) return '무난하게 어울림.';
+            if (pairScore >= 55) return '보통, 약간 조율 필요.';
+            return '충돌 가능성, 배려 필요!';
+        }
+
+        function getBestWorstTrait(v1, v2) {
+            const dims = [
+                { key: 'ei', word: '외향-내향' },
+                { key: 'sn', word: '감각-직관' },
+                { key: 'tf', word: '사고-감정' },
+                { key: 'jp', word: '판단-인식' },
+            ];
+            const scored = dims.map(dim => ({
+                ...dim,
+                diff: Math.abs((v1[dim.key] || 0) - (v2[dim.key] || 0))
+            })).sort((a, b) => a.diff - b.diff);
+            return { best: scored[0], worst: scored[scored.length - 1] };
+        }
+
+        function renderRadarChart(members) {
+            const container = document.getElementById('group-radar-chart');
+            if (!members || members.length < 2) {
+                container.innerHTML = '';
+                return;
+            }
+
+            const avg = (key, fallback = 0.5) => {
+                const values = members.map(member => Number((member.vector_score || {})[key] ?? fallback));
+                return values.reduce((acc, value) => acc + value, 0) / values.length;
+            };
+
+            const values = [
+                avg('ei'),
+                avg('sn'),
+                avg('tf'),
+                avg('jp'),
+                avg('stamina'),
+                avg('alcohol')
+            ];
+
+            const labels = [
+                values[0] > 0.5 ? '폭발적 에너지' : '차분한 여유',
+                values[1] > 0.5 ? '현실 감각' : '직관적 영감',
+                values[2] > 0.5 ? '이성적 판단' : '감성적 공감',
+                values[3] > 0.5 ? '계획적 실행' : '유연한 즉흥',
+                values[4] > 0.5 ? '체력 충만' : '여유로운 템포',
+                values[5] > 0.5 ? '흥 넘침' : '맑은 정신'
+            ];
+
+            const colors = ['#ef4444', '#f97316', '#eab308', '#22c55e', '#3b82f6', '#a855f7'];
+            const cx = 140;
+            const cy = 140;
+            const radius = 90;
+
+            const points = [];
+            for (let index = 0; index < 6; index++) {
+                const angle = Math.PI / 2 - (2 * Math.PI * index / 6);
+                const scaledValue = Math.max(0.2, Math.min(1.0, 0.5 + (values[index] - 0.5) * 1.3));
+                const x = cx + radius * scaledValue * Math.cos(angle);
+                const y = cy - radius * scaledValue * Math.sin(angle);
+                points.push({ x, y });
+            }
+
+            const polygonPoints = points.map(point => `${point.x},${point.y}`).join(' ');
+
+            let gridHtml = '';
+            [0.3, 0.5, 0.7, 1.0].forEach(level => {
+                const gridPoints = [];
+                for (let index = 0; index < 6; index++) {
+                    const angle = Math.PI / 2 - (2 * Math.PI * index / 6);
+                    const x = cx + radius * level * Math.cos(angle);
+                    const y = cy - radius * level * Math.sin(angle);
+                    gridPoints.push(`${x},${y}`);
+                }
+                gridHtml += `<polygon points="${gridPoints.join(' ')}" fill="none" stroke="#cbd5e1" stroke-width="1.5" opacity="${level === 1.0 ? 0.25 : 0.12}"/>`;
+            });
+
+            let axisHtml = '';
+            let pointHtml = '';
+            let labelHtml = '';
+            for (let index = 0; index < 6; index++) {
+                const angle = Math.PI / 2 - (2 * Math.PI * index / 6);
+                const axisX = cx + radius * Math.cos(angle);
+                const axisY = cy - radius * Math.sin(angle);
+                axisHtml += `<line x1="${cx}" y1="${cy}" x2="${axisX}" y2="${axisY}" stroke="${colors[index]}" stroke-width="1.5" opacity="0.3"/>`;
+
+                pointHtml += `<circle cx="${points[index].x}" cy="${points[index].y}" r="4" fill="${colors[index]}" stroke="white" stroke-width="1.5"/>`;
+
+                const labelX = cx + (radius + 30) * Math.cos(angle);
+                const labelY = cy - (radius + 30) * Math.sin(angle);
+                labelHtml += `<text x="${labelX}" y="${labelY}" text-anchor="middle" dominant-baseline="middle" font-size="12" fill="${colors[index]}" font-weight="700">${labels[index]}</text>`;
+            }
+
+            container.innerHTML = `
+                <svg width="300" height="300" viewBox="0 0 280 280" aria-label="그룹 6축 레이더 차트">
+                    ${gridHtml}
+                    ${axisHtml}
+                    <defs>
+                        <linearGradient id="groupRadarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.6" />
+                            <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.6" />
+                        </linearGradient>
+                    </defs>
+                    <polygon points="${polygonPoints}" fill="url(#groupRadarGradient)" fill-opacity="0.4" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round"/>
+                    ${pointHtml}
+                    ${labelHtml}
+                </svg>
+            `;
+        }
+
+        function renderMemberChemistry(members) {
+            const box = document.getElementById('member-chemistry-box');
+            const me = members.find(member => member.id === myUser.id) || members[0];
+            const others = members.filter(member => member.id !== me.id);
+
+            if (!others.length) {
+                box.innerHTML = '<div class="text-sm text-slate-400">비교할 멤버가 없습니다.</div>';
+                return;
+            }
+
+            if (others.length === 1) {
+                const other = others[0];
+                const chem = calculateChemistry(me.vector_score || {}, other.vector_score || {});
+                const trait = getBestWorstTrait(me.vector_score || {}, other.vector_score || {});
+                box.innerHTML = `
+                    <div class="rounded-xl border border-slate-200 bg-slate-50 p-4">
+                        <div><span class="font-bold text-slate-800">${me.name}</span> & <span class="font-bold text-slate-800">${other.name}</span> <span class="text-blue-600">${getPairComment(chem.score)}</span></div>
+                        <ul class="list-disc ml-5 mt-2 text-slate-600 text-xs">
+                            <li><span class="font-bold">케미:</span> ${trait.best.word} 쪽은 비교적 잘 맞아요.</li>
+                            <li><span class="font-bold">주의:</span> ${trait.worst.word} 스타일은 조율이 필요할 수 있어요.</li>
+                        </ul>
+                    </div>
+                `;
+                return;
+            }
+
+            box.innerHTML = others.map(other => {
+                const chem = calculateChemistry(me.vector_score || {}, other.vector_score || {});
+                const trait = getBestWorstTrait(me.vector_score || {}, other.vector_score || {});
+                return `
+                    <div class="rounded-xl border border-slate-200 bg-slate-50 p-4">
+                        <div><span class="font-bold text-slate-800">${me.name}</span> & <span class="font-bold text-slate-800">${other.name}</span> <span class="text-blue-600">${getPairComment(chem.score)}</span></div>
+                        <ul class="list-disc ml-5 mt-2 text-slate-600 text-xs">
+                            <li><span class="font-bold">케미:</span> ${trait.best.word} 쪽은 비교적 잘 맞아요.</li>
+                            <li><span class="font-bold">주의:</span> ${trait.worst.word} 스타일은 조율이 필요할 수 있어요.</li>
+                        </ul>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        async function fetchGroupMembers() {
+            if (!groupIdQuery) return [];
+            try {
+                const response = await fetch('/api/groups/members?group_id=' + encodeURIComponent(groupIdQuery));
+                const data = await response.json();
+                if (data && data.members) {
+                    return data.members.filter(m => m.id !== myUser.id).map(m => ({
+                        id: m.id,
+                        name: m.name,
+                        travti_label: m.travti_label,
+                        mbti: m.mbti,
+                        vector_score: m.vector_score || {}
+                    }));
+                }
+            } catch (e) { console.error(e); }
+            return [];
+        }
+
+        function renderGroupReport(members) {
+            const addMoreHint = document.getElementById('group-add-more-hint');
+            const pairScores = [];
+            for (let i = 0; i < members.length; i++) {
+                for (let j = i + 1; j < members.length; j++) {
+                    pairScores.push(calculateChemistry(members[i].vector_score || {}, members[j].vector_score || {}).score);
+                }
+            }
+
+            if (members.length === 2) {
+                addMoreHint.classList.remove('hidden');
+            } else {
+                addMoreHint.classList.add('hidden');
+            }
+
+            const groupScore = pairScores.length
+                ? Math.round(pairScores.reduce((acc, score) => acc + score, 0) / pairScores.length)
+                : 50;
+
+            const whiComment = getWhiComment(groupScore);
+            const groupSummary = getGroupSummary(groupScore);
+
+            const staminaList = members.map(m => Number((m.vector_score || {}).stamina ?? 0.5));
+            const avgStamina = staminaList.reduce((acc, value) => acc + value, 0) / staminaList.length;
+            const minStamina = Math.min(...staminaList);
+            const minStaminaIdx = staminaList.indexOf(minStamina);
+            const weakMember = members[minStaminaIdx]?.name || '한 멤버';
+
+            let staminaComment = '체력 흐름이 비교적 안정적입니다.';
+            if (avgStamina > 0.7) staminaComment = '전반적으로 체력이 좋은 그룹이라 일정 소화력이 높습니다.';
+            else if (avgStamina < 0.4) staminaComment = '휴식 중심의 여유로운 템포가 잘 맞는 그룹입니다.';
+
+            let staminaGapComment = '모든 멤버의 체력이 비슷해서 일정 소화에 큰 무리는 없어 보여요 :)';
+            if ((avgStamina - minStamina) >= 0.25) {
+                staminaGapComment = `특히 ${weakMember} 님은 체력이 비교적 약한 편이라 일정 배려가 필요합니다.`;
+            }
+
+            const alcoholList = members.map(m => Number((m.vector_score || {}).alcohol ?? 0.5));
+            const drinkerCount = alcoholList.filter(a => a >= 0.5).length;
+            let alcoholComment = '음주 성향이 다른 멤버가 섞여 있어요. 서로의 스타일을 존중해 주세요!';
+            if (drinkerCount === members.length) alcoholComment = '모든 멤버가 술자리를 즐길 수 있는 그룹입니다.';
+            else if (drinkerCount === 0) alcoholComment = '모든 멤버가 비음주자라서, 술 없는 일정도 자연스러워요.';
+
+            const tags = [];
+            if (groupScore >= 80) tags.push('#고케미');
+            else if (groupScore >= 65) tags.push('#무난조합');
+            else tags.push('#조율필요');
+            if ((avgStamina - minStamina) >= 0.25) tags.push('#체력배려');
+            else tags.push('#체력균형');
+            if (drinkerCount === 0) tags.push('#논알콜');
+            else if (drinkerCount === members.length) tags.push('#파티타임');
+            else tags.push('#음주존중');
+
+            document.getElementById('group-whi-score').textContent = `${groupScore}점`;
+            document.getElementById('group-whi-comment').textContent = whiComment;
+            document.getElementById('group-summary-text').textContent = groupSummary;
+            document.getElementById('group-stamina-comment').textContent = staminaComment;
+            document.getElementById('group-stamina-gap-comment').textContent = staminaGapComment;
+            document.getElementById('group-alcohol-comment').textContent = alcoholComment;
+            document.getElementById('group-tags').textContent = tags.join(' ');
+            document.getElementById('group-member-list').textContent = members.map(m => m.name).join(', ');
+
+            renderRadarChart(members);
+            renderMemberChemistry(members);
+        }
+
+        window.addEventListener('load', async () => {
+            const groupMembers = await fetchGroupMembers();
+            const members = [myUser, ...groupMembers];
+            renderGroupReport(members);
+
+            document.getElementById('next-step-btn').addEventListener('click', () => {
+                alert('다음 단계(일정 생성/추천 여행지) 페이지는 이어서 연결하면 됩니다.');
+            });
+        });
+    </script>
+</body>
+
+</html>
