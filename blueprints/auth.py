@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, session, redirect, url_for, request, current_app
 import os
 from utils import COMMON_HEAD, get_header
+from reports.content_data import get_analysis_data
 
 
 auth_bp = Blueprint('auth', __name__)
@@ -40,60 +41,79 @@ def my_travti():
         db_client = supabase
         
         if supabase:
-            # Primary: Use session data if available
-            travti_label = session.get('user_travti_label')
-            mbti_type = session.get('user_mbti')
-            vector_score = session.get('user_travti_vector') or {}
-            
-            # Fallback: Fetch from DB if not in session (fresh page load)
-            if not mbti_type and not travti_label:
-                print(f"[DEBUG] Session data missing, fetching from DB for user_id: {user_id}")
-                access_token = session.get('access_token')
-                refresh_token = session.get('refresh_token') or ""
-                try:
-                    # Try with user's auth token first (respects RLS)
-                    db_client = create_client(os.environ.get("SUPABASE_URL"), os.environ.get("SUPABASE_KEY"))
-                    if access_token:
-                        db_client.auth.set_session(access_token, refresh_token)
+            # Always fetch fresh data from DB to reflect accurate vector_score
+            access_token = session.get('access_token')
+            refresh_token = session.get('refresh_token') or ""
+            try:
+                # Try with user's auth token first (respects RLS)
+                db_client = create_client(os.environ.get("SUPABASE_URL"), os.environ.get("SUPABASE_KEY"))
+                if access_token:
+                    db_client.auth.set_session(access_token, refresh_token)
+                
+                res = db_client.table('travis_user_data').select('*').eq('id', user_id).execute()
+                print(f"[DEBUG] Query result from DB: {res.data}")
+                
+                if res.data:
+                    profile = res.data[0]
+                    user_name = profile.get('name') or user_name
+                    travti_label = profile.get('travti_label')
+                    mbti_type = profile.get('mbti')
+                    vector_score = profile.get('vector_score') or {}
                     
-                    res = db_client.table('travis_user_data').select('*').eq('id', user_id).execute()
-                    print(f"[DEBUG] Query result from DB: {res.data}")
-                    
-                    if res.data:
-                        profile = res.data[0]
-                        user_name = profile.get('name') or user_name
-                        travti_label = profile.get('travti_label')
-                        mbti_type = profile.get('mbti')
-                        vector_score = profile.get('vector_score') or {}
+                    survey_res = db_client.table('survey_response').select('*').eq('user_id', user_id).order('created_at', desc=True).limit(1).execute()
+                    if survey_res.data and 'responses' in survey_res.data[0]:
+                        responses = survey_res.data[0]['responses']
+                        raw_ei, raw_sn, raw_tf, raw_jp = 0.0, 0.0, 0.0, 0.0
+                        stamina_score = 0.5
+                        alcohol_score = 0.5
                         
-                        # Store scores
+                        for q_idx_str, idx in responses.items():
+                            q_num = int(q_idx_str) + 1
+                            val_plus, val_minus = 1.0, -1.0
+                            if q_num in [1, 2, 3]: raw_jp += (val_plus if idx == 0 else val_minus)
+                            elif q_num in [5, 8, 12]: raw_ei += (val_plus if idx == 0 else val_minus)
+                            elif q_num == 6:
+                                stamina_map = [0.25, 0.5, 0.75, 1.0]
+                                stamina_score = stamina_map[idx] if 0 <= idx < len(stamina_map) else 0.25
+                            elif q_num in [7, 9, 18]: raw_sn += (val_plus if idx == 0 else val_minus)
+                            elif q_num == 10: raw_sn += (1.5 if idx == 0 else -1.5)
+                            elif q_num in [11, 15, 17]: raw_tf += (val_plus if idx == 0 else val_minus)
+                            elif q_num == 13:
+                                alc_map = [0.9, 0.5, 0.1]
+                                alcohol_score = alc_map[idx] if 0 <= idx < len(alc_map) else 0.5
+                            elif q_num == 14: raw_jp += (1.5 if idx == 0 else -1.5)
+                            elif q_num == 16: raw_tf += (1.5 if idx == 0 else -1.5)
+                            elif q_num == 19: raw_ei += (1.5 if idx == 0 else -1.5)
+                            
+                        scores['ei'] = max(-1.0, min(1.0, raw_ei / 4.5))
+                        scores['sn'] = max(-1.0, min(1.0, raw_sn / 4.5))
+                        scores['tf'] = max(-1.0, min(1.0, raw_tf / 4.5))
+                        scores['jp'] = max(-1.0, min(1.0, raw_jp / 4.5))
+                        scores['stamina'] = vector_score.get('manual_stamina', stamina_score)
+                        scores['alcohol'] = vector_score.get('manual_alcohol', alcohol_score)
+                        scores['food_restrictions'] = vector_score.get('food_restrictions', '')
+                    else:
                         scores['ei'] = float(vector_score.get('ei') or 0)
                         scores['sn'] = float(vector_score.get('sn') or 0)
                         scores['tf'] = float(vector_score.get('tf') or 0)
                         scores['jp'] = float(vector_score.get('jp') or 0)
-                        
-                        # Derive MBTI if not found
-                        if not mbti_type:
-                            mbti_e = "E" if scores['ei'] > 0 else "I"
-                            mbti_s = "S" if scores['sn'] > 0 else "N"
-                            mbti_t = "T" if scores['tf'] > 0 else "F"
-                            mbti_j = "J" if scores['jp'] > 0 else "P"
-                            mbti_type = f"{mbti_e}{mbti_s}{mbti_t}{mbti_j}"
-                    else:
-                        print(f"[DEBUG] No profile data found in DB for user {user_id}")
-                except Exception as db_e:
-                    import traceback
-                    print(f"[DEBUG] DB fetch failed: {db_e}")
-                    traceback.print_exc()
-            else:
-                print(f"[DEBUG] Using session data: mbti={mbti_type}, label={travti_label}")
-                
-                # Parse vector_score from session
-                if vector_score:
-                    scores['ei'] = float(vector_score.get('ei') or 0)
-                    scores['sn'] = float(vector_score.get('sn') or 0)
-                    scores['tf'] = float(vector_score.get('tf') or 0)
-                    scores['jp'] = float(vector_score.get('jp') or 0)
+                        scores['stamina'] = float(vector_score.get('manual_stamina', vector_score.get('stamina') or 0.5))
+                        scores['alcohol'] = float(vector_score.get('manual_alcohol', vector_score.get('alcohol') or 0.5))
+                        scores['food_restrictions'] = vector_score.get('food_restrictions', '')
+                    
+                    # Derive MBTI if not found
+                    if not mbti_type:
+                        mbti_e = "E" if scores['ei'] > 0 else "I"
+                        mbti_s = "S" if scores['sn'] > 0 else "N"
+                        mbti_t = "T" if scores['tf'] > 0 else "F"
+                        mbti_j = "J" if scores['jp'] > 0 else "P"
+                        mbti_type = f"{mbti_e}{mbti_s}{mbti_t}{mbti_j}"
+                else:
+                    print(f"[DEBUG] No profile data found in DB for user {user_id}")
+            except Exception as db_e:
+                import traceback
+                print(f"[DEBUG] DB fetch failed: {db_e}")
+                traceback.print_exc()
 
             # (tb_occasion_info feature removed)
         else:
@@ -130,6 +150,9 @@ def my_travti():
     # Date string for MRZ info (YYMMDD)
     mrz_date = today.strftime("%y%m%d")
 
+    
+    analysis_data = get_analysis_data(scores, user_name=user_name)
+
     return render_template('my_travti.html',
                          common_head=COMMON_HEAD,
                          header=get_header('mypage'),
@@ -142,7 +165,8 @@ def my_travti():
                          expiry_date=expiry_date,
                          mrz_date=mrz_date,
                          my_plans=my_plans,
-                         travti_icon=travti_icon)
+                         travti_icon=travti_icon,
+                         analysis_data=analysis_data)
 
 
 @auth_bp.route('/my-info-edit', methods=['GET', 'POST'])

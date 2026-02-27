@@ -204,6 +204,46 @@ def logout():
     session.clear()
     return jsonify({'success': True})
 
+@api_bp.route('/profile/update', methods=['POST'])
+def profile_update():
+    user_client, me, err = _get_user_client_or_error()
+    if err:
+        return err
+
+    body = request.get_json(silent=True) or {}
+    manual_stamina = body.get('stamina')
+    manual_alcohol = body.get('alcohol')
+    food_restrictions = body.get('food_restrictions')
+
+    try:
+        # Fetch current vector_score
+        res = user_client.table('travis_user_data').select('vector_score').eq('id', me).execute()
+        if not res.data:
+            return jsonify({'error': 'user_not_found'}), 404
+        
+        vector_score = res.data[0].get('vector_score') or {}
+        
+        # Update specific fields
+        if manual_stamina is not None:
+            vector_score['manual_stamina'] = float(manual_stamina)
+        if manual_alcohol is not None:
+            vector_score['manual_alcohol'] = float(manual_alcohol)
+        if food_restrictions is not None:
+            vector_score['food_restrictions'] = str(food_restrictions).strip()
+
+        # Save back to db
+        update_res = user_client.table('travis_user_data').update({'vector_score': vector_score}).eq('id', me).execute()
+        if not update_res.data:
+            return jsonify({'error': 'update_failed'}), 500
+
+        return jsonify({'success': True, 'vector_score': vector_score})
+
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        return jsonify({'error': 'db_error', 'message': str(e)}), 500
+
+
 @api_bp.route('/check_actual_label')
 def check_actual_label():
     user_id = request.args.get('user_id')

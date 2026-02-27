@@ -4,6 +4,8 @@
 <head>
     {{ common_head|safe }}
     <title>마이페이지 - TraVTI</title>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body class="bg-slate-50 min-h-screen flex flex-col">
@@ -294,119 +296,261 @@
                             <!-- Persona Analysis -->
                             <div
                                 class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 h-full flex flex-col">
-                                <div
-                                    class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-                                    <h3 class="font-bold text-slate-900 text-xl flex items-center gap-2">
-                                        <span class="material-symbols-outlined text-blue-500">psychology</span>
-                                        나의 여행 페르소나 분석
-                                    </h3>
-
-                                    {% if travti_label %}
-                                    <div class="flex items-center gap-2">
-                                        <button
-                                            onclick="shareKakao('{{ request.url_root }}shared/{{ session.user_id }}', '{{ travti_label }}', '나의 여행 페르소나를 확인해보세요!')"
-                                            class="w-8 h-8 flex items-center justify-center rounded-full bg-[#FEE500] text-[#191919] hover:bg-[#FDD800] transition-colors relative group">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                                fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-1.226 4.207-1.636z" />
-                                            </svg>
-                                            <div
-                                                class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-2 py-1 bg-slate-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none text-center z-10">
-                                                카카오톡 공유</div>
-                                        </button>
-                                        <button onclick="copyLink('{{ request.url_root }}shared/{{ session.user_id }}')"
-                                            class="w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors relative group">
-                                            <span class="material-symbols-outlined text-sm">link</span>
-                                            <div
-                                                class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-2 py-1 bg-slate-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none text-center z-10">
-                                                링크 복사</div>
-                                        </button>
-                                    </div>
-                                    {% endif %}
-                                </div>
-
                                 {% if travti_label %}
-                                <div
-                                    class="bg-slate-50 rounded-xl p-10 mb-10 border border-slate-100 flex-grow flex flex-col justify-center shadow-inner">
-                                    <div class="flex items-start gap-6">
-                                        <span
-                                            class="material-symbols-outlined text-5xl text-blue-400">format_quote</span>
-                                        <div>
-                                            <h4 class="text-2xl font-bold text-slate-800 mb-4">{{ travti_label }}
-                                            </h4>
-                                            <p class="text-slate-600 leading-relaxed text-lg">
-                                                당신은 여행의 매 순간을 특별하게 만드는 능력을 가지고 있군요.<br>
-                                                {{ mbti_type }} 성향을 바탕으로,
-                                                {% if scores.ei > 0 %}새로운 사람들과 어울리며 에너지를 얻고,{% else %}조용히 사색하며 내면의
-                                                평화를
-                                                찾고,{%
-                                                endif %}
-                                                {% if scores.jp > 0 %}체계적인 계획으로 완벽한 여행을 추구합니다.{% else %}즉흥적인 발견에서 오는
-                                                기쁨을
-                                                만끽합니다.{% endif %}
+                                <!-- TOP ROW: Chart (Left) and Persona Text (Right) -->
+                                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-10">
+                                    <!-- Left: Chart Area -->
+                                    <div
+                                        class="lg:col-span-4 bg-slate-50 rounded-2xl p-6 flex flex-col items-center justify-center border border-slate-100 shadow-inner">
+                                        <div class="w-full flex justify-between items-center mb-6">
+                                            <h5
+                                                class="text-sm font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 uppercase tracking-widest flex items-center gap-1.5 leading-none mt-1">
+                                                <span
+                                                    class="material-symbols-outlined text-blue-500 text-lg">monitoring</span>
+                                                My TraVTI Status
+                                            </h5>
+                                            <div class="flex bg-slate-200 rounded-lg p-1 gap-1">
+                                                <button id="btn-chart-radar"
+                                                    class="chart-tab-btn active px-2 py-1 text-[10px] font-bold rounded bg-white text-slate-800 shadow-sm transition-all"
+                                                    onclick="switchChartType('radar')">방사</button>
+                                                <button id="btn-chart-bar"
+                                                    class="chart-tab-btn px-2 py-1 text-[10px] font-bold rounded text-slate-500 hover:text-slate-700 transition-all"
+                                                    onclick="switchChartType('bar')">막대</button>
+                                            </div>
+                                        </div>
+
+                                        <div id="view-chart-radar"
+                                            class="w-full max-w-[280px] lg:max-w-[320px] aspect-square relative chart-view-container">
+                                            <canvas id="travtiRadarChart"></canvas>
+                                        </div>
+
+                                        <div id="view-chart-bar"
+                                            class="w-full hidden chart-view-container flex-col gap-6 mt-4 min-h-[250px] justify-center px-4">
+                                            <!-- I-E -->
+                                            <div
+                                                class="flex items-center gap-3 w-full text-sm font-bold text-slate-600">
+                                                <span class="w-5 text-center">I</span>
+                                                <div
+                                                    class="flex-grow flex items-center h-4 bg-slate-200 rounded-full relative overflow-visible">
+                                                    <div
+                                                        class="absolute left-1/2 top-[-4px] bottom-[-4px] w-px bg-slate-400 z-10">
+                                                    </div>
+                                                    <div class="absolute left-1/2 top-0 bottom-0 bg-blue-500 rounded-full transition-all duration-1000 origin-left"
+                                                        style="width: {{ (scores.ei|abs * 50) }}%; {% if scores.ei < 0 %}transform: scaleX(-1);{% endif %}">
+                                                    </div>
+                                                </div>
+                                                <span class="w-5 text-center">E</span>
+                                            </div>
+                                            <!-- N-S -->
+                                            <div
+                                                class="flex items-center gap-3 w-full text-sm font-bold text-slate-600">
+                                                <span class="w-5 text-center">N</span>
+                                                <div
+                                                    class="flex-grow flex items-center h-4 bg-slate-200 rounded-full relative overflow-visible">
+                                                    <div
+                                                        class="absolute left-1/2 top-[-4px] bottom-[-4px] w-px bg-slate-400 z-10">
+                                                    </div>
+                                                    <div class="absolute left-1/2 top-0 bottom-0 bg-purple-500 rounded-full transition-all duration-1000 origin-left"
+                                                        style="width: {{ (scores.sn|abs * 50) }}%; {% if scores.sn < 0 %}transform: scaleX(-1);{% endif %}">
+                                                    </div>
+                                                </div>
+                                                <span class="w-5 text-center">S</span>
+                                            </div>
+                                            <!-- F-T -->
+                                            <div
+                                                class="flex items-center gap-3 w-full text-sm font-bold text-slate-600">
+                                                <span class="w-5 text-center">F</span>
+                                                <div
+                                                    class="flex-grow flex items-center h-4 bg-slate-200 rounded-full relative overflow-visible">
+                                                    <div
+                                                        class="absolute left-1/2 top-[-4px] bottom-[-4px] w-px bg-slate-400 z-10">
+                                                    </div>
+                                                    <div class="absolute left-1/2 top-0 bottom-0 bg-green-500 rounded-full transition-all duration-1000 origin-left"
+                                                        style="width: {{ (scores.tf|abs * 50) }}%; {% if scores.tf < 0 %}transform: scaleX(-1);{% endif %}">
+                                                    </div>
+                                                </div>
+                                                <span class="w-5 text-center">T</span>
+                                            </div>
+                                            <!-- P-J -->
+                                            <div
+                                                class="flex items-center gap-3 w-full text-sm font-bold text-slate-600">
+                                                <span class="w-5 text-center">P</span>
+                                                <div
+                                                    class="flex-grow flex items-center h-4 bg-slate-200 rounded-full relative overflow-visible">
+                                                    <div
+                                                        class="absolute left-1/2 top-[-4px] bottom-[-4px] w-px bg-slate-400 z-10">
+                                                    </div>
+                                                    <div class="absolute left-1/2 top-0 bottom-0 bg-orange-500 rounded-full transition-all duration-1000 origin-left"
+                                                        style="width: {{ (scores.jp|abs * 50) }}%; {% if scores.jp < 0 %}transform: scaleX(-1);{% endif %}">
+                                                    </div>
+                                                </div>
+                                                <span class="w-5 text-center">J</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Right: Persona Report -->
+                                    <div class="lg:col-span-8 flex flex-col h-full">
+                                        <div class="flex justify-between items-start mb-4 gap-4">
+                                            <h3 class="font-bold text-slate-900 text-2xl flex items-center gap-2">
+                                                <span
+                                                    class="material-symbols-outlined text-blue-500 text-3xl">psychology</span>
+                                                나의 여행 페르소나 분석
+                                            </h3>
+
+                                            <div class="flex items-center gap-2">
+                                                <button
+                                                    onclick="shareKakao('{{ request.url_root }}shared/{{ session.user_id }}', '{{ travti_label }}', '나의 여행 페르소나를 확인해보세요!')"
+                                                    class="w-9 h-9 flex items-center justify-center rounded-full bg-[#FEE500] text-[#191919] hover:bg-[#FDD800] transition-colors relative group shadow-sm">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                        fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-1.226 4.207-1.636z" />
+                                                    </svg>
+                                                    <div
+                                                        class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-2 py-1 bg-slate-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none text-center z-10">
+                                                        카카오톡 공유</div>
+                                                </button>
+                                                <button
+                                                    onclick="copyLink('{{ request.url_root }}shared/{{ session.user_id }}')"
+                                                    class="w-9 h-9 flex items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors relative group shadow-sm">
+                                                    <span class="material-symbols-outlined text-sm">link</span>
+                                                    <div
+                                                        class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-2 py-1 bg-slate-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none text-center z-10">
+                                                        링크 복사</div>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            class="bg-blue-50/60 rounded-2xl p-8 lg:p-10 border border-blue-100/80 flex-grow flex flex-col justify-center shadow-inner">
+                                            <div
+                                                class="inline-block px-4 py-1.5 bg-blue-500 text-white font-bold rounded-lg mb-4 text-sm tracking-wide w-max shadow-sm">
+                                                {{ analysis_data.persona.title }}
+                                            </div>
+                                            <h4
+                                                class="text-3xl lg:text-4xl font-extrabold text-slate-800 mb-5 leading-tight">
+                                                {{ travti_label }}</h4>
+                                            <p
+                                                class="text-slate-600 leading-relaxed text-base lg:text-lg whitespace-pre-line">
+                                                {{ analysis_data.persona.description|safe }}
                                             </p>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-12 pb-6">
-                                    <!-- EI -->
-                                    <div>
-                                        <div class="flex justify-between text-base font-bold text-slate-700 mb-3">
-                                            <span>내향 (I)</span>
-                                            <span>외향 (E)</span>
-                                        </div>
-                                        <div
-                                            class="h-6 bg-slate-100 rounded-full overflow-hidden relative shadow-inner">
-                                            <div class="absolute top-0 bottom-0 w-0.5 bg-slate-300 left-1/2"></div>
-                                            <div class="h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-full opacity-90"
-                                                style="width: {{ (scores.ei + 1) * 50 }}%; margin-left: 0;"></div>
-                                        </div>
-                                        <p class="text-sm text-slate-500 mt-2 text-right">에너지의 방향</p>
-                                    </div>
-                                    <!-- SN -->
-                                    <div>
-                                        <div class="flex justify-between text-base font-bold text-slate-700 mb-3">
-                                            <span>직관 (N)</span>
-                                            <span>감각 (S)</span>
-                                        </div>
-                                        <div
-                                            class="h-6 bg-slate-100 rounded-full overflow-hidden relative shadow-inner">
-                                            <div class="absolute top-0 bottom-0 w-0.5 bg-slate-300 left-1/2"></div>
-                                            <div class="h-full bg-gradient-to-r from-purple-400 to-purple-600 rounded-full opacity-90"
-                                                style="width: {{ (scores.sn + 1) * 50 }}%; margin-left: 0;"></div>
-                                        </div>
-                                        <p class="text-sm text-slate-500 mt-2 text-right">인식 방식</p>
-                                    </div>
-                                    <!-- TF -->
-                                    <div>
-                                        <div class="flex justify-between text-base font-bold text-slate-700 mb-3">
-                                            <span>감정 (F)</span>
-                                            <span>사고 (T)</span>
-                                        </div>
-                                        <div
-                                            class="h-6 bg-slate-100 rounded-full overflow-hidden relative shadow-inner">
-                                            <div class="absolute top-0 bottom-0 w-0.5 bg-slate-300 left-1/2"></div>
-                                            <div class="h-full bg-gradient-to-r from-green-400 to-green-600 rounded-full opacity-90"
-                                                style="width: {{ (scores.tf + 1) * 50 }}%; margin-left: 0;"></div>
-                                        </div>
-                                        <p class="text-sm text-slate-500 mt-2 text-right">판단 기준</p>
-                                    </div>
-                                    <!-- JP -->
-                                    <div>
-                                        <div class="flex justify-between text-base font-bold text-slate-700 mb-3">
-                                            <span>인식 (P)</span>
-                                            <span>판단 (J)</span>
-                                        </div>
-                                        <div
-                                            class="h-6 bg-slate-100 rounded-full overflow-hidden relative shadow-inner">
+                                <!-- BOTTOM BOX: Traits & Settings combined block -->
+                                <div class="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
+                                    <h3
+                                        class="font-bold text-slate-900 text-xl flex items-center gap-2 mb-6 border-b border-slate-100 pb-4">
+                                        <span class="material-symbols-outlined text-indigo-500">category</span>
+                                        나의 세부 특성 및 디테일 설정
+                                    </h3>
 
-                                            <div class="absolute top-0 bottom-0 w-0.5 bg-slate-300 left-1/2"></div>
-                                            <div class="h-full bg-gradient-to-r from-orange-400 to-orange-600 rounded-full opacity-90"
-                                                style="width: {{ (scores.jp + 1) * 50 }}%; margin-left: 0;"></div>
+                                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+                                        <!-- 4 Traits Area (col-span-2) -->
+                                        <div class="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4 h-full">
+                                            {% set ei_desc = analysis_data.traits.ei %}
+                                            <div
+                                                class="bg-slate-50 border border-slate-100 shadow-sm rounded-xl p-5 hover:shadow-md transition-shadow">
+                                                <div class="flex items-center gap-2 mb-3">
+                                                    <div
+                                                        class="px-2.5 py-1 rounded-lg bg-blue-100 flex items-center justify-center text-blue-700 text-xs font-bold whitespace-nowrap">
+                                                        {{ "폭발적 에너지" if scores.ei >= 0 else "차분한 여유" }}
+                                                    </div>
+                                                    <div class="font-bold text-slate-800 text-sm">#{{ ei_desc.title }}
+                                                    </div>
+                                                </div>
+                                                <p class="text-sm text-slate-600 leading-relaxed">{{ ei_desc.desc }}</p>
+                                            </div>
+
+                                            {% set sn_desc = analysis_data.traits.sn %}
+                                            <div
+                                                class="bg-slate-50 border border-slate-100 shadow-sm rounded-xl p-5 hover:shadow-md transition-shadow">
+                                                <div class="flex items-center gap-2 mb-3">
+                                                    <div
+                                                        class="px-2.5 py-1 rounded-lg bg-purple-100 flex items-center justify-center text-purple-700 text-xs font-bold whitespace-nowrap">
+                                                        {{ "현실 감각" if scores.sn >= 0 else "직관적 영감" }}
+                                                    </div>
+                                                    <div class="font-bold text-slate-800 text-sm">#{{ sn_desc.title }}
+                                                    </div>
+                                                </div>
+                                                <p class="text-sm text-slate-600 leading-relaxed">{{ sn_desc.desc }}</p>
+                                            </div>
+
+                                            {% set tf_desc = analysis_data.traits.tf %}
+                                            <div
+                                                class="bg-slate-50 border border-slate-100 shadow-sm rounded-xl p-5 hover:shadow-md transition-shadow">
+                                                <div class="flex items-center gap-2 mb-3">
+                                                    <div
+                                                        class="px-2.5 py-1 rounded-lg bg-green-100 flex items-center justify-center text-green-700 text-xs font-bold whitespace-nowrap">
+                                                        {{ "이성적 판단" if scores.tf >= 0 else "감성적 공감" }}
+                                                    </div>
+                                                    <div class="font-bold text-slate-800 text-sm">#{{ tf_desc.title }}
+                                                    </div>
+                                                </div>
+                                                <p class="text-sm text-slate-600 leading-relaxed">{{ tf_desc.desc }}</p>
+                                            </div>
+
+                                            {% set jp_desc = analysis_data.traits.jp %}
+                                            <div
+                                                class="bg-slate-50 border border-slate-100 shadow-sm rounded-xl p-5 hover:shadow-md transition-shadow">
+                                                <div class="flex items-center gap-2 mb-3">
+                                                    <div
+                                                        class="px-2.5 py-1 rounded-lg bg-orange-100 flex items-center justify-center text-orange-700 text-xs font-bold whitespace-nowrap">
+                                                        {{ "계획적 실행" if scores.jp >= 0 else "유연한 즉흥" }}
+                                                    </div>
+                                                    <div class="font-bold text-slate-800 text-sm">#{{ jp_desc.title }}
+                                                    </div>
+                                                </div>
+                                                <p class="text-sm text-slate-600 leading-relaxed">{{ jp_desc.desc }}</p>
+                                            </div>
                                         </div>
-                                        <p class="text-xs text-slate-500 mt-2 text-right">생활 양식</p>
+
+                                        <!-- Detail Display Area (col-span-1) -->
+                                        <div
+                                            class="lg:col-span-1 bg-slate-50 border border-slate-200 shadow-sm rounded-xl py-6 px-7 h-full flex flex-col justify-center">
+                                            <div class="space-y-6">
+                                                <div>
+                                                    <div
+                                                        class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">
+                                                        체력 수준 (하루 활동량)</div>
+                                                    <div
+                                                        class="text-sm font-bold text-slate-800 flex items-center gap-2 border border-slate-200 bg-white rounded-lg px-3 py-2">
+                                                        {% if scores.stamina|round(2) >= 0.8 %}🏃 강철 체력 (풀가동 가능)
+                                                        {% elif scores.stamina|round(2) >= 0.6 %}🚶 꽤 건강함 (많이 걷기 가능)
+                                                        {% elif scores.stamina|round(2) >= 0.4 %}☕ 보통 (중간 휴식 필수)
+                                                        {% else %}🛌 저질 체력 (호캉스 위주){% endif %}
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div
+                                                        class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">
+                                                        음주 성향</div>
+                                                    <div
+                                                        class="text-sm font-bold text-slate-800 flex items-center gap-2 border border-slate-200 bg-white rounded-lg px-3 py-2">
+                                                        {% if scores.alcohol|round(2) >= 0.8 %}🍻 애주가 (현지 술 섭렵)
+                                                        {% elif scores.alcohol|round(2) >= 0.4 %}🥂 가볍게 한 잔 (반주 정도)
+                                                        {% else %}🧊 술 안 마심 (논알콜 선호){% endif %}
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div
+                                                        class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">
+                                                        못 먹는 음식 / 알러지</div>
+                                                    <div
+                                                        class="text-sm font-bold text-slate-800 border border-slate-200 bg-white rounded-lg px-3 py-2">
+                                                        {% if scores.food_restrictions %}
+                                                        <span
+                                                            class="inline-block px-2 py-0.5 bg-red-50 text-red-600 rounded-md">{{
+                                                            scores.food_restrictions }}</span>
+                                                        {% else %}
+                                                        <span class="text-slate-400 font-normal">없음</span>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 {% else %}
@@ -557,6 +701,7 @@
     <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.5.0/kakao.min.js"
         integrity="sha384-kZA7Ay8jw1oAitbB2B9yHhZ1sWz+n4l5WbA75Q1r/9QyIAnbXJkXm+aA6H3o1J/9"
         crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         function shareKakao(url, title, desc) {
             if (!window.Kakao) return alert('카카오톡 공유를 지원하지 않는 환경입니다.');
@@ -591,6 +736,63 @@
             }).catch(err => {
                 alert('복사에 실패했습니다.');
             });
+        }
+
+        function switchChartType(type) {
+            const radarBtn = document.getElementById('btn-chart-radar');
+            const barBtn = document.getElementById('btn-chart-bar');
+            const radarView = document.getElementById('view-chart-radar');
+            const barView = document.getElementById('view-chart-bar');
+
+            if (type === 'radar') {
+                radarBtn.classList.replace('text-slate-500', 'text-slate-800');
+                radarBtn.classList.add('bg-white', 'shadow-sm');
+                barBtn.classList.replace('text-slate-800', 'text-slate-500');
+                barBtn.classList.remove('bg-white', 'shadow-sm');
+                radarView.classList.remove('hidden');
+                barView.classList.add('hidden');
+                barView.classList.remove('flex');
+            } else {
+                barBtn.classList.replace('text-slate-500', 'text-slate-800');
+                barBtn.classList.add('bg-white', 'shadow-sm');
+                radarBtn.classList.replace('text-slate-800', 'text-slate-500');
+                radarBtn.classList.remove('bg-white', 'shadow-sm');
+                radarView.classList.add('hidden');
+                barView.classList.remove('hidden');
+                barView.classList.add('flex');
+            }
+        }
+
+        async function saveProfileDetails() {
+            const btn = document.getElementById('btn-save-profile');
+            const originalText = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[18px]">progress_activity</span> <span>저장 중...</span>';
+
+            const payload = {
+                stamina: document.getElementById('profile-stamina').value,
+                alcohol: document.getElementById('profile-alcohol').value,
+                food_restrictions: document.getElementById('profile-food').value,
+            };
+
+            try {
+                const res = await fetch('/api/profile/update', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                if (!res.ok) throw new Error("Failed to save profile");
+                const data = await res.json();
+                if (data.success) {
+                    alert('성공적으로 저장되었습니다.');
+                }
+            } catch (e) {
+                console.error(e);
+                alert('저장에 실패했습니다.');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            }
         }
 
         (function () {
@@ -728,22 +930,23 @@
                             :
                             `<span class="text-[10px] text-amber-500 font-bold px-2">수락 대기중</span>`
                         }
-                                <button onclick="deleteGroup('${group.id}', '${name.replace(/'/g, "\\'")}', '${group.my_role}')" class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-slate-50 text-slate-400 border border-slate-200 hover:bg-red-50 hover:text-red-500 hover:border-red-200 transition-colors" title="${group.my_role === 'owner' ? '그룹 삭제' : '그룹 나가기'}">
-                                    <span class="material-symbols-outlined text-sm">${group.my_role === 'owner' ? 'delete' : 'logout'}</span>
-                                </button>
+                                <div id="group-action-default-${group.id}">
+                                    <button onclick="document.getElementById('group-action-default-${group.id}').classList.add('hidden'); document.getElementById('group-action-confirm-${group.id}').classList.remove('hidden');" class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-slate-50 text-slate-400 border border-slate-200 hover:bg-red-50 hover:text-red-500 hover:border-red-200 transition-colors" title="${group.my_role === 'owner' ? '그룹 삭제' : '그룹 나가기'}">
+                                        <span class="material-symbols-outlined text-sm">${group.my_role === 'owner' ? 'delete' : 'logout'}</span>
+                                    </button>
+                                </div>
+                                <div id="group-action-confirm-${group.id}" class="hidden flex items-center gap-1">
+                                    <button onclick="deleteGroup('${group.id}', '${name.replace(/'/g, "\\'")}', '${group.my_role}')" class="px-2 py-1 text-xs bg-red-600 text-white rounded hover:bg-red-700 font-bold transition-colors">확인</button>
+                                    <button onclick="document.getElementById('group-action-confirm-${group.id}').classList.add('hidden'); document.getElementById('group-action-default-${group.id}').classList.remove('hidden');" class="px-2 py-1 text-xs bg-slate-200 text-slate-700 rounded hover:bg-slate-300 font-bold transition-colors">취소</button>
+                                </div>
                             </div>
                         </div>
                     `;
                 }).join('');
             }
 
-            async function deleteGroup(groupId, groupName, role) {
+            window.deleteGroup = async function (groupId, groupName, role) {
                 const actionText = role === 'owner' ? '삭제' : '나가기';
-                const confirmMsg = role === 'owner' ?
-                    `'${groupName}' 그룹을 완전히 삭제하시겠습니까? (삭제 시 멤버들도 볼 수 없습니다)` :
-                    `'${groupName}' 그룹에서 정말 나가시겠습니까?`;
-
-                if (!confirm(confirmMsg)) return;
 
                 try {
                     await apiPost('/api/groups/delete', { group_id: groupId });
@@ -787,9 +990,15 @@
                                 <div class="text-sm font-bold text-slate-800 truncate">${name}</div>
                                 <div class="text-xs text-slate-500 truncate">${label}</div>
                             </div>
-                            <button class="friend-delete-btn px-3 py-1.5 text-xs bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors relative shrink-0 font-bold" data-friend-id="${friend.friend_id}" data-friend-name="${name}">
-                                삭제
-                            </button>
+                            <div id="friend-action-default-${friend.friend_id}">
+                                <button class="friend-delete-show-btn px-3 py-1.5 text-xs bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors relative shrink-0 font-bold" data-friend-id="${friend.friend_id}">
+                                    삭제
+                                </button>
+                            </div>
+                            <div id="friend-action-confirm-${friend.friend_id}" class="hidden flex gap-1 shrink-0">
+                                <button class="friend-delete-confirm-btn px-2 py-1 text-xs rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors font-bold" data-friend-id="${friend.friend_id}">확인</button>
+                                <button class="friend-delete-cancel-btn px-2 py-1 text-xs rounded-lg bg-slate-200 text-slate-700 hover:bg-slate-300 transition-colors font-bold" data-friend-id="${friend.friend_id}">취소</button>
+                            </div>
                         </div>
                     `;
                 }).join('');
@@ -945,21 +1154,34 @@
                     return;
                 }
 
-                const deleteBtn = e.target.closest('.friend-delete-btn');
-                if (deleteBtn) {
-                    const friendId = deleteBtn.dataset.friendId;
-                    const friendName = deleteBtn.dataset.friendName || '이 친구';
-                    const confirmed = window.confirm(`${friendName}님을 친구 목록에서 삭제할까요?`);
-                    if (!confirmed) return;
+                const delShowBtn = e.target.closest('.friend-delete-show-btn');
+                if (delShowBtn) {
+                    const fid = delShowBtn.dataset.friendId;
+                    document.getElementById(`friend-action-default-${fid}`).classList.add('hidden');
+                    document.getElementById(`friend-action-confirm-${fid}`).classList.remove('hidden');
+                    return;
+                }
+
+                const delCancelBtn = e.target.closest('.friend-delete-cancel-btn');
+                if (delCancelBtn) {
+                    const fid = delCancelBtn.dataset.friendId;
+                    document.getElementById(`friend-action-confirm-${fid}`).classList.add('hidden');
+                    document.getElementById(`friend-action-default-${fid}`).classList.remove('hidden');
+                    return;
+                }
+
+                const deleteConfirmBtn = e.target.closest('.friend-delete-confirm-btn');
+                if (deleteConfirmBtn) {
+                    const friendId = deleteConfirmBtn.dataset.friendId;
 
                     try {
-                        deleteBtn.disabled = true;
+                        deleteConfirmBtn.disabled = true;
                         await apiPost('/api/friends/delete', { friend_id: friendId });
                         await Promise.all([loadFriends(), loadSavedGroups()]);
                     } catch (err) {
                         alert('친구 삭제 실패: ' + err.message);
                     } finally {
-                        deleteBtn.disabled = false;
+                        deleteConfirmBtn.disabled = false;
                     }
                     return;
                 }
@@ -977,6 +1199,89 @@
 
             Promise.all([loadFriends(), loadFriendRequests(), loadSavedGroups()]);
         })();
+
+        // Chart.js Radar Chart Initialization
+        {% if travti_label %}
+        (function () {
+            const ctx = document.getElementById('travtiRadarChart');
+            if (!ctx) return;
+
+            // scores.ei/sn/tf/jp are in the range -1.0 to 1.0.
+            // Use a base value of 40 so the chart doesn't look fully squashed near the center
+            const getVal = (score) => {
+                const absVal = Math.abs(parseFloat(score || 0));
+                return Math.round(40 + (absVal * 60)); // 0 -> 40, 1 -> 100
+            };
+
+            const eiScore = parseFloat("{{ scores.ei }}");
+            const snScore = parseFloat("{{ scores.sn }}");
+            const tfScore = parseFloat("{{ scores.tf }}");
+            const jpScore = parseFloat("{{ scores.jp }}");
+
+            // Labels matching their dominant trait
+            const labels = [
+                eiScore >= 0 ? "폭발적 에너지" : "차분한 여유",
+                snScore >= 0 ? "현실 감각" : "직관적 영감",
+                tfScore >= 0 ? "이성적 판단" : "감성적 공감",
+                jpScore >= 0 ? "계획적 실행" : "유연한 즉흥"
+            ];
+
+            const dataValues = [
+                getVal(eiScore),
+                getVal(snScore),
+                getVal(tfScore),
+                getVal(jpScore)
+            ];
+
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '성향 농도',
+                        data: dataValues,
+                        backgroundColor: 'rgba(59, 130, 246, 0.2)', // blue-500 with opacity
+                        borderColor: 'rgba(59, 130, 246, 0.8)',
+                        pointBackgroundColor: 'rgba(59, 130, 246, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 2,
+                    }]
+                },
+                options: {
+                    layout: { padding: 30 },
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(0, 0, 0, 0.05)' },
+                            grid: { color: 'rgba(0, 0, 0, 0.05)' },
+                            pointLabels: {
+                                font: { size: 12, weight: 'bold', family: "'Outfit', 'Pretendard', sans-serif" },
+                                color: '#475569' // slate-600
+                            },
+                            ticks: {
+                                display: false, // Hide the numeric scale labels for cleaner look
+                                max: 100,
+                                min: 0
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    return ' 강도: ' + Math.round(context.raw) + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        })();
+        {% endif %}
     </script>
 </body>
 
