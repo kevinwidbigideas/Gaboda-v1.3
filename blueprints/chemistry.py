@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, session, current_app, redirect, url_for
 from utils import COMMON_HEAD, get_header
+from reports.group_data import GROUP_REPORT_POOLS
 
 chemistry_bp = Blueprint('chemistry', __name__)
 
@@ -91,6 +92,7 @@ def group_report_page():
 
     import json
     safe_vector_score = json.dumps(vector_score or {})
+    pools_json = json.dumps(GROUP_REPORT_POOLS)
 
     return render_template(
         'group_report.html',
@@ -102,4 +104,5 @@ def group_report_page():
         my_mbti=mbti_type,
         my_vector_score=safe_vector_score,
         group_id_query=group_id_query,
+        pools=pools_json,
     )

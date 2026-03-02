@@ -297,25 +297,63 @@
                             <div
                                 class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 h-full flex flex-col">
                                 {% if travti_label %}
+                                <!-- HEADER MOVED UP -->
+                                <div class="flex justify-between items-start mb-6 gap-4 border-b border-slate-100 pb-4">
+                                    <h3 class="font-bold text-slate-900 text-2xl flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-blue-500 text-3xl">psychology</span>
+                                        나의 여행 페르소나 분석
+                                    </h3>
+
+                                    <div class="flex items-center gap-2">
+                                        <button
+                                            onclick="shareKakao('{{ request.url_root }}shared/{{ session.user_id }}', '{{ travti_label }}', '나의 여행 페르소나를 확인해보세요!')"
+                                            class="w-9 h-9 flex items-center justify-center rounded-full bg-[#FEE500] text-[#191919] hover:bg-[#FDD800] transition-colors relative group shadow-sm">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-1.226 4.207-1.636z" />
+                                            </svg>
+                                            <div
+                                                class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-2 py-1 bg-slate-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none text-center z-10">
+                                                카카오톡 공유</div>
+                                        </button>
+                                        <button onclick="copyLink('{{ request.url_root }}shared/{{ session.user_id }}')"
+                                            class="w-9 h-9 flex items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors relative group shadow-sm">
+                                            <span class="material-symbols-outlined text-sm">link</span>
+                                            <div
+                                                class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-2 py-1 bg-slate-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none text-center z-10">
+                                                링크 복사</div>
+                                        </button>
+                                    </div>
+                                </div>
+
                                 <!-- TOP ROW: Chart (Left) and Persona Text (Right) -->
-                                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-10">
+                                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-10 items-stretch">
                                     <!-- Left: Chart Area -->
                                     <div
-                                        class="lg:col-span-4 bg-slate-50 rounded-2xl p-6 flex flex-col items-center justify-center border border-slate-100 shadow-inner">
+                                        class="lg:col-span-4 bg-slate-50 rounded-2xl p-6 flex flex-col items-center justify-center border border-slate-100 shadow-inner h-full">
                                         <div class="w-full flex justify-between items-center mb-6">
                                             <h5
-                                                class="text-sm font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 uppercase tracking-widest flex items-center gap-1.5 leading-none mt-1">
+                                                class="text-xs font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 uppercase tracking-widest flex items-center gap-1.5 leading-none mt-1">
                                                 <span
                                                     class="material-symbols-outlined text-blue-500 text-lg">monitoring</span>
                                                 My TraVTI Status
                                             </h5>
-                                            <div class="flex bg-slate-200 rounded-lg p-1 gap-1">
-                                                <button id="btn-chart-radar"
-                                                    class="chart-tab-btn active px-2 py-1 text-[10px] font-bold rounded bg-white text-slate-800 shadow-sm transition-all"
-                                                    onclick="switchChartType('radar')">방사</button>
-                                                <button id="btn-chart-bar"
-                                                    class="chart-tab-btn px-2 py-1 text-[10px] font-bold rounded text-slate-500 hover:text-slate-700 transition-all"
-                                                    onclick="switchChartType('bar')">막대</button>
+                                            <!-- Toggle Button -->
+                                            <div class="relative flex items-center bg-slate-150 hover:bg-slate-200 rounded-full cursor-pointer w-[120px] h-8 select-none shadow-inner transition-colors shrink-0 p-1"
+                                                onclick="toggleChartType()">
+                                                <!-- Slider background -->
+                                                <div id="chart-toggle-slider"
+                                                    class="absolute left-1 top-1 bottom-1 w-[55px] bg-white rounded-full shadow transition-all duration-300 ease-in-out"
+                                                    style="transform: translateX(0);"></div>
+
+                                                <!-- Text items -->
+                                                <div id="text-radar"
+                                                    class="relative flex-1 flex items-center justify-center text-[12px] font-bold text-slate-800 z-10 whitespace-nowrap transition-colors duration-300">
+                                                    간단히</div>
+                                                <div id="text-bar"
+                                                    class="relative flex-1 flex items-center justify-center text-[12px] font-bold text-slate-400 z-10 whitespace-nowrap transition-colors duration-300">
+                                                    자세히</div>
                                             </div>
                                         </div>
 
@@ -325,105 +363,95 @@
                                         </div>
 
                                         <div id="view-chart-bar"
-                                            class="w-full hidden chart-view-container flex-col gap-6 mt-4 min-h-[250px] justify-center px-4">
-                                            <!-- I-E -->
-                                            <div
-                                                class="flex items-center gap-3 w-full text-sm font-bold text-slate-600">
-                                                <span class="w-5 text-center">I</span>
-                                                <div
-                                                    class="flex-grow flex items-center h-4 bg-slate-200 rounded-full relative overflow-visible">
+                                            class="w-full hidden chart-view-container flex-row h-[280px] justify-between items-center px-1 mt-2 gap-1.5">
+
+                                            <!-- EI -->
+                                            <div class="flex flex-col items-center h-full flex-1">
+                                                <span
+                                                    class="text-[10px] font-bold text-slate-600 text-center h-8 flex items-end justify-center mb-2 leading-tight w-full break-keep">폭발적<br>에너지</span>
+                                                <div class="relative w-4 h-full bg-slate-200 rounded-full my-1">
                                                     <div
-                                                        class="absolute left-1/2 top-[-4px] bottom-[-4px] w-px bg-slate-400 z-10">
+                                                        class="absolute left-[-4px] right-[-4px] top-1/2 h-px bg-slate-400 z-10">
                                                     </div>
-                                                    <div class="absolute left-1/2 top-0 bottom-0 bg-blue-500 rounded-full transition-all duration-1000 origin-left"
-                                                        style="width: {{ (scores.ei|abs * 50) }}%; {% if scores.ei < 0 %}transform: scaleX(-1);{% endif %}">
-                                                    </div>
+                                                    {% if scores.ei >= 0 %}
+                                                    <div class="absolute bottom-1/2 left-0 right-0 bg-blue-500 transition-all duration-1000 rounded-t-full"
+                                                        style="height: {{ (scores.ei|abs * 50) }}%;"></div>
+                                                    {% else %}
+                                                    <div class="absolute top-1/2 left-0 right-0 bg-blue-500 transition-all duration-1000 rounded-b-full"
+                                                        style="height: {{ (scores.ei|abs * 50) }}%;"></div>
+                                                    {% endif %}
                                                 </div>
-                                                <span class="w-5 text-center">E</span>
+                                                <span
+                                                    class="text-[10px] font-bold text-slate-600 text-center h-8 flex items-start justify-center mt-2 leading-tight w-full break-keep">차분한<br>여유</span>
                                             </div>
-                                            <!-- N-S -->
-                                            <div
-                                                class="flex items-center gap-3 w-full text-sm font-bold text-slate-600">
-                                                <span class="w-5 text-center">N</span>
-                                                <div
-                                                    class="flex-grow flex items-center h-4 bg-slate-200 rounded-full relative overflow-visible">
+
+                                            <!-- SN -->
+                                            <div class="flex flex-col items-center h-full flex-1">
+                                                <span
+                                                    class="text-[10px] font-bold text-slate-600 text-center h-8 flex items-end justify-center mb-2 leading-tight w-full break-keep">현실<br>감각</span>
+                                                <div class="relative w-4 h-full bg-slate-200 rounded-full my-1">
                                                     <div
-                                                        class="absolute left-1/2 top-[-4px] bottom-[-4px] w-px bg-slate-400 z-10">
+                                                        class="absolute left-[-4px] right-[-4px] top-1/2 h-px bg-slate-400 z-10">
                                                     </div>
-                                                    <div class="absolute left-1/2 top-0 bottom-0 bg-purple-500 rounded-full transition-all duration-1000 origin-left"
-                                                        style="width: {{ (scores.sn|abs * 50) }}%; {% if scores.sn < 0 %}transform: scaleX(-1);{% endif %}">
-                                                    </div>
+                                                    {% if scores.sn >= 0 %}
+                                                    <div class="absolute bottom-1/2 left-0 right-0 bg-purple-500 transition-all duration-1000 rounded-t-full"
+                                                        style="height: {{ (scores.sn|abs * 50) }}%;"></div>
+                                                    {% else %}
+                                                    <div class="absolute top-1/2 left-0 right-0 bg-purple-500 transition-all duration-1000 rounded-b-full"
+                                                        style="height: {{ (scores.sn|abs * 50) }}%;"></div>
+                                                    {% endif %}
                                                 </div>
-                                                <span class="w-5 text-center">S</span>
+                                                <span
+                                                    class="text-[10px] font-bold text-slate-600 text-center h-8 flex items-start justify-center mt-2 leading-tight w-full break-keep">직관적<br>영감</span>
                                             </div>
-                                            <!-- F-T -->
-                                            <div
-                                                class="flex items-center gap-3 w-full text-sm font-bold text-slate-600">
-                                                <span class="w-5 text-center">F</span>
-                                                <div
-                                                    class="flex-grow flex items-center h-4 bg-slate-200 rounded-full relative overflow-visible">
+
+                                            <!-- TF -->
+                                            <div class="flex flex-col items-center h-full flex-1">
+                                                <span
+                                                    class="text-[10px] font-bold text-slate-600 text-center h-8 flex items-end justify-center mb-2 leading-tight w-full break-keep">이성적<br>판단</span>
+                                                <div class="relative w-4 h-full bg-slate-200 rounded-full my-1">
                                                     <div
-                                                        class="absolute left-1/2 top-[-4px] bottom-[-4px] w-px bg-slate-400 z-10">
+                                                        class="absolute left-[-4px] right-[-4px] top-1/2 h-px bg-slate-400 z-10">
                                                     </div>
-                                                    <div class="absolute left-1/2 top-0 bottom-0 bg-green-500 rounded-full transition-all duration-1000 origin-left"
-                                                        style="width: {{ (scores.tf|abs * 50) }}%; {% if scores.tf < 0 %}transform: scaleX(-1);{% endif %}">
-                                                    </div>
+                                                    {% if scores.tf >= 0 %}
+                                                    <div class="absolute bottom-1/2 left-0 right-0 bg-green-500 transition-all duration-1000 rounded-t-full"
+                                                        style="height: {{ (scores.tf|abs * 50) }}%;"></div>
+                                                    {% else %}
+                                                    <div class="absolute top-1/2 left-0 right-0 bg-green-500 transition-all duration-1000 rounded-b-full"
+                                                        style="height: {{ (scores.tf|abs * 50) }}%;"></div>
+                                                    {% endif %}
                                                 </div>
-                                                <span class="w-5 text-center">T</span>
+                                                <span
+                                                    class="text-[10px] font-bold text-slate-600 text-center h-8 flex items-start justify-center mt-2 leading-tight w-full break-keep">감성적<br>공감</span>
                                             </div>
-                                            <!-- P-J -->
-                                            <div
-                                                class="flex items-center gap-3 w-full text-sm font-bold text-slate-600">
-                                                <span class="w-5 text-center">P</span>
-                                                <div
-                                                    class="flex-grow flex items-center h-4 bg-slate-200 rounded-full relative overflow-visible">
+
+                                            <!-- JP -->
+                                            <div class="flex flex-col items-center h-full flex-1">
+                                                <span
+                                                    class="text-[10px] font-bold text-slate-600 text-center h-8 flex items-end justify-center mb-2 leading-tight w-full break-keep">계획적<br>실행</span>
+                                                <div class="relative w-4 h-full bg-slate-200 rounded-full my-1">
                                                     <div
-                                                        class="absolute left-1/2 top-[-4px] bottom-[-4px] w-px bg-slate-400 z-10">
+                                                        class="absolute left-[-4px] right-[-4px] top-1/2 h-px bg-slate-400 z-10">
                                                     </div>
-                                                    <div class="absolute left-1/2 top-0 bottom-0 bg-orange-500 rounded-full transition-all duration-1000 origin-left"
-                                                        style="width: {{ (scores.jp|abs * 50) }}%; {% if scores.jp < 0 %}transform: scaleX(-1);{% endif %}">
-                                                    </div>
+                                                    {% if scores.jp >= 0 %}
+                                                    <div class="absolute bottom-1/2 left-0 right-0 bg-orange-500 transition-all duration-1000 rounded-t-full"
+                                                        style="height: {{ (scores.jp|abs * 50) }}%;"></div>
+                                                    {% else %}
+                                                    <div class="absolute top-1/2 left-0 right-0 bg-orange-500 transition-all duration-1000 rounded-b-full"
+                                                        style="height: {{ (scores.jp|abs * 50) }}%;"></div>
+                                                    {% endif %}
                                                 </div>
-                                                <span class="w-5 text-center">J</span>
+                                                <span
+                                                    class="text-[10px] font-bold text-slate-600 text-center h-8 flex items-start justify-center mt-2 leading-tight w-full break-keep">유연한<br>즉흥</span>
                                             </div>
+
                                         </div>
                                     </div>
 
                                     <!-- Right: Persona Report -->
                                     <div class="lg:col-span-8 flex flex-col h-full">
-                                        <div class="flex justify-between items-start mb-4 gap-4">
-                                            <h3 class="font-bold text-slate-900 text-2xl flex items-center gap-2">
-                                                <span
-                                                    class="material-symbols-outlined text-blue-500 text-3xl">psychology</span>
-                                                나의 여행 페르소나 분석
-                                            </h3>
-
-                                            <div class="flex items-center gap-2">
-                                                <button
-                                                    onclick="shareKakao('{{ request.url_root }}shared/{{ session.user_id }}', '{{ travti_label }}', '나의 여행 페르소나를 확인해보세요!')"
-                                                    class="w-9 h-9 flex items-center justify-center rounded-full bg-[#FEE500] text-[#191919] hover:bg-[#FDD800] transition-colors relative group shadow-sm">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                                        fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
-                                                        <path
-                                                            d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-1.226 4.207-1.636z" />
-                                                    </svg>
-                                                    <div
-                                                        class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-2 py-1 bg-slate-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none text-center z-10">
-                                                        카카오톡 공유</div>
-                                                </button>
-                                                <button
-                                                    onclick="copyLink('{{ request.url_root }}shared/{{ session.user_id }}')"
-                                                    class="w-9 h-9 flex items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors relative group shadow-sm">
-                                                    <span class="material-symbols-outlined text-sm">link</span>
-                                                    <div
-                                                        class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-2 py-1 bg-slate-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none text-center z-10">
-                                                        링크 복사</div>
-                                                </button>
-                                            </div>
-                                        </div>
-
                                         <div
-                                            class="bg-blue-50/60 rounded-2xl p-8 lg:p-10 border border-blue-100/80 flex-grow flex flex-col justify-center shadow-inner">
+                                            class="bg-blue-50/60 rounded-2xl p-8 lg:p-10 border border-blue-100/80 flex-grow flex flex-col justify-center shadow-inner h-full">
                                             <div
                                                 class="inline-block px-4 py-1.5 bg-blue-500 text-white font-bold rounded-lg mb-4 text-sm tracking-wide w-max shadow-sm">
                                                 {{ analysis_data.persona.title }}
@@ -738,28 +766,32 @@
             });
         }
 
-        function switchChartType(type) {
-            const radarBtn = document.getElementById('btn-chart-radar');
-            const barBtn = document.getElementById('btn-chart-bar');
+        let currentChartType = 'radar';
+        function toggleChartType() {
             const radarView = document.getElementById('view-chart-radar');
             const barView = document.getElementById('view-chart-bar');
+            const slider = document.getElementById('chart-toggle-slider');
+            const textRadar = document.getElementById('text-radar');
+            const textBar = document.getElementById('text-bar');
 
-            if (type === 'radar') {
-                radarBtn.classList.replace('text-slate-500', 'text-slate-800');
-                radarBtn.classList.add('bg-white', 'shadow-sm');
-                barBtn.classList.replace('text-slate-800', 'text-slate-500');
-                barBtn.classList.remove('bg-white', 'shadow-sm');
-                radarView.classList.remove('hidden');
-                barView.classList.add('hidden');
-                barView.classList.remove('flex');
-            } else {
-                barBtn.classList.replace('text-slate-500', 'text-slate-800');
-                barBtn.classList.add('bg-white', 'shadow-sm');
-                radarBtn.classList.replace('text-slate-800', 'text-slate-500');
-                radarBtn.classList.remove('bg-white', 'shadow-sm');
+            if (currentChartType === 'radar') {
+                currentChartType = 'bar';
                 radarView.classList.add('hidden');
                 barView.classList.remove('hidden');
                 barView.classList.add('flex');
+
+                slider.style.transform = 'translateX(57px)';
+                textRadar.classList.replace('text-slate-800', 'text-slate-400');
+                textBar.classList.replace('text-slate-400', 'text-slate-800');
+            } else {
+                currentChartType = 'radar';
+                barView.classList.add('hidden');
+                barView.classList.remove('flex');
+                radarView.classList.remove('hidden');
+
+                slider.style.transform = 'translateX(0)';
+                textRadar.classList.replace('text-slate-400', 'text-slate-800');
+                textBar.classList.replace('text-slate-800', 'text-slate-400');
             }
         }
 

@@ -717,23 +717,27 @@ def group_list():
 
 @api_bp.route('/groups/members')
 def group_members_list():
-    user_client, me, err = _get_user_client_or_error()
-    if err:
-        return err
+    user_id = session.get('user_id')
+    if not user_id:
+        return jsonify({'error': 'unauthorized'}), 401
+    
+    supabase = getattr(current_app, 'supabase', None)
+    if not supabase:
+        return jsonify({'error': 'supabase_not_configured'}), 500
 
     group_id = request.args.get('group_id')
     if not group_id:
         return jsonify({'error': 'missing_group_id'}), 400
 
     try:
-        member_rows = user_client.table('group_members').select('user_id, role, invite_status').eq('group_id', group_id).execute().data or []
+        member_rows = supabase.table('group_members').select('user_id, role, invite_status').eq('group_id', group_id).execute().data or []
         if not member_rows:
             return jsonify({'members': []})
 
         user_ids = [str(row.get('user_id')) for row in member_rows if row.get('user_id')]
         
         # We need _fetch_profiles logic but we can query travis_user_data directly
-        profiles_res = user_client.table('travis_user_data').select('id, name, email, travti_label, mbti, vector_score').in_('id', user_ids).execute()
+        profiles_res = supabase.table('travis_user_data').select('id, name, email, travti_label, mbti, vector_score').in_('id', user_ids).execute()
         profiles = {str(p.get('id')): p for p in (profiles_res.data or [])}
 
         results = []
