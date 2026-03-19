@@ -872,3 +872,28 @@ def group_invite_respond():
         return jsonify({'success': True, 'invite_status': next_status, 'membership': rows[0]})
     except Exception as e:
         return jsonify({'error': 'db_error', 'message': str(e)}), 500
+
+
+@api_bp.route('/pre_register', methods=['POST'])
+def pre_register():
+    """사전예약 이메일 등록"""
+    data = request.json
+    email = data.get('email')
+    if not email:
+        return jsonify({'error': 'email_required'}), 400
+    
+    supabase = getattr(current_app, 'supabase', None)
+    if not supabase:
+        return jsonify({'error': 'supabase_not_configured'}), 500
+    
+    try:
+        # 이메일 중복 체크 및 삽입
+        res = supabase.table('pre_registrations').insert({'email': email}).execute()
+        if not res.data:
+            return jsonify({'error': 'already_registered', 'message': '이미 등록된 이메일입니다.'}), 409
+        return jsonify({'success': True})
+    except Exception as e:
+        error_msg = str(e).lower()
+        if 'duplicate' in error_msg or 'unique' in error_msg:
+            return jsonify({'error': 'already_registered', 'message': '이미 등록된 이메일입니다.'}), 409
+        return jsonify({'error': 'db_error', 'message': str(e)}), 500

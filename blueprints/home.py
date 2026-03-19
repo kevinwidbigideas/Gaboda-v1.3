@@ -11,4 +11,4 @@ def index():
     """메인 랜딩 페이지"""
     return render_template('index.html', 
                          common_head=COMMON_HEAD, 
-                         header=get_header('home'))
+                         header=get_header('landing'))

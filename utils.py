@@ -27,7 +27,11 @@ def get_header(current_page):
     hamburger_btn_html = ""
     sidebar_html = ""
 
-    if current_page != 'test':
+    # 'landing' mode: No sidebar, no auth buttons
+    if current_page == 'landing':
+        hamburger_btn_html = ""
+        sidebar_html = ""
+    elif current_page != 'test':
         hamburger_btn_html = """
                     <button id="menu-toggle-header" class="p-2 rounded-md hover:bg-slate-100">
                         <span class="flex flex-col gap-1 items-center">
@@ -80,17 +84,13 @@ def get_header(current_page):
         </div>
     </aside>"""
 
-    nav_html = """
-    <header id="site-header" class="sticky top-0 z-[80] border-b border-slate-200 bg-white">
-        <div class="flex items-center justify-between w-full px-6 md:px-10 py-4">
-            <div class="max-w-3xl mx-auto w-full flex items-center justify-between">
-                <a href="/" class="text-blue-500 cursor-pointer hover:opacity-80 transition-opacity">
-                    <h2 class="text-slate-900 text-xl font-extrabold">Travis</h2>
-                </a>
-                <div class="flex items-center gap-4">
-                    <!-- Logged Out State -->
-                    <a id="desktop-login-btn" href="/login" class="hidden md:block px-5 py-2.5 bg-slate-900 text-white rounded-full hover:bg-slate-800 transition-colors text-sm font-bold shadow-md shadow-slate-900/10">로그인 / 회원가입</a>
-                    
+    login_btn_html = ""
+    if current_page != 'landing':
+        login_btn_html = """<a id="desktop-login-btn" href="/login" class="hidden md:block px-5 py-2.5 bg-slate-900 text-white rounded-full hover:bg-slate-800 transition-colors text-sm font-bold shadow-md shadow-slate-900/10">로그인 / 회원가입</a>"""
+
+    user_area_html = ""
+    if current_page != 'landing':
+        user_area_html = """
                     <!-- Logged In State -->
                     <div id="desktop-user-area" class="hidden items-center gap-4">
                         <div class="flex flex-col items-end text-right mr-2">
@@ -101,14 +101,27 @@ def get_header(current_page):
                         <a id="desktop-mypage-btn" href="/my-travti" class="text-blue-600 hover:text-blue-700 font-bold transition-colors text-sm">마이페이지</a>
                         <button id="desktop-logout-btn" class="text-slate-400 hover:text-red-500 font-medium transition-colors text-sm">로그아웃</button>
                     </div>
+"""
 
+    nav_html = """
+    <header id="site-header" class="sticky top-0 z-[80] border-b border-slate-200 bg-white">
+        <div class="flex items-center justify-between w-full px-6 md:px-10 py-4">
+            <div class="max-w-3xl mx-auto w-full flex items-center justify-between">
+                <a href="/" class="text-blue-500 cursor-pointer hover:opacity-80 transition-opacity">
+                    <h2 class="text-slate-900 text-3xl font-black tracking-tighter">Travis</h2>
+                </a>
+                <div class="flex items-center gap-4">
+                    <!-- Logged Out State -->
+                    """ + login_btn_html + """
+                    
+                    """ + user_area_html + """
+                    
 """ + hamburger_btn_html + """
                 </div>
             </div>
         </div>
     </header>
-
-""" + sidebar_html + """
+    """ + sidebar_html + """
 
      <script>
         (function(){
